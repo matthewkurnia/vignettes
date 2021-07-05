@@ -1,0 +1,27 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://character_animation/test_puppet.tscn" type="PackedScene" id=1]
+[ext_resource path="res://character_animation/character_rig.tscn" type="PackedScene" id=2]
+
+[sub_resource type="Shader" id=2]
+code = "shader_type canvas_item;
+render_mode blend_premul_alpha;
+"
+
+[sub_resource type="ShaderMaterial" id=3]
+shader = SubResource( 2 )
+
+[sub_resource type="ViewportTexture" id=1]
+viewport_path = NodePath("Viewport")
+
+[node name="CharacterRig" instance=ExtResource( 2 )]
+
+[node name="Viewport" parent="." index="0"]
+size = Vector2( 100, 100 )
+
+[node name="Puppet" parent="Viewport" index="0" instance=ExtResource( 1 )]
+position = Vector2( 50, 50 )
+
+[node name="Sprite" parent="." index="1"]
+material = SubResource( 3 )
+texture = SubResource( 1 )

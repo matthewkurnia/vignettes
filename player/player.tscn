@@ -1,0 +1,63 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://player/scripts/player_state_machine.gd" type="Script" id=1]
+[ext_resource path="res://player/scripts/player_controller.gd" type="Script" id=2]
+[ext_resource path="res://player/scripts/player.gd" type="Script" id=3]
+[ext_resource path="res://player/scripts/player_state_idle.gd" type="Script" id=4]
+[ext_resource path="res://player/scripts/player_state_fall.gd" type="Script" id=5]
+[ext_resource path="res://player/scripts/player_state_run.gd" type="Script" id=6]
+[ext_resource path="res://player/scripts/player_state_jump.gd" type="Script" id=7]
+[ext_resource path="res://player/player_rig.tscn" type="PackedScene" id=8]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 30, 50 )
+
+[node name="Player" type="KinematicBody2D"]
+collision_layer = 2
+script = ExtResource( 3 )
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource( 1 )
+initial_state = NodePath("Idle")
+
+[node name="Idle" type="Node" parent="StateMachine"]
+script = ExtResource( 4 )
+
+[node name="Run" type="Node" parent="StateMachine"]
+script = ExtResource( 6 )
+
+[node name="Jump" type="Node" parent="StateMachine"]
+script = ExtResource( 7 )
+
+[node name="Fall" type="Node" parent="StateMachine"]
+script = ExtResource( 5 )
+
+[node name="PlayerController" type="Node" parent="."]
+process_priority = 1
+script = ExtResource( 2 )
+
+[node name="Coyote" type="Timer" parent="PlayerController"]
+wait_time = 0.1
+one_shot = true
+
+[node name="Buffer" type="Timer" parent="PlayerController"]
+wait_time = 0.1
+one_shot = true
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="PlayerRig" parent="." instance=ExtResource( 8 )]
+
+[node name="FloorRayRight" type="RayCast2D" parent="."]
+position = Vector2( 30, 40 )
+enabled = true
+cast_to = Vector2( 15, 0 )
+
+[node name="FloorRayLeft" type="RayCast2D" parent="."]
+position = Vector2( -30, 40 )
+enabled = true
+cast_to = Vector2( -15, 0 )
+
+[connection signal="state_changed" from="StateMachine" to="PlayerRig" method="play"]
+[connection signal="state_override" from="PlayerController" to="StateMachine" method="change_state"]

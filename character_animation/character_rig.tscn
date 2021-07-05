@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://character_animation/character_viewport.gd" type="Script" id=1]
+[ext_resource path="res://character_animation/character_rig.gd" type="Script" id=2]
+
+[sub_resource type="ViewportTexture" id=1]
+viewport_path = NodePath("Viewport")
+
+[node name="CharacterRig" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="Viewport" type="Viewport" parent="."]
+own_world = true
+transparent_bg = true
+debanding = true
+disable_3d = true
+usage = 1
+script = ExtResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = SubResource( 1 )
+flip_v = true
+
+[node name="Preview" type="Sprite" parent="."]

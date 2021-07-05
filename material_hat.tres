@@ -1,0 +1,39 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=2]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+
+uniform float bend_direction = 0.0;
+uniform float bend_ammount = 0.0;
+uniform float bend_pivot_x : hint_range(0.0, 1.0) = 0.5;
+uniform float bend_pivot_y : hint_range(0.0, 1.0) = 0.5;
+
+vec2 rotate_uv(vec2 uv, vec2 pivot, float rotation) {
+    float sine = sin(rotation);
+    float cosine = cos(rotation);
+
+    uv -= pivot;
+	float new_x = uv.x * cosine - uv.y * sine;
+	float new_y = uv.x * sine + uv.y * cosine;
+    uv.x = new_x;
+    uv.y = new_y;
+    uv += pivot;
+
+    return uv;
+}
+
+void fragment() {
+	vec2 uv = UV;
+	vec2 bend_pivot = vec2(bend_pivot_x, bend_pivot_y);
+	uv = rotate_uv(uv, bend_pivot, bend_direction);
+	uv = rotate_uv(uv, bend_pivot, (uv.x - bend_pivot.x) * 2.0 * bend_ammount);
+	uv = rotate_uv(uv, bend_pivot, -bend_direction);
+	COLOR = texture(TEXTURE, uv);
+}"
+
+[resource]
+shader = SubResource( 1 )
+shader_param/bend_direction = 0.0
+shader_param/bend_ammount = 0.642095
+shader_param/bend_pivot_x = 0.5
+shader_param/bend_pivot_y = 0.304

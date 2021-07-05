@@ -1,0 +1,26 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://character_animation/puppet.tscn" type="PackedScene" id=1]
+[ext_resource path="res://icon.png" type="Texture" id=2]
+
+[sub_resource type="Animation" id=1]
+resource_name = "New Anim"
+
+[sub_resource type="AnimationNodeStateMachine" id=2]
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=3]
+
+[node name="Puppet" instance=ExtResource( 1 )]
+dimension = Vector2( 100, 100 )
+
+[node name="AnimationPlayer" parent="." index="0"]
+"anims/New Anim" = SubResource( 1 )
+
+[node name="AnimationTree" parent="." index="1"]
+tree_root = SubResource( 2 )
+parameters/playback = SubResource( 3 )
+
+[node name="Sprite" type="Sprite" parent="Root" index="0"]
+modulate = Color( 1, 1, 1, 0.560784 )
+use_parent_material = true
+texture = ExtResource( 2 )
