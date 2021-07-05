@@ -7,7 +7,7 @@ func lirpf(from: float, to: float, amount: float) -> float:
 	var res := from + dir*amount
 	if dir > 0 and res > to:
 		return to
-	elif res < to:
+	elif dir < 0 and res < to:
 		return to
 	return res
 

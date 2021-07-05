@@ -20,4 +20,5 @@ func _unhandled_input(event):
 		buffer.start()
 		if coyote.time_left > 0:
 			emit_signal("state_override", "jump")
-	player.dir = Input.get_action_strength("move_right") - Input.get_action_strength("move_left")
+	player.dir = sign(Input.get_action_strength("move_right") -
+					  Input.get_action_strength("move_left"))

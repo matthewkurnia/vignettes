@@ -7,10 +7,10 @@ const GRAV = 25.0
 const MAX_SPEED = 460.0
 const ACCEL = 40
 const ACCEL_AIR = 30
-const FRICTION = 0.2
-const FRICTION_FAST = 0.05
-const FRICTION_AIR = 0.1
-const FRICTION_AIR_FAST = 0.003
+const FRICTION = 30
+const FRICTION_FAST = 25
+const FRICTION_AIR = 20
+const FRICTION_AIR_FAST = 17
 const JUMP_STRENGTH = 900.0
 
 var velocity = Vector2()
@@ -30,9 +30,8 @@ func _init():
 
 func _physics_process(delta):
 	if Input.is_action_just_pressed("ui_up"):
-		velocity.x = 1000
+		velocity.x = dir * 1000
 	state_machine.update(delta)
-	
 	handle_movement()
 
 

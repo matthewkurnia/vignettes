@@ -1,4 +1,4 @@
-[gd_scene load_steps=43 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://character_animation/puppet.tscn" type="PackedScene" id=1]
 [ext_resource path="res://player/scripts/hat_anim.gd" type="Script" id=2]
@@ -19,6 +19,7 @@
 [ext_resource path="res://player/cutout/arm_lower_front.PNG" type="Texture" id=17]
 [ext_resource path="res://material_hat.tres" type="Material" id=18]
 [ext_resource path="res://player/cutout/arm_overlay.PNG" type="Texture" id=19]
+[ext_resource path="res://player/player_anim_state_machine.tres" type="AnimationNodeStateMachine" id=20]
 
 [sub_resource type="Animation" id=1]
 resource_name = "default"
@@ -1961,65 +1962,6 @@ tracks/31/keys = {
 "values": [ 0.171, -0.56, 0.171, -0.56 ]
 }
 
-[sub_resource type="AnimationNodeAnimation" id=6]
-animation = "fall"
-
-[sub_resource type="AnimationNodeAnimation" id=7]
-animation = "idle"
-
-[sub_resource type="AnimationNodeAnimation" id=8]
-animation = "jump"
-
-[sub_resource type="AnimationNodeAnimation" id=9]
-animation = "run"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=10]
-xfade_time = 0.15
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=11]
-xfade_time = 0.15
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=12]
-xfade_time = 0.2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=13]
-xfade_time = 0.05
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=14]
-xfade_time = 0.05
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=15]
-xfade_time = 0.2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=16]
-xfade_time = 0.1
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=17]
-xfade_time = 0.02
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=18]
-xfade_time = 0.15
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=19]
-xfade_time = 0.05
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=20]
-xfade_time = 0.02
-
-[sub_resource type="AnimationNodeStateMachineTransition" id=21]
-xfade_time = 0.1
-
-[sub_resource type="AnimationNodeStateMachine" id=22]
-states/fall/node = SubResource( 6 )
-states/fall/position = Vector2( 429, 210 )
-states/idle/node = SubResource( 7 )
-states/idle/position = Vector2( 238, 63 )
-states/jump/node = SubResource( 8 )
-states/jump/position = Vector2( 238, 210 )
-states/run/node = SubResource( 9 )
-states/run/position = Vector2( 429, 63 )
-transitions = [ "idle", "run", SubResource( 10 ), "run", "idle", SubResource( 11 ), "run", "fall", SubResource( 12 ), "fall", "run", SubResource( 13 ), "fall", "idle", SubResource( 14 ), "idle", "fall", SubResource( 15 ), "jump", "idle", SubResource( 16 ), "idle", "jump", SubResource( 17 ), "jump", "fall", SubResource( 18 ), "fall", "jump", SubResource( 19 ), "run", "jump", SubResource( 20 ), "jump", "run", SubResource( 21 ) ]
-
 [sub_resource type="AnimationNodeStateMachinePlayback" id=23]
 
 [node name="PlayerPuppet" instance=ExtResource( 1 )]
@@ -2042,118 +1984,118 @@ anims/jump = SubResource( 4 )
 anims/run = SubResource( 5 )
 
 [node name="AnimationTree" parent="." index="2"]
-tree_root = SubResource( 22 )
+tree_root = ExtResource( 20 )
 active = true
 parameters/playback = SubResource( 23 )
+parameters/run/TimeScale/scale = 1.0
 
 [node name="Root" parent="." index="3"]
 position = Vector2( 0, 48 )
-scale = Vector2( 0.5, 0.5 )
+scale = Vector2( 0.523019, 0.484654 )
 
 [node name="backpack" type="Sprite" parent="Root" index="0"]
 visible = false
 texture = ExtResource( 16 )
 
 [node name="arm_upper_front" type="Sprite" parent="Root" index="1"]
-position = Vector2( -11.383, -131.163 )
-rotation = 0.320371
+position = Vector2( -11.0568, -119.69 )
+rotation = 0.309394
+scale = Vector2( 1, 1 )
 texture = ExtResource( 10 )
 offset = Vector2( 15.205, 34.0237 )
 
 [node name="arm_upper_back" type="Sprite" parent="Root" index="2"]
-position = Vector2( 13.2531, -125.3 )
-rotation = -0.477589
+position = Vector2( 13.6611, -114.182 )
+rotation = -0.369193
+scale = Vector2( 1, 1 )
 texture = ExtResource( 9 )
 offset = Vector2( -9.99341, 31.5039 )
 
 [node name="arm_lower_back" type="Sprite" parent="Root" index="3"]
-position = Vector2( 42.6182, -98.6818 )
-rotation = 0.0304343
+position = Vector2( 39.9741, -84.5427 )
+rotation = -0.0889635
 scale = Vector2( 1, 1 )
 texture = ExtResource( 14 )
 offset = Vector2( -23.8377, -5.63348 )
 
 [node name="hat_back" type="Sprite" parent="Root" index="4"]
 material = ExtResource( 18 )
-position = Vector2( 2.26051, -182.31 )
-rotation = -0.110401
-scale = Vector2( 1, 1 )
+position = Vector2( 4.75726, -170.029 )
+rotation = -0.0417306
 texture = ExtResource( 13 )
 offset = Vector2( 0.109314, 85.8731 )
 
 [node name="leg_upper_back" type="Sprite" parent="Root" index="5"]
-position = Vector2( 12.3033, -76.7356 )
-rotation = -0.362893
+position = Vector2( 11.0457, -63.8654 )
+rotation = -0.796977
 texture = ExtResource( 8 )
 offset = Vector2( -11.0457, -20.5 )
 
 [node name="leg_lower_back" type="Sprite" parent="Root" index="6"]
-position = Vector2( 28.5843, -49.2233 )
-rotation = 0.644839
+position = Vector2( 37.3878, -45.7521 )
+rotation = 0.190704
+scale = Vector2( 1, 1 )
 texture = ExtResource( 15 )
 offset = Vector2( -16.5, -52 )
 
 [node name="foot_back" type="Sprite" parent="Root" index="7"]
 modulate = Color( 0.764706, 0.623529, 0.686275, 1 )
-position = Vector2( 10.7293, -16.0907 )
-rotation = 1.01669
-scale = Vector2( 1, 1 )
+position = Vector2( 35.8774, -8.14513 )
+rotation = -0.032943
 texture = ExtResource( 12 )
 offset = Vector2( -22.1454, -89.2115 )
 
 [node name="body_lower" type="Sprite" parent="Root" index="8"]
-position = Vector2( 0, -88 )
-rotation = -0.105743
+position = Vector2( 0, -76.3654 )
 texture = ExtResource( 3 )
 offset = Vector2( 0, -8 )
 
 [node name="leg_upper_front" type="Sprite" parent="Root/body_lower" index="0"]
 position = Vector2( -9.089, 15.8475 )
-rotation = -0.578073
+rotation = -0.167018
 texture = ExtResource( 11 )
 offset = Vector2( 9.089, -23.8475 )
 
 [node name="leg_lower_front" type="Sprite" parent="Root/body_lower/leg_upper_front" index="0"]
 position = Vector2( -12.0665, 28.6228 )
-rotation = 0.996476
+rotation = 0.649339
 texture = ExtResource( 4 )
 offset = Vector2( 21.1555, -52.4703 )
 
 [node name="foot_front" type="Sprite" parent="Root/body_lower/leg_upper_front/leg_lower_front" index="0"]
 position = Vector2( -21.0396, 34.2107 )
-rotation = 1.08502
+rotation = -0.47146
 texture = ExtResource( 12 )
 offset = Vector2( -23.4042, -88.0968 )
 
 [node name="leg_upper_back" type="RemoteTransform2D" parent="Root/body_lower" index="1"]
 position = Vector2( 11.0457, 12.5 )
-rotation = -0.25715
+rotation = -0.796977
 remote_path = NodePath("../../leg_upper_back")
 
 [node name="leg_lower_back" type="RemoteTransform2D" parent="Root/body_lower/leg_upper_back" index="0"]
 position = Vector2( 5.4543, 31.5 )
-rotation = 1.00773
+rotation = 0.98768
 remote_path = NodePath("../../../leg_lower_back")
 
 [node name="foot_back" type="RemoteTransform2D" parent="Root/body_lower/leg_upper_back/leg_lower_back" index="0"]
 position = Vector2( 5.64537, 37.2115 )
-rotation = 0.371848
+rotation = -0.223647
 remote_path = NodePath("../../../../foot_back")
 
 [node name="body_upper" type="Sprite" parent="Root/body_lower" index="2"]
 position = Vector2( -2.26791, -8.0246 )
-rotation = 0.239687
+rotation = 0.119577
 texture = ExtResource( 5 )
 offset = Vector2( 2.26791, 0.0245972 )
 
 [node name="arm_upper_front" type="RemoteTransform2D" parent="Root/body_lower/body_upper" index="0"]
 position = Vector2( -12.9371, -33.9991 )
-rotation = 0.186427
+rotation = 0.189817
 remote_path = NodePath("../../../arm_upper_front")
 
 [node name="arm_lower_front" type="Sprite" parent="Root/body_lower/body_upper/arm_upper_front" index="0"]
 position = Vector2( -22.9936, 34.3328 )
-rotation = 0.0840405
 texture = ExtResource( 17 )
 offset = Vector2( 38.1986, -0.309128 )
 
@@ -2163,27 +2105,27 @@ texture = ExtResource( 19 )
 
 [node name="arm_upper_back" type="RemoteTransform2D" parent="Root/body_lower/body_upper" index="1"]
 position = Vector2( 12.2613, -31.4793 )
-rotation = -0.611533
+rotation = -0.488771
 remote_path = NodePath("../../../arm_upper_back")
 
 [node name="arm_lower_back" type="RemoteTransform2D" parent="Root/body_lower/body_upper/arm_upper_back" index="0"]
 position = Vector2( 13.8443, 37.1374 )
-rotation = 0.508023
+rotation = 0.28023
 remote_path = NodePath("../../../../arm_lower_back")
 
 [node name="head" type="Sprite" parent="Root/body_lower/body_upper" index="2"]
 position = Vector2( -0.647552, -52.4553 )
-rotation = -0.244345
+rotation = -0.161308
 texture = ExtResource( 6 )
 offset = Vector2( 2.91547, 52.4799 )
 
 [node name="hat_front" type="Sprite" parent="Root/body_lower/body_upper/head" index="0"]
 material = ExtResource( 18 )
-position = Vector2( 3.92881, -32.9951 )
+position = Vector2( 3.92862, -31.9902 )
 texture = ExtResource( 7 )
 offset = Vector2( -1.01315, 84.47 )
 script = ExtResource( 2 )
-bend = 0.642095
+bend = -0.162457
 
 [node name="hat_back2" type="RemoteTransform2D" parent="Root/body_lower/body_upper/head/hat_front" index="0"]
 position = Vector2( -1.12247, -1.40308 )
