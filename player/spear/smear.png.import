@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/smear_1.png-c4dc1b725b1bd7b656a6fd173dbf8203.stex"
+path="res://.import/smear.png-9cd47cbe4a5abb14037925fc7e9d39e8.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://player/spear/smear_1.png"
-dest_files=[ "res://.import/smear_1.png-c4dc1b725b1bd7b656a6fd173dbf8203.stex" ]
+source_file="res://player/spear/smear.png"
+dest_files=[ "res://.import/smear.png-9cd47cbe4a5abb14037925fc7e9d39e8.stex" ]
 
 [params]
 

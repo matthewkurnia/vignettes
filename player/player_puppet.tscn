@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=2]
+[gd_scene load_steps=37 format=2]
 
 [ext_resource path="res://character_animation/puppet.tscn" type="PackedScene" id=1]
 [ext_resource path="res://player/scripts/hat_anim.gd" type="Script" id=2]
@@ -21,11 +21,11 @@
 [ext_resource path="res://player/cutout/arm_overlay.PNG" type="Texture" id=19]
 [ext_resource path="res://player/player_anim_state_machine.tres" type="AnimationNodeStateMachine" id=20]
 [ext_resource path="res://player/spear/spear.png" type="Texture" id=21]
+[ext_resource path="res://player/spear/fade_4.png" type="Texture" id=22]
 [ext_resource path="res://player/spear/fade_3.png" type="Texture" id=23]
-[ext_resource path="res://player/spear/smear_2.png" type="Texture" id=24]
-[ext_resource path="res://player/spear/fade_2.png" type="Texture" id=25]
+[ext_resource path="res://player/spear/smear.png" type="Texture" id=24]
+[ext_resource path="res://player/scripts/spear_sprite.gd" type="Script" id=25]
 [ext_resource path="res://player/spear/fade_1.png" type="Texture" id=26]
-[ext_resource path="res://player/spear/smear_1.png" type="Texture" id=28]
 
 [sub_resource type="Animation" id=1]
 resource_name = "charge"
@@ -450,6 +450,18 @@ tracks/34/keys = {
 "update": 0,
 "values": [ Vector2( 1, 1 ) ]
 }
+tracks/35/type = "value"
+tracks/35/path = NodePath("Root/body_lower/body_upper/arm_upper_front/arm_lower_front/spear_ref/Smear:visible")
+tracks/35/interp = 1
+tracks/35/loop_wrap = true
+tracks/35/imported = false
+tracks/35/enabled = true
+tracks/35/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
 
 [sub_resource type="Animation" id=2]
 tracks/0/type = "value"
@@ -871,6 +883,18 @@ tracks/34/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ Vector2( 1, 1 ) ]
+}
+tracks/35/type = "value"
+tracks/35/path = NodePath("Root/body_lower/body_upper/arm_upper_front/arm_lower_front/spear_ref/Smear:visible")
+tracks/35/interp = 1
+tracks/35/loop_wrap = true
+tracks/35/imported = false
+tracks/35/enabled = true
+tracks/35/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
 }
 
 [sub_resource type="Animation" id=3]
@@ -1294,6 +1318,18 @@ tracks/34/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ Vector2( 1, 1 ) ]
+}
+tracks/35/type = "value"
+tracks/35/path = NodePath("Root/body_lower/body_upper/arm_upper_front/arm_lower_front/spear_ref/Smear:visible")
+tracks/35/interp = 1
+tracks/35/loop_wrap = true
+tracks/35/imported = false
+tracks/35/enabled = true
+tracks/35/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
 }
 
 [sub_resource type="Animation" id=4]
@@ -1719,6 +1755,18 @@ tracks/34/keys = {
 "update": 0,
 "values": [ Vector2( 1, 1 ) ]
 }
+tracks/35/type = "value"
+tracks/35/path = NodePath("Root/body_lower/body_upper/arm_upper_front/arm_lower_front/spear_ref/Smear:visible")
+tracks/35/interp = 1
+tracks/35/loop_wrap = true
+tracks/35/imported = false
+tracks/35/enabled = true
+tracks/35/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
 
 [sub_resource type="Animation" id=5]
 length = 0.8
@@ -2142,6 +2190,18 @@ tracks/34/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ Vector2( 1, 1 ) ]
+}
+tracks/35/type = "value"
+tracks/35/path = NodePath("Root/body_lower/body_upper/arm_upper_front/arm_lower_front/spear_ref/Smear:visible")
+tracks/35/interp = 1
+tracks/35/loop_wrap = true
+tracks/35/imported = false
+tracks/35/enabled = true
+tracks/35/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
 }
 
 [sub_resource type="Animation" id=6]
@@ -2568,6 +2628,18 @@ tracks/34/keys = {
 "update": 0,
 "values": [ Vector2( 1, 1 ) ]
 }
+tracks/35/type = "value"
+tracks/35/path = NodePath("Root/body_lower/body_upper/arm_upper_front/arm_lower_front/spear_ref/Smear:visible")
+tracks/35/interp = 1
+tracks/35/loop_wrap = true
+tracks/35/imported = false
+tracks/35/enabled = true
+tracks/35/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
 
 [sub_resource type="Animation" id=10]
 resource_name = "spear_shake"
@@ -2613,7 +2685,7 @@ tracks/1/keys = {
 "times": PoolRealArray( 0, 0.1, 0.4 ),
 "transitions": PoolRealArray( 1e+06, 1, 0.5 ),
 "update": 0,
-"values": [ 9.66268, 32.0051, 32.0051 ]
+"values": [ -35.601, 32.0051, 32.0051 ]
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath("Root/body_lower/leg_upper_back/leg_lower_back:position")
@@ -2995,56 +3067,31 @@ tracks/33/imported = false
 tracks/33/enabled = true
 tracks/33/keys = {
 "times": PoolRealArray( 0, 0.1, 0.4 ),
-"transitions": PoolRealArray( 1e+06, 1, 0.5 ),
+"transitions": PoolRealArray( 1e+06, 1, 1 ),
 "update": 0,
-"values": [ 61.5628, 103.594, 103.594 ]
+"values": [ 46.1683, 106.123, 106.123 ]
 }
 tracks/34/type = "value"
-tracks/34/path = NodePath("Root/body_lower/body_upper/arm_upper_front/arm_lower_front/spear_ref/Smear:frame")
+tracks/34/path = NodePath("Root/body_lower/body_upper/arm_upper_front/arm_lower_front/spear_ref/Smear:visible")
 tracks/34/interp = 1
 tracks/34/loop_wrap = true
 tracks/34/imported = false
 tracks/34/enabled = true
 tracks/34/keys = {
-"times": PoolRealArray( 0, 0.1, 0.34 ),
-"transitions": PoolRealArray( 0, 1, 1 ),
-"update": 0,
-"values": [ 3, 0, 3 ]
-}
-tracks/35/type = "method"
-tracks/35/path = NodePath("Root/body_lower/body_upper/arm_upper_front/arm_lower_front/spear_ref/Sprite")
-tracks/35/interp = 1
-tracks/35/loop_wrap = true
-tracks/35/imported = false
-tracks/35/enabled = true
-tracks/35/keys = {
-"times": PoolRealArray( 0, 0.4 ),
-"transitions": PoolRealArray( 1, 1 ),
-"values": [ {
-"args": [ "fade", false ],
-"method": "play"
-}, {
-"args": [ "fade", true ],
-"method": "play"
-} ]
+"times": PoolRealArray( 0, 0.1, 0.22 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, false ]
 }
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=8]
 
 [sub_resource type="SpriteFrames" id=9]
 animations = [ {
-"frames": [ null, ExtResource( 23 ), ExtResource( 25 ), ExtResource( 26 ), ExtResource( 21 ) ],
+"frames": [ null, ExtResource( 22 ), ExtResource( 23 ), ExtResource( 26 ), ExtResource( 21 ) ],
 "loop": false,
 "name": "fade",
 "speed": 30.0
-} ]
-
-[sub_resource type="SpriteFrames" id=11]
-animations = [ {
-"frames": [ ExtResource( 28 ), ExtResource( 24 ), null ],
-"loop": false,
-"name": "smear",
-"speed": 20.0
 } ]
 
 [node name="PlayerPuppet" instance=ExtResource( 1 )]
@@ -3207,19 +3254,22 @@ offset = Vector2( 38.1986, -0.309128 )
 
 [node name="spear_ref" type="Node2D" parent="Root/body_lower/body_upper/arm_upper_front/arm_lower_front" index="0"]
 position = Vector2( -14.5177, 59.9644 )
-rotation = 1.80806
+rotation = 1.85219
 
-[node name="Sprite" type="AnimatedSprite" parent="Root/body_lower/body_upper/arm_upper_front/arm_lower_front/spear_ref" index="0"]
-position = Vector2( 40, 0 )
+[node name="Spear" type="AnimatedSprite" parent="Root/body_lower/body_upper/arm_upper_front/arm_lower_front/spear_ref" index="0"]
 z_index = -1
 frames = SubResource( 9 )
 animation = "fade"
+frame = 4
+offset = Vector2( 40, 0 )
+flip_h = true
+script = ExtResource( 25 )
 
-[node name="Smear" type="AnimatedSprite" parent="Root/body_lower/body_upper/arm_upper_front/arm_lower_front/spear_ref" index="1"]
-position = Vector2( 40, 0 )
-frames = SubResource( 11 )
-animation = "smear"
-frame = 2
+[node name="Smear" type="Sprite" parent="Root/body_lower/body_upper/arm_upper_front/arm_lower_front/spear_ref" index="1"]
+visible = false
+texture = ExtResource( 24 )
+offset = Vector2( 40, 0 )
+flip_h = true
 
 [node name="arm_overlay" type="Sprite" parent="Root/body_lower/body_upper/arm_upper_front" index="1"]
 position = Vector2( 15.205, 34.0237 )

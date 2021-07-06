@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/smear_2.png-98c3230cf1dcfab5af6e3f3825adc64d.stex"
+path="res://.import/fade_4.png-58962c1a4e15e7eda4a2798ad78c31ef.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://player/spear/smear_2.png"
-dest_files=[ "res://.import/smear_2.png-98c3230cf1dcfab5af6e3f3825adc64d.stex" ]
+source_file="res://player/spear/fade_4.png"
+dest_files=[ "res://.import/fade_4.png-58962c1a4e15e7eda4a2798ad78c31ef.stex" ]
 
 [params]
 

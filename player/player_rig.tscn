@@ -70,7 +70,7 @@ position = Vector2( 41.1814, -65.1542 )
 position = Vector2( 33.7265, -26.4009 )
 
 [node name="Smear" parent="Viewport/PlayerPuppet/Root/body_lower/body_upper/arm_upper_front/arm_lower_front/spear_ref" index="1"]
-frame = 2
+frame = 0
 
 [node name="Sprite" parent="." index="1"]
 material = SubResource( 3 )
