@@ -1,4 +1,4 @@
-extends PlayerAirState
+extends PlayerStateMove
 
 
 const DAMPING = 0.4
@@ -17,4 +17,4 @@ func update(delta):
 		player.velocity.y *= DAMPING
 	player.velocity.y += player.GRAV
 	
-	handle_air_movement()
+	handle_movement(player.FRICTION_AIR_FAST, player.FRICTION_AIR, player.ACCEL_AIR)

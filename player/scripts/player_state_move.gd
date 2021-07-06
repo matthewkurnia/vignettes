@@ -1,23 +1,22 @@
-class_name PlayerAirState
+class_name PlayerStateMove
 extends PlayerState
 
 
-func handle_air_movement():
+func handle_movement(friction_fast, friction, acceleration):
 	if abs(player.velocity.x) > player.MAX_SPEED:
-		var fric_air = player.FRICTION_AIR_FAST
 		var t = sign(player.dir) * sign(player.velocity.x)
 		if t > 0:
-			fric_air *= 0.1
+			friction_fast *= 0.05
 		elif t < 0:
-			fric_air *= 2
+			friction_fast *= 2
 		player.velocity.x = Util.lirpf(player.velocity.x,
 									   player.dir * player.MAX_SPEED,
-									   fric_air)
+									   friction_fast)
 	else:
 		if player.dir == 0:
 			player.velocity.x = Util.lirpf(player.velocity.x, 0,
-										   player.FRICTION_AIR)
+										   friction)
 		else:
 			player.velocity.x = Util.lirpf(player.velocity.x,
 										   player.dir * player.MAX_SPEED,
-										   player.ACCEL_AIR)
+										   acceleration)

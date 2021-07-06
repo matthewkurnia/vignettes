@@ -9,15 +9,15 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "PlayerState",
-"class": "PlayerAirState",
-"language": "GDScript",
-"path": "res://player_state_air.gd"
-}, {
-"base": "Reference",
+"base": "State",
 "class": "PlayerState",
 "language": "GDScript",
 "path": "res://player/scripts/player_state.gd"
+}, {
+"base": "PlayerState",
+"class": "PlayerStateMove",
+"language": "GDScript",
+"path": "res://player/scripts/player_state_move.gd"
 }, {
 "base": "Resource",
 "class": "RMS2D_Material",
@@ -155,8 +155,8 @@ _global_script_classes=[ {
 "path": "res://state.gd"
 } ]
 _global_script_class_icons={
-"PlayerAirState": "",
 "PlayerState": "",
+"PlayerStateMove": "",
 "RMS2D_Material": "",
 "RMS2D_VertexProperties": "",
 "RMS2D_VertexPropertiesArray": "",
@@ -188,7 +188,7 @@ _global_script_class_icons={
 
 [application]
 
-config/name="DodgeBall"
+config/name="Spear"
 run/main_scene="res://player_test.tscn"
 config/icon="res://icon.png"
 
@@ -237,11 +237,24 @@ jump={
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":32,"unicode":0,"echo":false,"script":null)
  ]
 }
+charge={
+"deadzone": 0.5,
+"events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":1,"pressed":false,"doubleclick":false,"script":null)
+ ]
+}
+thrust={
+"deadzone": 0.5,
+"events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":2,"pressed":false,"doubleclick":false,"script":null)
+ ]
+}
 
 [layer_names]
 
 2d_physics/layer_1="Wall"
 2d_physics/layer_2="Player"
+2d_physics/layer_3="Orb"
+2d_physics/layer_4="Enemy"
+2d_physics/layer_5="NPC"
 
 [physics]
 

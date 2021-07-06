@@ -1,8 +1,8 @@
-extends PlayerAirState
+extends PlayerStateMove
 
 
 const GRAV_MULT = 1.5
-const TERMINAL_VELO = 1000.0
+const TERMINAL_VELO = 1600.0
 
 
 func enter():
@@ -17,4 +17,4 @@ func update(delta):
 			emit_signal("finished", "idle")
 	player.velocity.y = min(player.velocity.y + player.GRAV * GRAV_MULT, TERMINAL_VELO)
 	
-	handle_air_movement()
+	handle_movement(player.FRICTION_AIR_FAST, player.FRICTION_AIR, player.ACCEL_AIR)

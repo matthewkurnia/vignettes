@@ -12,7 +12,8 @@ onready var states = {
 	"idle" : $Idle,
 	"run" : $Run,
 	"jump": $Jump,
-	"fall" : $Fall
+	"fall" : $Fall,
+	"thrust" : $Thrust
 }
 
 
@@ -28,7 +29,6 @@ func update(delta):
 
 
 func change_state(new_state):
-#	print(new_state)
 	current_state.exit()
 	previous_state = current_state
 	current_state = states[new_state]

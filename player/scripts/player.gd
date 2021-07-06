@@ -38,12 +38,12 @@ func _physics_process(delta):
 func handle_movement():
 #	Created due to weird issues with steep slopes and behaviour of move_and_slide
 	var v = Vector2()
-	if floor_ray_r.is_colliding() and floor_ray_r.get_collision_normal().dot(Vector2.UP) < 0.707:
+	if floor_ray_r.is_colliding():
 		v = Vector2(min(velocity.x, 0), velocity.y)
 		velocity.x = move_and_slide_with_snap(v, snap, UP_DIRECTION, true).x
 		velocity.y = min(velocity.y, 2000)
 		return
-	elif floor_ray_l.is_colliding() and floor_ray_l.get_collision_normal().dot(Vector2.UP) < 0.707:
+	elif floor_ray_l.is_colliding():
 		v = Vector2(max(velocity.x, 0), velocity.y)
 		velocity.x = move_and_slide_with_snap(v, snap, UP_DIRECTION, true).x
 		velocity.y = min(velocity.y, 2000)

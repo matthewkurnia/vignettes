@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://player/player_puppet.tscn" type="PackedScene" id=1]
 [ext_resource path="res://character_animation/character_rig.tscn" type="PackedScene" id=2]
 [ext_resource path="res://player/scripts/player_anim_controller.gd" type="Script" id=3]
+[ext_resource path="res://player/spear/spear.png" type="Texture" id=4]
 
 [sub_resource type="AnimationNodeStateMachinePlayback" id=1]
 
@@ -49,28 +50,27 @@ position = Vector2( 200, 200 )
 
 [node name="AnimationTree" parent="Viewport/PlayerPuppet" index="2"]
 parameters/playback = SubResource( 1 )
-parameters/run/TimeScale/scale = 1.0
 
 [node name="arm_upper_front" parent="Viewport/PlayerPuppet/Root" index="1"]
-position = Vector2( -12.1889, -125.801 )
+position = Vector2( 14.4355, -117.431 )
 
 [node name="arm_upper_back" parent="Viewport/PlayerPuppet/Root" index="2"]
-position = Vector2( 12.6935, -121.092 )
+position = Vector2( 39.2225, -112.243 )
 
 [node name="arm_lower_back" parent="Viewport/PlayerPuppet/Root" index="3"]
-position = Vector2( 35.7806, -88.8763 )
+position = Vector2( 72.3916, -90.5484 )
 
 [node name="hat_back" parent="Viewport/PlayerPuppet/Root" index="4"]
-position = Vector2( 3.76572, -176.559 )
+position = Vector2( 32.2429, -167.789 )
 
 [node name="leg_upper_back" parent="Viewport/PlayerPuppet/Root" index="5"]
-position = Vector2( 11.0457, -70.2778 )
-
-[node name="leg_lower_back" parent="Viewport/PlayerPuppet/Root" index="6"]
-position = Vector2( 31.5788, -45.7749 )
+position = Vector2( 41.1814, -65.1542 )
 
 [node name="foot_back" parent="Viewport/PlayerPuppet/Root" index="7"]
-position = Vector2( 36.281, -8.43253 )
+position = Vector2( 33.7265, -26.4009 )
+
+[node name="Smear" parent="Viewport/PlayerPuppet/Root/body_lower/body_upper/arm_upper_front/arm_lower_front/spear_ref" index="1"]
+frame = 2
 
 [node name="Sprite" parent="." index="1"]
 material = SubResource( 3 )
@@ -82,6 +82,13 @@ offset = Vector2( 0, -48 )
 script = ExtResource( 3 )
 sprite_path = NodePath("../Sprite")
 animation_tree_path = NodePath("../Viewport/PlayerPuppet/AnimationTree")
+
+[node name="Spear" type="Sprite" parent="." index="4"]
+visible = false
+position = Vector2( -29, 13.922 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 4 )
+offset = Vector2( 20, 0 )
 
 [connection signal="anim_played" from="." to="PlayerAnimController" method="_on_PlayerRig_anim_played"]
 
