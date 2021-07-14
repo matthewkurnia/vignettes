@@ -10,7 +10,7 @@ func exit():
 
 
 func update(delta):
-	if player.dir != 0:
+	if player.direction != 0:
 		emit_signal("finished", "run")
 	if not player.is_on_floor():
 		emit_signal("finished", "fall")

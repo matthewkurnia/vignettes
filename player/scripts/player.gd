@@ -15,7 +15,7 @@ const JUMP_STRENGTH = 900.0
 
 var velocity = Vector2()
 var snap = Vector2()
-var dir = 0
+var direction = 0
 
 onready var state_machine = $StateMachine
 onready var rig = $PlayerRig
@@ -30,7 +30,7 @@ func _init():
 
 func _physics_process(delta):
 	if Input.is_action_just_pressed("ui_up"):
-		velocity.x = dir * 1000
+		velocity.x = direction * 1000
 	state_machine.update(delta)
 	handle_movement()
 
@@ -40,13 +40,13 @@ func handle_movement():
 	var v = Vector2()
 	if floor_ray_r.is_colliding():
 		v = Vector2(min(velocity.x, 0), velocity.y)
-		velocity.x = move_and_slide_with_snap(v, snap, UP_DIRECTION, true).x
-		velocity.y = min(velocity.y, 2000)
+		velocity = move_and_slide_with_snap(v, snap, UP_DIRECTION, true)
+#		velocity.y = min(velocity.y, 2000)
 		return
 	elif floor_ray_l.is_colliding():
 		v = Vector2(max(velocity.x, 0), velocity.y)
-		velocity.x = move_and_slide_with_snap(v, snap, UP_DIRECTION, true).x
-		velocity.y = min(velocity.y, 2000)
+		velocity = move_and_slide_with_snap(v, snap, UP_DIRECTION, true)
+#		velocity.y = min(velocity.y, 2000)
 		return
 	velocity.y = move_and_slide_with_snap(velocity, snap, UP_DIRECTION, true).y
 	return

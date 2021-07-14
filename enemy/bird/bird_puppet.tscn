@@ -1,0 +1,411 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://character_animation/puppet.tscn" type="PackedScene" id=1]
+[ext_resource path="res://enemy/bird/head.PNG" type="Texture" id=2]
+[ext_resource path="res://enemy/bird/wing.PNG" type="Texture" id=3]
+[ext_resource path="res://character_animation/bend_anim.gd" type="Script" id=4]
+
+[sub_resource type="Animation" id=1]
+resource_name = "fly"
+length = 0.8
+loop = true
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Root/head/wing_front:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( -26.2204, -10.4882 ), Vector2( -26.2204, -10.4882 ), Vector2( -26.2204, -10.4882 ), Vector2( -26.2204, -10.4882 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Root/head/wing_front:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
+"transitions": PoolRealArray( -1.93187, -1.93187, -1.93187, -1.93187 ),
+"update": 0,
+"values": [ 20.9882, -61.9657, 20.9882, -61.9657 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Root/head/wing_back:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 9.73895, -8.98989 ), Vector2( 9.73895, -8.98989 ), Vector2( 9.73895, -8.98989 ), Vector2( 9.73895, -8.98989 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Root/head/wing_back:rotation_degrees")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
+"transitions": PoolRealArray( -1.93187, -1.93187, -1.93187, -1.93187 ),
+"update": 0,
+"values": [ -22.2115, 70.892, -22.2115, 70.892 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Root/head:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0.1, 0.3, 0.5, 0.7 ),
+"transitions": PoolRealArray( -2.14355, -2.14355, -2.14355, -2.14355 ),
+"update": 0,
+"values": [ Vector2( 0.515411, -0.259552 ), Vector2( 0.515411, -15.2426 ), Vector2( 0.515411, -0.259552 ), Vector2( 0.515411, -15.2426 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Root/head:rotation_degrees")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0.25, 0.65 ),
+"transitions": PoolRealArray( -2, -2 ),
+"update": 0,
+"values": [ -3.0, 3.0 ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Root/head/wing_back:bend")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0.1, 0.3, 0.5, 0.7 ),
+"transitions": PoolRealArray( -1.93187, -1.93187, -1.93187, -1.93187 ),
+"update": 0,
+"values": [ 0.38, -0.08, 0.38, -0.08 ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("Root/head:scale")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
+"transitions": PoolRealArray( 2, 0.5, 2, 0.5 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ), Vector2( 0.9, 1.15 ), Vector2( 1, 1 ), Vector2( 0.9, 1.15 ) ]
+}
+
+[sub_resource type="Animation" id=10]
+resource_name = "skewered"
+length = 0.2
+loop = true
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Root/head/wing_front:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( -26.2204, -10.4882 ), Vector2( -26.2204, -10.4882 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Root/head/wing_front:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( -1.93187, -1.93187 ),
+"update": 0,
+"values": [ -8.7092, -25.1903 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Root/head/wing_back:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.05, 0.15 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 9.73895, -8.98989 ), Vector2( 9.73895, -8.98989 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Root/head/wing_back:rotation_degrees")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.05, 0.15 ),
+"transitions": PoolRealArray( -1.93187, -1.93187 ),
+"update": 0,
+"values": [ 5.77854, 27.3166 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Root/head:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( -2.14355 ),
+"update": 0,
+"values": [ Vector2( 0.515411, -0.259552 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Root/head:rotation_degrees")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( -2 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Root/head/wing_back:bend")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( -1.93187 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("Root/head:scale")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 2 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "staggered"
+length = 0.2
+loop = true
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("Root/head/wing_front:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( -26.2204, -10.4882 ), Vector2( -26.2204, -10.4882 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Root/head/wing_front:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( -1.93187, -1.93187 ),
+"update": 0,
+"values": [ -8.7092, -25.1903 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Root/head/wing_back:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.05, 0.15 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 9.73895, -8.98989 ), Vector2( 9.73895, -8.98989 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Root/head/wing_back:rotation_degrees")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.05, 0.15 ),
+"transitions": PoolRealArray( -1.93187, -1.93187 ),
+"update": 0,
+"values": [ 5.77854, 27.3166 ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Root/head:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( -2.14355 ),
+"update": 0,
+"values": [ Vector2( 0.515411, -0.259552 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Root/head:rotation_degrees")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( -2, -2 ),
+"update": 0,
+"values": [ -10.0, 10.0 ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Root/head/wing_back:bend")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( -1.93187 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("Root/head:scale")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 2 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+
+[sub_resource type="AnimationNodeAnimation" id=3]
+animation = "fly"
+
+[sub_resource type="AnimationNodeAnimation" id=11]
+animation = "staggered"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=12]
+xfade_time = 0.1
+
+[sub_resource type="AnimationNodeStateMachine" id=6]
+states/fly/node = SubResource( 3 )
+states/fly/position = Vector2( 239, 125 )
+states/staggered/node = SubResource( 11 )
+states/staggered/position = Vector2( 448, 79 )
+transitions = [ "staggered", "fly", SubResource( 12 ) ]
+start_node = "fly"
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=7]
+
+[sub_resource type="Shader" id=8]
+code = "shader_type canvas_item;
+
+uniform float bend_direction = 0.0;
+uniform float bend_ammount = 0.0;
+uniform float bend_pivot_x : hint_range(0.0, 1.0) = 0.5;
+uniform float bend_pivot_y : hint_range(0.0, 1.0) = 0.5;
+
+vec2 rotate_uv(vec2 uv, vec2 pivot, float rotation) {
+    float sine = sin(rotation);
+    float cosine = cos(rotation);
+
+    uv -= pivot;
+	float new_x = uv.x * cosine - uv.y * sine;
+	float new_y = uv.x * sine + uv.y * cosine;
+    uv.x = new_x;
+    uv.y = new_y;
+    uv += pivot;
+
+    return uv;
+}
+
+void fragment() {
+	vec2 uv = UV;
+	vec2 bend_pivot = vec2(bend_pivot_x, bend_pivot_y);
+	uv = rotate_uv(uv, bend_pivot, bend_direction);
+	uv = rotate_uv(uv, bend_pivot, (uv.x - bend_pivot.x) * 2.0 * bend_ammount);
+	uv = rotate_uv(uv, bend_pivot, -bend_direction);
+	COLOR = texture(TEXTURE, uv);
+}"
+
+[sub_resource type="ShaderMaterial" id=9]
+shader = SubResource( 8 )
+shader_param/bend_direction = 0.0
+shader_param/bend_ammount = 0.373225
+shader_param/bend_pivot_x = 0.95
+shader_param/bend_pivot_y = 0.95
+
+[node name="BirdPuppet" instance=ExtResource( 1 )]
+dimension = Vector2( 300, 300 )
+
+[node name="AnimationPlayer" parent="." index="0"]
+anims/fly = SubResource( 1 )
+anims/skewered = SubResource( 10 )
+anims/staggered = SubResource( 2 )
+
+[node name="AnimationTree" parent="." index="1"]
+tree_root = SubResource( 6 )
+active = true
+parameters/playback = SubResource( 7 )
+
+[node name="Root" parent="." index="2"]
+scale = Vector2( 0.5, 0.5 )
+
+[node name="head" type="Sprite" parent="Root" index="0"]
+position = Vector2( 0.515411, -0.365619 )
+rotation = 0.0280496
+scale = Vector2( 0.967668, 1.0485 )
+texture = ExtResource( 2 )
+offset = Vector2( 24.9216, 21.0807 )
+
+[node name="wing_front" type="Sprite" parent="Root/head" index="0"]
+material = SubResource( 9 )
+position = Vector2( -26.2204, -10.4882 )
+rotation = -0.537189
+texture = ExtResource( 3 )
+offset = Vector2( -68.1729, -34.4611 )
+script = ExtResource( 4 )
+
+[node name="wing_back" type="Sprite" parent="Root/head" index="1"]
+material = SubResource( 9 )
+position = Vector2( 9.73895, -8.98989 )
+rotation = 0.626384
+scale = Vector2( -0.8, 1 )
+z_index = -1
+texture = ExtResource( 3 )
+offset = Vector2( -68.1729, -34.4611 )
+script = ExtResource( 4 )
+bend = 0.375042

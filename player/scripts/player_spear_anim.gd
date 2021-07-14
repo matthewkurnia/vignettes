@@ -10,7 +10,6 @@ onready var spear = get_node(spear_path)
 
 func _process(delta):
 	if ["charge", "thrust"].has(curr_anim):
-		print("ASDF")
 		spear.visible = true
 	else:
 		spear.visible = false

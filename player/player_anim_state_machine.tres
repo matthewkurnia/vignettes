@@ -1,46 +1,46 @@
-[gd_resource type="AnimationNodeStateMachine" load_steps=32 format=2]
+[gd_resource type="AnimationNodeStateMachine" load_steps=40 format=2]
 
-[sub_resource type="AnimationNodeAdd2" id=26]
+[sub_resource type="AnimationNodeAdd2" id=1]
 
-[sub_resource type="AnimationNodeAnimation" id=27]
+[sub_resource type="AnimationNodeAnimation" id=2]
 animation = "spear_shake"
 
-[sub_resource type="AnimationNodeAnimation" id=28]
+[sub_resource type="AnimationNodeAnimation" id=3]
 animation = "charge"
 
-[sub_resource type="AnimationNodeBlendTree" id=29]
-graph_offset = Vector2( -378, -14 )
-nodes/Add2/node = SubResource( 26 )
+[sub_resource type="AnimationNodeBlendTree" id=4]
+graph_offset = Vector2( -299, 21 )
+nodes/Add2/node = SubResource( 1 )
 nodes/Add2/position = Vector2( 100, 100 )
-nodes/Animation/node = SubResource( 28 )
+nodes/Animation/node = SubResource( 3 )
 nodes/Animation/position = Vector2( -140, 80 )
-"nodes/Animation 2/node" = SubResource( 27 )
+"nodes/Animation 2/node" = SubResource( 2 )
 "nodes/Animation 2/position" = Vector2( -140, 220 )
 node_connections = [ "output", 0, "Add2", "Add2", 0, "Animation", "Add2", 1, "Animation 2" ]
 
-[sub_resource type="AnimationNodeAnimation" id=1]
+[sub_resource type="AnimationNodeAnimation" id=5]
 animation = "fall"
 
-[sub_resource type="AnimationNodeAnimation" id=2]
+[sub_resource type="AnimationNodeAnimation" id=6]
 animation = "idle"
 
-[sub_resource type="AnimationNodeAnimation" id=3]
+[sub_resource type="AnimationNodeAnimation" id=7]
 animation = "jump"
 
-[sub_resource type="AnimationNodeAnimation" id=4]
+[sub_resource type="AnimationNodeAnimation" id=8]
 animation = "run"
 
-[sub_resource type="AnimationNodeTimeScale" id=5]
+[sub_resource type="AnimationNodeTimeScale" id=9]
 
-[sub_resource type="AnimationNodeBlendTree" id=6]
-nodes/Animation/node = SubResource( 4 )
+[sub_resource type="AnimationNodeBlendTree" id=10]
+nodes/Animation/node = SubResource( 8 )
 nodes/Animation/position = Vector2( 80, 140 )
-nodes/TimeScale/node = SubResource( 5 )
+nodes/TimeScale/node = SubResource( 9 )
 nodes/TimeScale/position = Vector2( 280, 140 )
 nodes/output/position = Vector2( 460, 160 )
 node_connections = [ "output", 0, "TimeScale", "TimeScale", 0, "Animation" ]
 
-[sub_resource type="AnimationNodeAnimation" id=30]
+[sub_resource type="AnimationNodeAnimation" id=11]
 animation = "thrust"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=12]
@@ -61,60 +61,87 @@ xfade_time = 0.15
 [sub_resource type="AnimationNodeStateMachineTransition" id=17]
 xfade_time = 0.05
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=20]
+[sub_resource type="AnimationNodeStateMachineTransition" id=18]
 xfade_time = 0.05
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=21]
+[sub_resource type="AnimationNodeStateMachineTransition" id=19]
 xfade_time = 0.2
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=22]
+[sub_resource type="AnimationNodeStateMachineTransition" id=20]
 xfade_time = 0.15
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=21]
+xfade_time = 0.15
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=22]
+xfade_time = 0.1
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=23]
-xfade_time = 0.15
+xfade_time = 0.1
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=24]
-xfade_time = 0.1
+xfade_time = 0.03
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=25]
-xfade_time = 0.02
+xfade_time = 0.1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=26]
+xfade_time = 0.03
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=27]
+xfade_time = 0.1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=28]
+xfade_time = 0.03
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=29]
+xfade_time = 0.1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=30]
+xfade_time = 0.03
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=31]
-xfade_time = 0.1
+xfade_time = 0.05
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=32]
-xfade_time = 0.03
+xfade_time = 0.05
+priority = 0
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=33]
-xfade_time = 0.1
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=34]
-xfade_time = 0.03
+xfade_time = 0.05
+priority = 0
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=35]
-xfade_time = 0.1
+xfade_time = 0.05
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=36]
-xfade_time = 0.03
+xfade_time = 0.05
+priority = 0
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=37]
-xfade_time = 0.1
+xfade_time = 0.05
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=38]
-xfade_time = 0.03
+xfade_time = 0.05
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=39]
+xfade_time = 0.05
+priority = 0
 
 [resource]
-states/charge/node = SubResource( 29 )
+states/charge/node = SubResource( 4 )
 states/charge/position = Vector2( 527, 416 )
-states/fall/node = SubResource( 1 )
+states/fall/node = SubResource( 5 )
 states/fall/position = Vector2( 364, 268 )
-states/idle/node = SubResource( 2 )
+states/idle/node = SubResource( 6 )
 states/idle/position = Vector2( 527, 130 )
-states/jump/node = SubResource( 3 )
+states/jump/node = SubResource( 7 )
 states/jump/position = Vector2( 883, 268 )
-states/run/node = SubResource( 6 )
+states/run/node = SubResource( 10 )
 states/run/position = Vector2( 721, 130 )
-states/thrust/node = SubResource( 30 )
+states/thrust/node = SubResource( 11 )
 states/thrust/position = Vector2( 721, 416 )
-transitions = [ "fall", "idle", SubResource( 12 ), "idle", "fall", SubResource( 13 ), "jump", "idle", SubResource( 14 ), "idle", "jump", SubResource( 15 ), "jump", "fall", SubResource( 16 ), "fall", "jump", SubResource( 17 ), "fall", "run", SubResource( 20 ), "run", "fall", SubResource( 21 ), "idle", "run", SubResource( 22 ), "run", "idle", SubResource( 23 ), "jump", "run", SubResource( 24 ), "run", "jump", SubResource( 25 ), "thrust", "jump", SubResource( 31 ), "jump", "thrust", SubResource( 32 ), "thrust", "run", SubResource( 33 ), "run", "thrust", SubResource( 34 ), "thrust", "idle", SubResource( 35 ), "idle", "thrust", SubResource( 36 ), "thrust", "fall", SubResource( 37 ), "fall", "thrust", SubResource( 38 ) ]
-graph_offset = Vector2( -30, 82.1574 )
+transitions = [ "fall", "idle", SubResource( 12 ), "idle", "fall", SubResource( 13 ), "jump", "idle", SubResource( 14 ), "idle", "jump", SubResource( 15 ), "jump", "fall", SubResource( 16 ), "fall", "jump", SubResource( 17 ), "fall", "run", SubResource( 18 ), "run", "fall", SubResource( 19 ), "idle", "run", SubResource( 20 ), "run", "idle", SubResource( 21 ), "jump", "run", SubResource( 22 ), "thrust", "jump", SubResource( 23 ), "jump", "thrust", SubResource( 24 ), "thrust", "run", SubResource( 25 ), "run", "thrust", SubResource( 26 ), "thrust", "idle", SubResource( 27 ), "idle", "thrust", SubResource( 28 ), "thrust", "fall", SubResource( 29 ), "fall", "thrust", SubResource( 30 ), "run", "jump", SubResource( 31 ), "fall", "charge", SubResource( 32 ), "charge", "fall", SubResource( 33 ), "idle", "charge", SubResource( 34 ), "charge", "idle", SubResource( 35 ), "run", "charge", SubResource( 36 ), "charge", "run", SubResource( 37 ), "charge", "jump", SubResource( 38 ), "jump", "charge", SubResource( 39 ) ]
+graph_offset = Vector2( 58.7399, 76.157 )

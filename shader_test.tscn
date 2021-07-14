@@ -1,0 +1,48 @@
+[gd_scene load_steps=7 format=2]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+
+uniform sampler2D noise_texture;
+uniform float contrast = 5.0;
+
+float get_grain(float x, float a) {
+	x += -0.5;
+	a += -0.5;
+	return contrast*(x + a) + 0.5;
+}
+
+void fragment() {
+	float noise_r = texture(noise_texture, UV).r;
+	float value_r = texture(TEXTURE, UV).r;
+	float noise_g = texture(noise_texture, UV).g;
+	float value_g = texture(TEXTURE, UV).g;
+	float noise_b = texture(noise_texture, UV).b;
+	float value_b = texture(TEXTURE, UV).b;
+	float red = get_grain(noise_r, value_r);
+	float green = get_grain(noise_g, value_g);
+	float blue = get_grain(noise_b, value_b);
+	COLOR = vec4(red, green, blue, 1);
+}"
+
+[sub_resource type="OpenSimplexNoise" id=2]
+period = 1.0
+
+[sub_resource type="NoiseTexture" id=3]
+noise = SubResource( 2 )
+
+[sub_resource type="ShaderMaterial" id=4]
+shader = SubResource( 1 )
+shader_param/contrast = 4.0
+shader_param/noise_texture = SubResource( 3 )
+
+[sub_resource type="Gradient" id=5]
+
+[sub_resource type="GradientTexture" id=6]
+gradient = SubResource( 5 )
+
+[node name="Sprite" type="Sprite"]
+material = SubResource( 4 )
+position = Vector2( 997.169, 1060.18 )
+scale = Vector2( 1, 1060.46 )
+texture = SubResource( 6 )

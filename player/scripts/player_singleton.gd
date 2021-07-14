@@ -5,6 +5,7 @@ var direction: int
 var health: int
 var actor: Node
 var orb: Node
+var damage: int = 1
 
 
 func set_player_node(node):

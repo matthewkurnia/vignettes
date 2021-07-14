@@ -1,4 +1,4 @@
-extends PlayerStateMove
+extends PlayerState
 
 
 const DAMPING = 0.4
@@ -6,7 +6,6 @@ const DAMPING = 0.4
 
 func enter():
 	player.set_snap(false)
-	player.velocity.y = -player.JUMP_STRENGTH
 
 
 func update(delta):
@@ -17,4 +16,4 @@ func update(delta):
 		player.velocity.y *= DAMPING
 	player.velocity.y += player.GRAV
 	
-	handle_movement(player.FRICTION_AIR_FAST, player.FRICTION_AIR, player.ACCEL_AIR)
+	handle_movement(player.FRICTION_AIR_FAST, player.FRICTION_AIR, player.ACCEL_AIR, false)

@@ -13,7 +13,8 @@ onready var states = {
 	"run" : $Run,
 	"jump": $Jump,
 	"fall" : $Fall,
-	"thrust" : $Thrust
+	"thrust" : $Thrust,
+	"charge" : $Charge
 }
 
 

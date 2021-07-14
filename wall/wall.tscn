@@ -1,0 +1,155 @@
+[gd_scene load_steps=26 format=2]
+
+[ext_resource path="res://addons/rmsmartshape/shapes/shape_closed.gd" type="Script" id=1]
+[ext_resource path="res://wall/fill_black.png" type="Texture" id=2]
+[ext_resource path="res://wall/edge.png" type="Texture" id=3]
+[ext_resource path="res://addons/rmsmartshape/normal_range.gd" type="Script" id=4]
+[ext_resource path="res://addons/rmsmartshape/shapes/point_array.gd" type="Script" id=5]
+[ext_resource path="res://addons/rmsmartshape/materials/edge_material.gd" type="Script" id=6]
+[ext_resource path="res://addons/rmsmartshape/materials/edge_material_metadata.gd" type="Script" id=7]
+[ext_resource path="res://addons/rmsmartshape/materials/shape_material.gd" type="Script" id=8]
+[ext_resource path="res://addons/rmsmartshape/shapes/point.gd" type="Script" id=9]
+[ext_resource path="res://addons/rmsmartshape/vertex_properties.gd" type="Script" id=10]
+
+[sub_resource type="Resource" id=1]
+script = ExtResource( 10 )
+texture_idx = 0
+flip = false
+width = 1.0
+
+[sub_resource type="Resource" id=2]
+script = ExtResource( 9 )
+position = Vector2( -82.3491, -61.7139 )
+point_in = Vector2( 0, 0 )
+point_out = Vector2( 0, 0 )
+properties = SubResource( 1 )
+
+[sub_resource type="Resource" id=3]
+script = ExtResource( 10 )
+texture_idx = 1
+flip = false
+width = 1.0
+
+[sub_resource type="Resource" id=4]
+script = ExtResource( 9 )
+position = Vector2( 76.9159, -59.6336 )
+point_in = Vector2( 0, 0 )
+point_out = Vector2( 0, 0 )
+properties = SubResource( 3 )
+
+[sub_resource type="Resource" id=5]
+script = ExtResource( 10 )
+texture_idx = 0
+flip = false
+width = 1.0
+
+[sub_resource type="Resource" id=6]
+script = ExtResource( 9 )
+position = Vector2( 63.0637, 79.4277 )
+point_in = Vector2( 0, 0 )
+point_out = Vector2( 0, 0 )
+properties = SubResource( 5 )
+
+[sub_resource type="Resource" id=7]
+script = ExtResource( 10 )
+texture_idx = 0
+flip = false
+width = 1.0
+
+[sub_resource type="Resource" id=8]
+script = ExtResource( 9 )
+position = Vector2( -82.3491, -61.7139 )
+point_in = Vector2( 0, 0 )
+point_out = Vector2( 0, 0 )
+properties = SubResource( 7 )
+
+[sub_resource type="Resource" id=9]
+script = ExtResource( 10 )
+texture_idx = 0
+flip = false
+width = 1.0
+
+[sub_resource type="Resource" id=10]
+script = ExtResource( 9 )
+position = Vector2( -74.808, 59.6509 )
+point_in = Vector2( 0, 0 )
+point_out = Vector2( 0, 0 )
+properties = SubResource( 9 )
+
+[sub_resource type="Resource" id=11]
+script = ExtResource( 5 )
+_points = {
+7: SubResource( 2 ),
+8: SubResource( 4 ),
+9: SubResource( 6 ),
+10: SubResource( 8 ),
+11: SubResource( 10 )
+}
+_point_order = [ 7, 8, 9, 11, 10 ]
+_constraints = {
+[ 7, 10 ]: 15
+}
+_next_key = 13
+
+[sub_resource type="Resource" id=13]
+script = ExtResource( 6 )
+textures = [ ExtResource( 3 ) ]
+texture_normals = [  ]
+textures_corner_outer = [  ]
+textures_corner_inner = [  ]
+texture_normals_corner_outer = [  ]
+texture_normals_corner_inner = [  ]
+textures_taper_left = [  ]
+textures_taper_right = [  ]
+texture_normals_taper_left = [  ]
+texture_normals_taper_right = [  ]
+randomize_texture = false
+use_corner_texture = true
+use_taper_texture = true
+fit_mode = 0
+
+[sub_resource type="Resource" id=14]
+script = ExtResource( 4 )
+begin = 0.0
+distance = 0.0
+edgeRendering = Vector2( 0, 0 )
+
+[sub_resource type="Resource" id=15]
+script = ExtResource( 7 )
+edge_material = SubResource( 13 )
+normal_range = SubResource( 14 )
+weld = true
+render = true
+z_index = 0
+z_as_relative = true
+offset = 0.0
+
+[sub_resource type="Resource" id=12]
+script = ExtResource( 8 )
+_edge_meta_materials = [ SubResource( 15 ) ]
+fill_textures = [ ExtResource( 2 ) ]
+fill_texture_normals = [  ]
+fill_texture_z_index = -1
+fill_mesh_offset = 0.0
+render_offset = 0.0
+
+[node name="Wall1" type="StaticBody2D"]
+z_index = 6
+
+[node name="SS2D_Shape_Closed" type="Node2D" parent="."]
+script = ExtResource( 1 )
+_points = SubResource( 11 )
+material_overrides = {
+}
+shape_material = SubResource( 12 )
+tessellation_stages = 5
+tessellation_tolerence = 4.0
+flip_edges = false
+render_edges = true
+collision_size = 32.0
+collision_offset = 0.0
+collision_polygon_node_path = NodePath("../CollisionPolygon2D")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+modulate = Color( 1, 1, 1, 0.3 )
+polygon = PoolVector2Array( -86.0564, -65.2439, 80.7819, -63.0879, 66.1059, 83.3112, -77.4468, 62.0856 )

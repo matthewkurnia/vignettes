@@ -1,0 +1,32 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=2]
+
+[ext_resource path="res://game/noise.tres" type="Texture" id=1]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+
+uniform sampler2D noise_texture;
+uniform float contrast = 5.0;
+
+float normalized(float x) {
+	return max(min(x, 1.0), 0.0);
+}
+
+float get_grain(float x, float a) {
+	x += -0.5;
+	a += -0.5;
+	return normalized(contrast*(x + a) + 0.5);
+}
+
+void fragment() {
+//	Samples red channel only (black and white)
+	float noise_r = texture(noise_texture, UV).r;
+	float value_r = texture(TEXTURE, UV).r;
+	float red = get_grain(noise_r, value_r);
+	COLOR = vec4(red, red, red, 1);
+}"
+
+[resource]
+shader = SubResource( 1 )
+shader_param/contrast = 5.0
+shader_param/noise_texture = ExtResource( 1 )

@@ -18,14 +18,14 @@ void fragment() {
 	vec2 size = TEXTURE_PIXEL_SIZE * line_thickness;
 	
 	float outline = 0.0;
-//	outline += texture(TEXTURE, UV + vec2(-size.x, 0)).a;
+	outline += texture(TEXTURE, UV + vec2(-size.x, 0)).a;
 	outline += texture(TEXTURE, UV + vec2(0, size.y)).a;
 	outline += texture(TEXTURE, UV + vec2(size.x, 0)).a;
-//	outline += texture(TEXTURE, UV + vec2(0, -size.y)).a;
+	outline += texture(TEXTURE, UV + vec2(0, -size.y)).a;
 	outline += texture(TEXTURE, UV + vec2(-size.x, size.y)).a;
 	outline += texture(TEXTURE, UV + vec2(size.x, size.y)).a;
-//	outline += texture(TEXTURE, UV + vec2(-size.x, -size.y)).a;
-//	outline += texture(TEXTURE, UV + vec2(size.x, -size.y)).a;
+	outline += texture(TEXTURE, UV + vec2(-size.x, -size.y)).a;
+	outline += texture(TEXTURE, UV + vec2(size.x, -size.y)).a;
 	outline = min(outline, 1.0);
 	
 	vec4 color = texture(TEXTURE, UV);
@@ -34,8 +34,8 @@ void fragment() {
 
 [sub_resource type="ShaderMaterial" id=3]
 shader = SubResource( 2 )
-shader_param/line_color = Color( 0.45098, 0.176471, 0.254902, 1 )
-shader_param/line_thickness = 1.826
+shader_param/line_color = Color( 0, 0, 0, 1 )
+shader_param/line_thickness = 2.0
 
 [sub_resource type="ViewportTexture" id=4]
 viewport_path = NodePath("Viewport")
@@ -52,25 +52,26 @@ position = Vector2( 200, 200 )
 parameters/playback = SubResource( 1 )
 
 [node name="arm_upper_front" parent="Viewport/PlayerPuppet/Root" index="1"]
-position = Vector2( 14.4355, -117.431 )
+position = Vector2( -17.1918, -126.789 )
 
 [node name="arm_upper_back" parent="Viewport/PlayerPuppet/Root" index="2"]
-position = Vector2( 39.2225, -112.243 )
+position = Vector2( 7.66574, -121.951 )
 
 [node name="arm_lower_back" parent="Viewport/PlayerPuppet/Root" index="3"]
-position = Vector2( 72.3916, -90.5484 )
+position = Vector2( 17.3467, -83.5174 )
 
 [node name="hat_back" parent="Viewport/PlayerPuppet/Root" index="4"]
-position = Vector2( 32.2429, -167.789 )
+position = Vector2( 10.6388, -174.528 )
 
 [node name="leg_upper_back" parent="Viewport/PlayerPuppet/Root" index="5"]
-position = Vector2( 41.1814, -65.1542 )
+position = Vector2( 16.6787, -87.7199 )
+
+[node name="leg_lower_back" parent="Viewport/PlayerPuppet/Root" index="6"]
+position = Vector2( 35.443, -113.602 )
+scale = Vector2( 1, 1 )
 
 [node name="foot_back" parent="Viewport/PlayerPuppet/Root" index="7"]
-position = Vector2( 33.7265, -26.4009 )
-
-[node name="Smear" parent="Viewport/PlayerPuppet/Root/body_lower/body_upper/arm_upper_front/arm_lower_front/spear_ref" index="1"]
-frame = 0
+position = Vector2( 44.1083, -76.9762 )
 
 [node name="Sprite" parent="." index="1"]
 material = SubResource( 3 )
@@ -82,6 +83,7 @@ offset = Vector2( 0, -48 )
 script = ExtResource( 3 )
 sprite_path = NodePath("../Sprite")
 animation_tree_path = NodePath("../Viewport/PlayerPuppet/AnimationTree")
+spear_path = NodePath("../Viewport/PlayerPuppet/Root/body_lower/body_upper/arm_upper_front/arm_lower_front/spear_ref/Spear")
 
 [node name="Spear" type="Sprite" parent="." index="4"]
 visible = false

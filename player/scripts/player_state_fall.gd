@@ -1,4 +1,4 @@
-extends PlayerStateMove
+extends PlayerState
 
 
 const GRAV_MULT = 1.5
@@ -11,10 +11,13 @@ func enter():
 
 func update(delta):
 	if player.is_on_floor():
-		if player.dir != 0:
+		if player.direction != 0:
 			emit_signal("finished", "run")
 		else:
 			emit_signal("finished", "idle")
-	player.velocity.y = min(player.velocity.y + player.GRAV * GRAV_MULT, TERMINAL_VELO)
 	
+	var grav_mult = GRAV_MULT
+	if Input.is_action_pressed("move_down"):
+		grav_mult *= 2
+	player.velocity.y = min(player.velocity.y + player.GRAV * grav_mult, TERMINAL_VELO)
 	handle_movement(player.FRICTION_AIR_FAST, player.FRICTION_AIR, player.ACCEL_AIR)

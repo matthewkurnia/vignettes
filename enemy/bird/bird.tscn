@@ -1,0 +1,214 @@
+[gd_scene load_steps=22 format=2]
+
+[ext_resource path="res://enemy/enemy_state_machine.tscn" type="PackedScene" id=1]
+[ext_resource path="res://enemy/enemy_air.gd" type="Script" id=2]
+[ext_resource path="res://icon.png" type="Texture" id=3]
+[ext_resource path="res://enemy/bird/bird_rig.tscn" type="PackedScene" id=4]
+[ext_resource path="res://enemy/enemy_player_detector.tscn" type="PackedScene" id=5]
+
+[sub_resource type="AnimationNodeAnimation" id=1]
+animation = "chase"
+
+[sub_resource type="AnimationNodeAnimation" id=2]
+animation = "idle"
+
+[sub_resource type="AnimationNodeAnimation" id=3]
+animation = "skewered"
+
+[sub_resource type="AnimationNodeAnimation" id=4]
+animation = "staggered"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=5]
+advance_condition = "player_lost"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=6]
+advance_condition = "player_seen"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=7]
+switch_mode = 2
+auto_advance = true
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=17]
+
+[sub_resource type="AnimationNodeStateMachine" id=9]
+states/chase/node = SubResource( 1 )
+states/chase/position = Vector2( 510, 57 )
+states/idle/node = SubResource( 2 )
+states/idle/position = Vector2( 221, 57 )
+states/skewered/node = SubResource( 3 )
+states/skewered/position = Vector2( 633, 175 )
+states/staggered/node = SubResource( 4 )
+states/staggered/position = Vector2( 364, 175 )
+transitions = [ "chase", "idle", SubResource( 5 ), "idle", "chase", SubResource( 6 ), "staggered", "chase", SubResource( 7 ), "skewered", "staggered", SubResource( 17 ) ]
+
+[sub_resource type="AnimationNodeStateMachinePlayback" id=10]
+
+[sub_resource type="Animation" id=11]
+length = 0.3
+loop = true
+tracks/0/type = "method"
+tracks/0/path = NodePath("..")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ 500.0, 30.0 ],
+"method": "move_to_player"
+} ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath("../Rig")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "fly" ],
+"method": "play"
+} ]
+}
+
+[sub_resource type="Animation" id=12]
+loop = true
+tracks/0/type = "method"
+tracks/0/path = NodePath("..")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ 200.0, 15.0 ],
+"method": "move_random"
+} ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath("../Rig")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "fly" ],
+"method": "play"
+} ]
+}
+
+[sub_resource type="Animation" id=13]
+resource_name = "skewered"
+length = 0.45
+tracks/0/type = "method"
+tracks/0/path = NodePath("..")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ Vector2( 0, 0 ), 10000.0 ],
+"method": "move"
+} ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath("../Rig")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "skewered" ],
+"method": "play"
+} ]
+}
+
+[sub_resource type="Animation" id=14]
+length = 0.45
+tracks/0/type = "method"
+tracks/0/path = NodePath("..")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ Vector2( 0, 0 ), 15.0 ],
+"method": "move"
+} ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath("../Rig")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "staggered" ],
+"method": "play"
+} ]
+}
+
+[sub_resource type="CircleShape2D" id=15]
+radius = 600.0
+
+[sub_resource type="CircleShape2D" id=16]
+radius = 40.0
+
+[node name="Bird" type="KinematicBody2D"]
+collision_layer = 8
+collision_mask = 0
+script = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="."]
+visible = false
+texture = ExtResource( 3 )
+
+[node name="StateMachine" parent="." instance=ExtResource( 1 )]
+tree_root = SubResource( 9 )
+active = true
+parameters/playback = SubResource( 10 )
+parameters/conditions/player_lost = false
+parameters/conditions/player_seen = false
+
+[node name="States" parent="StateMachine" index="0"]
+anims/chase = SubResource( 11 )
+anims/idle = SubResource( 12 )
+anims/skewered = SubResource( 13 )
+anims/staggered = SubResource( 14 )
+
+[node name="PlayerDetector" parent="." instance=ExtResource( 5 )]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector"]
+shape = SubResource( 15 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 16 )
+
+[node name="Rig" parent="." instance=ExtResource( 4 )]
+
+[connection signal="flip_sprite" from="." to="Rig" method="flip_h"]
+[connection signal="override_state" from="." to="StateMachine" method="override_state"]
+[connection signal="player_visible" from="PlayerDetector" to="StateMachine" method="set_player_visible"]
+
+[editable path="StateMachine"]
