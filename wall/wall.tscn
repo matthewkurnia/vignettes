@@ -1,7 +1,7 @@
 [gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://addons/rmsmartshape/shapes/shape_closed.gd" type="Script" id=1]
-[ext_resource path="res://wall/fill_black.png" type="Texture" id=2]
+[ext_resource path="res://wall/cracks.png" type="Texture" id=2]
 [ext_resource path="res://wall/edge.png" type="Texture" id=3]
 [ext_resource path="res://addons/rmsmartshape/normal_range.gd" type="Script" id=4]
 [ext_resource path="res://addons/rmsmartshape/shapes/point_array.gd" type="Script" id=5]
@@ -32,7 +32,7 @@ width = 1.0
 
 [sub_resource type="Resource" id=4]
 script = ExtResource( 9 )
-position = Vector2( 76.9159, -59.6336 )
+position = Vector2( 75.043, -59.259 )
 point_in = Vector2( 0, 0 )
 point_out = Vector2( 0, 0 )
 properties = SubResource( 3 )
@@ -91,7 +91,7 @@ _constraints = {
 }
 _next_key = 13
 
-[sub_resource type="Resource" id=13]
+[sub_resource type="Resource" id=12]
 script = ExtResource( 6 )
 textures = [ ExtResource( 3 ) ]
 texture_normals = [  ]
@@ -108,25 +108,25 @@ use_corner_texture = true
 use_taper_texture = true
 fit_mode = 0
 
-[sub_resource type="Resource" id=14]
+[sub_resource type="Resource" id=13]
 script = ExtResource( 4 )
 begin = 0.0
 distance = 0.0
 edgeRendering = Vector2( 0, 0 )
 
-[sub_resource type="Resource" id=15]
+[sub_resource type="Resource" id=14]
 script = ExtResource( 7 )
-edge_material = SubResource( 13 )
-normal_range = SubResource( 14 )
+edge_material = SubResource( 12 )
+normal_range = SubResource( 13 )
 weld = true
 render = true
 z_index = 0
 z_as_relative = true
 offset = 0.0
 
-[sub_resource type="Resource" id=12]
+[sub_resource type="Resource" id=15]
 script = ExtResource( 8 )
-_edge_meta_materials = [ SubResource( 15 ) ]
+_edge_meta_materials = [ SubResource( 14 ) ]
 fill_textures = [ ExtResource( 2 ) ]
 fill_texture_normals = [  ]
 fill_texture_z_index = -1
@@ -141,7 +141,7 @@ script = ExtResource( 1 )
 _points = SubResource( 11 )
 material_overrides = {
 }
-shape_material = SubResource( 12 )
+shape_material = SubResource( 15 )
 tessellation_stages = 5
 tessellation_tolerence = 4.0
 flip_edges = false
@@ -152,4 +152,4 @@ collision_polygon_node_path = NodePath("../CollisionPolygon2D")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 modulate = Color( 1, 1, 1, 0.3 )
-polygon = PoolVector2Array( -86.0564, -65.2439, 80.7819, -63.0879, 66.1059, 83.3112, -77.4468, 62.0856 )
+polygon = PoolVector2Array( -86.0627, -65.2589, 78.8224, -62.6721, 66.1786, 83.3507, -77.4468, 62.0856 )

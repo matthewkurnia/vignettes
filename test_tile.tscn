@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://decoration/tile.gd" type="Script" id=1]
+[ext_resource path="res://decoration/sprites/grid_medium.png" type="Texture" id=2]
+[ext_resource path="res://decoration/tile/sine_wave_tile_material.tres" type="Material" id=3]
+
+[node name="icon" type="Sprite"]
+modulate = Color( 0, 0, 0, 1 )
+material = ExtResource( 3 )
+position = Vector2( 68.2195, 54.9866 )
+scale = Vector2( 9.13037, 9.05456 )
+texture = ExtResource( 2 )
+script = ExtResource( 1 )
+
+[connection signal="item_rect_changed" from="." to="." method="set_tile_factor"]

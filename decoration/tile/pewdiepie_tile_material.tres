@@ -1,0 +1,48 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=2]
+
+[ext_resource path="res://decoration/sprites/soft_noise.png" type="Texture" id=1]
+
+[sub_resource type="Shader" id=1]
+resource_local_to_scene = true
+code = "shader_type canvas_item;
+
+uniform float rotation = 0.0;
+uniform sampler2D noise;
+uniform float frequency_x = 1.0;
+uniform float frequency_y = 1.0;
+uniform float amplitude = 3.0;
+uniform vec2 tile_factor = vec2(1.0, 1.0);
+
+vec2 rotate_uv(vec2 uv, vec2 pivot, float rot) {
+    float sine = sin(rot);
+    float cosine = cos(rot);
+
+    uv -= pivot;
+	float new_x = uv.x * cosine - uv.y * sine;
+	float new_y = uv.x * sine + uv.y * cosine;
+    uv.x = new_x;
+    uv.y = new_y;
+    uv += pivot;
+
+    return uv;
+}
+
+void fragment() {
+	vec2 tiled_uv = rotate_uv(UV * tile_factor, vec2(0.5), rotation);
+	vec2 t_uv = UV + vec2(TIME*frequency_x, TIME * frequency_y);
+	tiled_uv += texture(noise, t_uv).rg * amplitude;
+	tiled_uv.x += amplitude * sin(TIME + tiled_uv.y * frequency_x);
+	tiled_uv.y += amplitude * cos(TIME + tiled_uv.x * frequency_x);
+	COLOR = texture(TEXTURE, tiled_uv);
+	
+}"
+
+[resource]
+resource_local_to_scene = true
+shader = SubResource( 1 )
+shader_param/rotation = 1.776
+shader_param/frequency_x = 0.1
+shader_param/frequency_y = 0.1
+shader_param/amplitude = 3.0
+shader_param/tile_factor = Vector2( 17.7474, 13.0379 )
+shader_param/noise = ExtResource( 1 )

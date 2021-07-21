@@ -11,13 +11,15 @@ func enter():
 
 func update(delta):
 	if player.is_on_floor():
-		if player.direction != 0:
+		if Input.is_action_pressed("slide"):
+			emit_signal("finished", "slide")
+		elif player.direction != 0:
 			emit_signal("finished", "run")
 		else:
 			emit_signal("finished", "idle")
 	
 	var grav_mult = GRAV_MULT
-	if Input.is_action_pressed("move_down"):
+	if Input.is_action_pressed("slide"):
 		grav_mult *= 2
 	player.velocity.y = min(player.velocity.y + player.GRAV * grav_mult, TERMINAL_VELO)
 	handle_movement(player.FRICTION_AIR_FAST, player.FRICTION_AIR, player.ACCEL_AIR)

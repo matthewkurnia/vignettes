@@ -1,0 +1,19 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=2]
+
+[sub_resource type="Shader" id=1]
+resource_local_to_scene = true
+code = "shader_type canvas_item;
+
+uniform bool flip = false;
+const vec4 grey = vec4(0.5, 0.5, 0.5, 1);
+
+void fragment() {
+	if (flip) COLOR.rgb = mix(texture(TEXTURE, UV), grey, UV.x).rgb;
+	else COLOR.rgb = mix(texture(TEXTURE, UV), grey, 1.0 - UV.x).rgb;
+	COLOR.a = texture(TEXTURE, UV).a;
+}"
+
+[resource]
+resource_local_to_scene = true
+shader = SubResource( 1 )
+shader_param/flip = false

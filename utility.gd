@@ -25,6 +25,18 @@ func lirpv(from: Vector2, to: Vector2, distance: float) -> Vector2:
 	return from + resultant
 
 
+func min_v(vector1: Vector2, vector2: Vector2) -> Vector2:
+	if vector1.length() < vector2.length():
+		return vector1
+	return vector2
+
+
+func max_v(vector1: Vector2, vector2: Vector2) -> Vector2:
+	if vector1.length() > vector2.length():
+		return vector1
+	return vector2
+
+
 func get_relative_mouse_position(node: Node2D):
 	return (get_global_mouse_position() -
 			node.get_canvas_transform().origin -

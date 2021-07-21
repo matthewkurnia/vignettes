@@ -8,19 +8,19 @@
 [ext_resource path="res://player/scripts/player_state_run.gd" type="Script" id=6]
 [ext_resource path="res://player/scripts/player_state_jump.gd" type="Script" id=7]
 [ext_resource path="res://player/player_rig.tscn" type="PackedScene" id=8]
-[ext_resource path="res://player/scripts/player_state_thrust.gd" type="Script" id=9]
-[ext_resource path="res://player/spear_controller.gd" type="Script" id=10]
-[ext_resource path="res://player/scripts/player_state_charge.gd" type="Script" id=11]
-[ext_resource path="res://player/spear/spear.tscn" type="PackedScene" id=12]
-[ext_resource path="res://wall/fill_white.png" type="Texture" id=13]
-[ext_resource path="res://game/color_object.gd" type="Script" id=14]
-[ext_resource path="res://player/scripts/thrust_hitbox.gd" type="Script" id=15]
+[ext_resource path="res://player/scripts/player_state_slide.gd" type="Script" id=9]
+[ext_resource path="res://player/scripts/player_state_wall_slide.gd" type="Script" id=10]
+[ext_resource path="res://player/player_dust_particle.tscn" type="PackedScene" id=11]
+[ext_resource path="res://player/scripts/player_hitbox.gd" type="Script" id=12]
+[ext_resource path="res://player/scripts/player_state_climb.gd" type="Script" id=13]
+[ext_resource path="res://player/scripts/player_state_banished.gd" type="Script" id=14]
+[ext_resource path="res://camera/camera.tscn" type="PackedScene" id=15]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 30, 40 )
+extents = Vector2( 25, 30 )
 
-[sub_resource type="CapsuleShape2D" id=2]
-radius = 25.0
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 23, 28 )
 
 [node name="Player" type="KinematicBody2D"]
 collision_layer = 2
@@ -39,19 +39,30 @@ script = ExtResource( 6 )
 [node name="Jump" type="Node" parent="StateMachine"]
 script = ExtResource( 7 )
 
+[node name="Buffer" type="Timer" parent="StateMachine/Jump"]
+wait_time = 0.2
+one_shot = true
+
 [node name="Fall" type="Node" parent="StateMachine"]
 script = ExtResource( 5 )
 
-[node name="Thrust" type="Node" parent="StateMachine"]
+[node name="Slide" type="Node" parent="StateMachine"]
 script = ExtResource( 9 )
-controller_path = NodePath("../../SpearController")
+slope_detector_path = NodePath("../../SlopeDetector")
 
-[node name="Timer" type="Timer" parent="StateMachine/Thrust"]
+[node name="WallSlide" type="Node" parent="StateMachine"]
+script = ExtResource( 10 )
+buffer_path = NodePath("../../PlayerController/Buffer")
+
+[node name="Buffer" type="Timer" parent="StateMachine/WallSlide"]
 wait_time = 0.1
 one_shot = true
 
-[node name="Charge" type="Node" parent="StateMachine"]
-script = ExtResource( 11 )
+[node name="Climb" type="Node" parent="StateMachine"]
+script = ExtResource( 13 )
+
+[node name="Banished" type="Node" parent="StateMachine"]
+script = ExtResource( 14 )
 
 [node name="PlayerController" type="Node" parent="."]
 process_priority = 1
@@ -65,90 +76,67 @@ one_shot = true
 wait_time = 0.15
 one_shot = true
 
-[node name="SpearController" type="Node2D" parent="."]
-script = ExtResource( 10 )
-spear_scene = ExtResource( 12 )
-
-[node name="Cooldown" type="Timer" parent="SpearController"]
-wait_time = 0.8
-one_shot = true
-
-[node name="Buffer" type="Timer" parent="SpearController"]
-wait_time = 0.2
-one_shot = true
-
-[node name="Delay" type="Timer" parent="SpearController"]
-wait_time = 0.1
-one_shot = true
-
-[node name="Duration" type="Timer" parent="SpearController"]
-wait_time = 0.5
-one_shot = true
-
-[node name="Charge" type="Timer" parent="SpearController"]
-one_shot = true
-
-[node name="Throw" type="Timer" parent="SpearController"]
-wait_time = 0.4
-one_shot = true
-
-[node name="Recall" type="Timer" parent="SpearController"]
-wait_time = 0.75
+[node name="Slide" type="Timer" parent="PlayerController"]
+wait_time = 0.25
 one_shot = true
 
 [node name="Collision" type="CollisionShape2D" parent="."]
-position = Vector2( 0, 10 )
 shape = SubResource( 1 )
 
 [node name="PlayerRig" parent="." instance=ExtResource( 8 )]
 
 [node name="Hitbox" type="Area2D" parent="PlayerRig"]
 collision_layer = 2
-collision_mask = 8
+collision_mask = 12
+script = ExtResource( 12 )
+controller_path = NodePath("../../PlayerController")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerRig/Hitbox"]
 shape = SubResource( 2 )
 
-[node name="ThrustHitBox" type="Area2D" parent="PlayerRig"]
-monitoring = false
-collision_layer = 2
-collision_mask = 8
-script = ExtResource( 15 )
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="PlayerRig/ThrustHitBox"]
-polygon = PoolVector2Array( 28.857, 42.297, 87.9005, 41.9435, 104.164, 8.35589, 90.7289, -25.5852, 29.5642, -25.2317 )
-
 [node name="FloorRayRight" type="RayCast2D" parent="."]
-position = Vector2( 30, 40 )
+position = Vector2( 25, 15 )
 enabled = true
 cast_to = Vector2( 10, 0 )
 
 [node name="FloorRayLeft" type="RayCast2D" parent="."]
-position = Vector2( -30, 40 )
+position = Vector2( -25, 15 )
 enabled = true
 cast_to = Vector2( -10, 0 )
 
-[node name="Camera2D" type="Camera2D" parent="."]
-current = true
-smoothing_enabled = true
+[node name="WallRayRight1" type="RayCast2D" parent="."]
+position = Vector2( 25, 0 )
+enabled = true
+cast_to = Vector2( 15, 0 )
 
-[node name="Sprite" type="Sprite" parent="."]
-visible = false
-modulate = Color( 0.968627, 0.952941, 0.0431373, 1 )
-texture = ExtResource( 13 )
-script = ExtResource( 14 )
+[node name="WallRayRight2" type="RayCast2D" parent="."]
+position = Vector2( 25, -30 )
+enabled = true
+cast_to = Vector2( 15, 0 )
+
+[node name="WallRayLeft1" type="RayCast2D" parent="."]
+position = Vector2( -25, 0 )
+enabled = true
+cast_to = Vector2( -15, 0 )
+
+[node name="WallRayLeft2" type="RayCast2D" parent="."]
+position = Vector2( -25, -30 )
+enabled = true
+cast_to = Vector2( -15, 0 )
+
+[node name="SlopeDetector" type="RayCast2D" parent="."]
+position = Vector2( 0, 30 )
+enabled = true
+cast_to = Vector2( 0, 2 )
+
+[node name="DustParticle" parent="." instance=ExtResource( 11 )]
+position = Vector2( 0, 32.2136 )
+z_index = -10
+
+[node name="Camera" parent="." instance=ExtResource( 15 )]
 
 [connection signal="state_changed" from="StateMachine" to="PlayerRig" method="play"]
 [connection signal="state_changed" from="StateMachine" to="PlayerController" method="state_changed"]
 [connection signal="state_override" from="PlayerController" to="StateMachine" method="change_state"]
-[connection signal="recall" from="SpearController" to="PlayerRig/PlayerAnimController" method="recall"]
-[connection signal="release" from="SpearController" to="StateMachine/Charge" method="release"]
-[connection signal="release" from="SpearController" to="PlayerRig/PlayerAnimController" method="release"]
-[connection signal="state_override" from="SpearController" to="StateMachine" method="change_state"]
-[connection signal="thrust" from="SpearController" to="StateMachine/Thrust" method="thrust"]
-[connection signal="thrust" from="SpearController" to="PlayerRig/PlayerAnimController" method="_on_SpearController_thrust"]
-[connection signal="timeout" from="SpearController/Delay" to="PlayerRig/ThrustHitBox" method="start_monitoring"]
-[connection signal="timeout" from="SpearController/Delay" to="SpearController" method="thrust"]
-[connection signal="timeout" from="SpearController/Duration" to="PlayerRig/ThrustHitBox" method="stop_monitoring"]
-[connection signal="timeout" from="SpearController/Duration" to="StateMachine/Thrust" method="_on_Duration_timeout"]
-[connection signal="timeout" from="SpearController/Charge" to="SpearController" method="charge_release"]
+[connection signal="area_entered" from="PlayerRig/Hitbox" to="PlayerRig/Hitbox" method="area_entered"]
+[connection signal="state_override" from="PlayerRig/Hitbox" to="StateMachine" method="change_state"]

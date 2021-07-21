@@ -5,7 +5,7 @@ extends State
 onready var player = Player.get_player_node()
 
 
-func handle_movement(friction_fast, friction, acceleration, grounded: bool = true, fric_mult = 0.1):
+func handle_movement(friction_fast, friction, acceleration, grounded: bool = true, fric_mult = 0.3):
 	if abs(player.velocity.x) > player.MAX_SPEED:
 		var t = sign(player.direction) * sign(player.velocity.x)
 		if t > 0:

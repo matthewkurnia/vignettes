@@ -1,0 +1,33 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=2]
+
+[sub_resource type="Shader" id=1]
+resource_local_to_scene = true
+code = "shader_type canvas_item;
+
+uniform float rotation = 0.0;
+uniform vec2 tile_factor = vec2(1.0, 1.0);
+
+vec2 rotate_uv(vec2 uv, vec2 pivot, float rot) {
+    float sine = sin(rot);
+    float cosine = cos(rot);
+
+    uv -= pivot;
+	float new_x = uv.x * cosine - uv.y * sine;
+	float new_y = uv.x * sine + uv.y * cosine;
+    uv.x = new_x;
+    uv.y = new_y;
+    uv += pivot;
+
+    return uv;
+}
+
+void fragment() {
+	vec2 tiled_uv = rotate_uv(UV * tile_factor, vec2(0.5), rotation);
+	COLOR = texture(TEXTURE, tiled_uv);
+}"
+
+[resource]
+resource_local_to_scene = true
+shader = SubResource( 1 )
+shader_param/rotation = 0.0
+shader_param/tile_factor = Vector2( 1, 1 )

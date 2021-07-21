@@ -23,7 +23,7 @@ void fragment() {
 	float noise_r = texture(noise_texture, UV).r;
 	float value_r = texture(TEXTURE, UV).r;
 	float red = get_grain(noise_r, value_r);
-	COLOR = vec4(red, red, red, 1);
+	COLOR.rgb = vec3(red, red, red);
 }"
 
 [resource]

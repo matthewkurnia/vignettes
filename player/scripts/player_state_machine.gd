@@ -13,8 +13,10 @@ onready var states = {
 	"run" : $Run,
 	"jump": $Jump,
 	"fall" : $Fall,
-	"thrust" : $Thrust,
-	"charge" : $Charge
+	"slide" : $Slide,
+	"wall_slide" : $WallSlide,
+	"climb" : $Climb,
+	"banished" : $Banished
 }
 
 
@@ -30,6 +32,7 @@ func update(delta):
 
 
 func change_state(new_state):
+#	print(new_state)
 	current_state.exit()
 	previous_state = current_state
 	current_state = states[new_state]

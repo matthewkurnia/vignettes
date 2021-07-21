@@ -2,4 +2,4 @@ extends CanvasLayer
 
 
 func _ready():
-	Game.background = self
+	Game.particles = self
