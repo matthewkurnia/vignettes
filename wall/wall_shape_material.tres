@@ -7,7 +7,7 @@
 [ext_resource path="res://addons/rmsmartshape/materials/edge_material.gd" type="Script" id=5]
 [ext_resource path="res://addons/rmsmartshape/normal_range.gd" type="Script" id=6]
 
-[sub_resource type="Resource" id=13]
+[sub_resource type="Resource" id=1]
 script = ExtResource( 5 )
 textures = [ ExtResource( 1 ) ]
 texture_normals = [  ]
@@ -22,18 +22,18 @@ texture_normals_taper_right = [  ]
 randomize_texture = false
 use_corner_texture = true
 use_taper_texture = true
-fit_mode = 0
+fit_mode = 1
 
-[sub_resource type="Resource" id=14]
+[sub_resource type="Resource" id=2]
 script = ExtResource( 6 )
 begin = 0.0
 distance = 0.0
 edgeRendering = Vector2( 0, 0 )
 
-[sub_resource type="Resource" id=15]
+[sub_resource type="Resource" id=3]
 script = ExtResource( 4 )
-edge_material = SubResource( 13 )
-normal_range = SubResource( 14 )
+edge_material = SubResource( 1 )
+normal_range = SubResource( 2 )
 weld = true
 render = true
 z_index = 0
@@ -42,7 +42,7 @@ offset = 0.0
 
 [resource]
 script = ExtResource( 3 )
-_edge_meta_materials = [ SubResource( 15 ) ]
+_edge_meta_materials = [ SubResource( 3 ) ]
 fill_textures = [ ExtResource( 2 ) ]
 fill_texture_normals = [  ]
 fill_texture_z_index = -1

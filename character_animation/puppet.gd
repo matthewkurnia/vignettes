@@ -16,7 +16,6 @@ func play(anim_name: String):
 func play_immediate(anim_name: String):
 	anim_state_machine.stop()
 	anim_state_machine.call_deferred("start", anim_name)
-#	anim_state_machine.start(anim_name)
 	emit_signal("animation_started", anim_name)
 
 

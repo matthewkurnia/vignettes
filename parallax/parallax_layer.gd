@@ -8,6 +8,10 @@ export var scroll_scale = 1.0
 func _ready():
 	if not ignore_scale:
 		self.scale = scroll_scale * Vector2(1, 1)
+	else:
+		for child in get_children():
+			if child.has_method("set_position"):
+				child.position *= scale
 
 
 func _process(delta):

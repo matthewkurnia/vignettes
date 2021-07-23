@@ -17,7 +17,7 @@ _global_script_classes=[ {
 "base": "Node2D",
 "class": "ColorNode",
 "language": "GDScript",
-"path": "res://game/color_object.gd"
+"path": "res://game/color_node.gd"
 }, {
 "base": "KinematicBody2D",
 "class": "Enemy",
@@ -212,9 +212,10 @@ config/icon="res://icon.png"
 
 [autoload]
 
-Player="*res://player/scripts/player_singleton.gd"
-Util="*res://util.tscn"
-Game="*res://game/game.gd"
+Util="*res://utility/util.tscn"
+Game="*res://game/game_singleton.gd"
+Player="*res://player/player_singleton.tscn"
+Cam="*res://camera/camera_singleton.gd"
 
 [display]
 

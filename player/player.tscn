@@ -14,13 +14,13 @@
 [ext_resource path="res://player/scripts/player_hitbox.gd" type="Script" id=12]
 [ext_resource path="res://player/scripts/player_state_climb.gd" type="Script" id=13]
 [ext_resource path="res://player/scripts/player_state_banished.gd" type="Script" id=14]
-[ext_resource path="res://camera/camera.tscn" type="PackedScene" id=15]
+[ext_resource path="res://camera/camera_controller.tscn" type="PackedScene" id=15]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 25, 30 )
+extents = Vector2( 14, 20 )
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 23, 28 )
+extents = Vector2( 25, 35 )
 
 [node name="Player" type="KinematicBody2D"]
 collision_layer = 2
@@ -48,7 +48,6 @@ script = ExtResource( 5 )
 
 [node name="Slide" type="Node" parent="StateMachine"]
 script = ExtResource( 9 )
-slope_detector_path = NodePath("../../SlopeDetector")
 
 [node name="WallSlide" type="Node" parent="StateMachine"]
 script = ExtResource( 10 )
@@ -80,9 +79,6 @@ one_shot = true
 wait_time = 0.25
 one_shot = true
 
-[node name="Collision" type="CollisionShape2D" parent="."]
-shape = SubResource( 1 )
-
 [node name="PlayerRig" parent="." instance=ExtResource( 8 )]
 
 [node name="Hitbox" type="Area2D" parent="PlayerRig"]
@@ -92,48 +88,78 @@ script = ExtResource( 12 )
 controller_path = NodePath("../../PlayerController")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerRig/Hitbox"]
+shape = SubResource( 1 )
+
+[node name="Collision" type="CollisionShape2D" parent="."]
 shape = SubResource( 2 )
 
-[node name="FloorRayRight" type="RayCast2D" parent="."]
-position = Vector2( 25, 15 )
-enabled = true
-cast_to = Vector2( 10, 0 )
+[node name="DustParticle" parent="." instance=ExtResource( 11 )]
+position = Vector2( 0, 32 )
+z_index = -10
 
-[node name="FloorRayLeft" type="RayCast2D" parent="."]
-position = Vector2( -25, 15 )
-enabled = true
-cast_to = Vector2( -10, 0 )
+[node name="Camera" parent="." instance=ExtResource( 15 )]
 
-[node name="WallRayRight1" type="RayCast2D" parent="."]
+[node name="Raycasts" type="Node2D" parent="."]
+
+[node name="FloorRayRight" type="RayCast2D" parent="Raycasts"]
+position = Vector2( 25, 30 )
+enabled = true
+cast_to = Vector2( 5, 0 )
+
+[node name="FloorRayLeft" type="RayCast2D" parent="Raycasts"]
+position = Vector2( -25, 30 )
+enabled = true
+cast_to = Vector2( -5, 0 )
+
+[node name="WallRayRight1" type="RayCast2D" parent="Raycasts"]
 position = Vector2( 25, 0 )
 enabled = true
 cast_to = Vector2( 15, 0 )
 
-[node name="WallRayRight2" type="RayCast2D" parent="."]
+[node name="WallRayRight2" type="RayCast2D" parent="Raycasts"]
 position = Vector2( 25, -30 )
 enabled = true
 cast_to = Vector2( 15, 0 )
 
-[node name="WallRayLeft1" type="RayCast2D" parent="."]
+[node name="WallRayLeft1" type="RayCast2D" parent="Raycasts"]
 position = Vector2( -25, 0 )
 enabled = true
 cast_to = Vector2( -15, 0 )
 
-[node name="WallRayLeft2" type="RayCast2D" parent="."]
+[node name="WallRayLeft2" type="RayCast2D" parent="Raycasts"]
 position = Vector2( -25, -30 )
 enabled = true
 cast_to = Vector2( -15, 0 )
 
-[node name="SlopeDetector" type="RayCast2D" parent="."]
-position = Vector2( 0, 30 )
+[node name="ClimbRayRight" type="RayCast2D" parent="Raycasts"]
+position = Vector2( 25, -35 )
 enabled = true
-cast_to = Vector2( 0, 2 )
+cast_to = Vector2( 40, 0 )
 
-[node name="DustParticle" parent="." instance=ExtResource( 11 )]
-position = Vector2( 0, 32.2136 )
-z_index = -10
+[node name="ClimbRayLeft" type="RayCast2D" parent="Raycasts"]
+position = Vector2( -25, -35 )
+enabled = true
+cast_to = Vector2( -40, 0 )
 
-[node name="Camera" parent="." instance=ExtResource( 15 )]
+[node name="SlopeDetectorRight" type="RayCast2D" parent="Raycasts"]
+position = Vector2( 25, 35 )
+enabled = true
+cast_to = Vector2( 0, 27 )
+
+[node name="SlopeDetectorLeft" type="RayCast2D" parent="Raycasts"]
+position = Vector2( -25, 35 )
+enabled = true
+cast_to = Vector2( 0, 27 )
+
+[node name="SlopeDetectorCenterRight" type="RayCast2D" parent="Raycasts"]
+position = Vector2( 10, 35 )
+enabled = true
+cast_to = Vector2( 0, 27 )
+
+[node name="SlopeDetectorCenterLeft" type="RayCast2D" parent="Raycasts"]
+position = Vector2( -10, 35 )
+enabled = true
+cast_to = Vector2( 0, 27 )
 
 [connection signal="state_changed" from="StateMachine" to="PlayerRig" method="play"]
 [connection signal="state_changed" from="StateMachine" to="PlayerController" method="state_changed"]

@@ -17,9 +17,10 @@ onready var player = Player.get_player_node()
 func _physics_process(delta):
 	if current_state == "banished":
 		player.global_position = banish_position
+		return
 	if just_touched_wall():
 		emit_signal("state_override", "wall_slide")
-	if not player.is_on_floor() and just_reached_edge():
+	if not player.is_on_floor() and just_reached_edge() and not player.sliding:
 		emit_signal("state_override", "climb")
 	if Input.is_action_just_pressed("slide"):
 		slide.start()
@@ -50,12 +51,14 @@ func _input(event):
 func jump():
 	var mul = 1.0
 	if slide.time_left > 0:
+		Cam.shake(0.1, 3)
 		mul = 1.5
 	player.velocity.y = min(-player.JUMP_STRENGTH,
 			player.velocity.y * 0.5 - player.JUMP_STRENGTH * mul)
 
 
 func launch(direction, speed):
+	Cam.shake(0.1, 10)
 	player.velocity = direction.normalized() * speed
 	emit_signal("state_override", "jump")
 

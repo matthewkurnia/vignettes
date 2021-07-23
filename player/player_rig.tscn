@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://player/player_puppet.tscn" type="PackedScene" id=1]
 [ext_resource path="res://character_animation/character_rig.tscn" type="PackedScene" id=2]
@@ -40,6 +40,9 @@ shader_param/line_thickness = 2.0
 [sub_resource type="ViewportTexture" id=4]
 viewport_path = NodePath("Viewport")
 
+[sub_resource type="ViewportTexture" id=5]
+viewport_path = NodePath("Viewport")
+
 [node name="PlayerRig" instance=ExtResource( 2 )]
 
 [node name="Viewport" parent="." index="0"]
@@ -65,11 +68,9 @@ position = Vector2( 8.05829, -153.507 )
 
 [node name="leg_upper_back" parent="Viewport/PlayerPuppet/Root" index="5"]
 position = Vector2( 9.63556, -81.4044 )
-scale = Vector2( 0.7, 0.7 )
 
 [node name="leg_lower_back" parent="Viewport/PlayerPuppet/Root" index="6"]
 position = Vector2( 20.5714, -61.8803 )
-scale = Vector2( 0.7, 0.7 )
 
 [node name="foot_back" parent="Viewport/PlayerPuppet/Root" index="7"]
 position = Vector2( 28.9652, -36.9071 )
@@ -80,11 +81,15 @@ position = Vector2( 0, 48 )
 texture = SubResource( 4 )
 offset = Vector2( 0, -48 )
 
+[node name="Sprite" parent="Sprite/ColorNode" index="0"]
+texture = SubResource( 5 )
+offset = Vector2( 0, -48 )
+
 [node name="PlayerAnimController" type="Node" parent="." index="3"]
 script = ExtResource( 3 )
 sprite_path = NodePath("../Sprite")
+clear_path = NodePath("../Sprite/ColorNode/Sprite")
 animation_tree_path = NodePath("../Viewport/PlayerPuppet/AnimationTree")
-spear_path = NodePath("../Viewport/PlayerPuppet/Root/body_lower/body_upper/arm_upper_front/arm_lower_front/spear_ref/Spear")
 
 [node name="Spear" type="Sprite" parent="." index="4"]
 visible = false

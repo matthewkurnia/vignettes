@@ -4,27 +4,21 @@ extends Node
 const LAND_SCALE = Vector2(1.3, 0.75)
 
 export var sprite_path: NodePath
+export var clear_path: NodePath
 export var animation_tree_path: NodePath
-export var spear_path: NodePath
 
 var curr_anim = ""
 
 onready var player = Player.get_player_node()
 onready var sprite = get_node(sprite_path)
+onready var clear = get_node(clear_path)
 onready var rig = get_parent()
 onready var init_pos = rig.position
 onready var animation_tree = get_node(animation_tree_path)
-onready var spear = get_node(spear_path)
 
 
 func _ready():
 	get_parent().call_deferred("play_immediate", "idle")
-
-
-func _input(event):
-	if event is InputEventMouseMotion and curr_anim == "charge":
-		var rot = Util.get_relative_mouse_position(player).angle()
-		turn(rot)
 
 
 func _process(delta):
@@ -35,14 +29,14 @@ func _process(delta):
 		rig.visible = true
 #	Player face direction.
 	if curr_anim == "slide" and abs(player.velocity.x) > 0.5:
-		sprite.flip_h = player.velocity.x < 0
+		set_flip(player.velocity.x < 0)
 	elif curr_anim == "wall_slide":
-		sprite.flip_h = player.get_wall_status() > 0
+		set_flip(player.get_wall_status() > 0)
 	else:
 		if player.direction < 0:
-			sprite.flip_h = true
+			set_flip(true)
 		elif player.direction > 0:
-			sprite.flip_h = false
+			set_flip(false)
 	
 #	Other anims
 	if not player.is_on_floor():
@@ -72,19 +66,16 @@ func _process(delta):
 			0.5 * abs(player.velocity.x)/player.MAX_SPEED, 1.0), 1.5)
 
 
-func turn(direction):
-	if cos(direction) > 0:
-		sprite.flip_h = false
-		rig.rotation = direction/5
-	else:
-		sprite.flip_h = true
-		rig.rotation = (direction - sign(direction) * PI)/5
-
-
 func _on_PlayerRig_anim_played(anim_name):
+#	print(anim_name)
 	if anim_name == "charge":
 		get_parent().play_immediate(anim_name)
 	if curr_anim == "fall" and ["idle", "run"].has(anim_name):
 		sprite.scale.x = 1.3
 		sprite.scale.y = 0.75
 	curr_anim = anim_name
+
+
+func set_flip(value):
+	sprite.flip_h = value
+	clear.flip_h = value

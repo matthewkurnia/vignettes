@@ -11,6 +11,7 @@ onready var player_controller = get_node(controller_path)
 
 func area_entered(area):
 	if area.is_in_group("piston"):
+		Cam.shake(0.1, 6)
 		player.velocity = area.get_player_bounce(player.velocity)
 		emit_signal("state_override", "jump")
 	if area.is_in_group("booster"):
@@ -20,3 +21,6 @@ func area_entered(area):
 				area.connect("launch", player_controller, "launch")
 			area.activate()
 			emit_signal("state_override", "banished")
+	if area.is_in_group("spikes"):
+		player_controller.banish_position = player.global_position
+		Player.start_death_sequence()

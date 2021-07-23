@@ -1,10 +1,8 @@
-class_name ColorNode
-extends Node2D
+extends RemoteTransform2D
 
 
-enum Layer {OVERLAY, PARTICLES}
-
-export(Layer) var layer = Layer.OVERLAY
+export(Game.Layer) var layer = Game.Layer.OVERLAY
+export var node_path: NodePath
 
 
 func _ready():
@@ -17,10 +15,6 @@ func _ready():
 func reparrent(rt):
 	get_parent().add_child(rt)
 	get_parent().remove_child(self)
-	match layer:
-		Layer.OVERLAY:
-			Game.add_to_viewport(self, Game.Layer.OVERLAY)
-		Layer.PARTICLES:
-			Game.add_to_viewport(self, Game.Layer.PARTICLES)
+	Game.add_to_viewport(self, layer)
 	rt.remote_path = self.get_path()
-	print(self.get_path())
+#	print(self.get_path())

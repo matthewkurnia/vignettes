@@ -1,4 +1,4 @@
-[gd_resource type="AnimationNodeStateMachine" load_steps=45 format=2]
+[gd_resource type="AnimationNodeStateMachine" load_steps=46 format=2]
 
 [sub_resource type="AnimationNodeAnimation" id=1]
 animation = "banished"
@@ -123,18 +123,20 @@ xfade_time = 0.1
 [sub_resource type="AnimationNodeStateMachineTransition" id=41]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=42]
-switch_mode = 2
-auto_advance = true
+xfade_time = 0.2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=43]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id=44]
 
+[sub_resource type="AnimationNodeStateMachineTransition" id=45]
+xfade_time = 0.05
+
 [resource]
 states/banished/node = SubResource( 1 )
-states/banished/position = Vector2( 1059.74, 368.157 )
+states/banished/position = Vector2( 1046.74, 378.157 )
 states/climb/node = SubResource( 2 )
-states/climb/position = Vector2( 192, 362.157 )
+states/climb/position = Vector2( 264, 409.157 )
 states/fall/node = SubResource( 3 )
 states/fall/position = Vector2( 364, 268 )
 states/idle/node = SubResource( 4 )
@@ -144,8 +146,8 @@ states/jump/position = Vector2( 883, 268 )
 states/run/node = SubResource( 8 )
 states/run/position = Vector2( 721, 130 )
 states/slide/node = SubResource( 9 )
-states/slide/position = Vector2( 527, 409.157 )
+states/slide/position = Vector2( 500, 409.157 )
 states/wall_slide/node = SubResource( 10 )
 states/wall_slide/position = Vector2( 721, 409.157 )
-transitions = [ "fall", "idle", SubResource( 11 ), "idle", "fall", SubResource( 12 ), "jump", "idle", SubResource( 13 ), "idle", "jump", SubResource( 14 ), "jump", "fall", SubResource( 15 ), "fall", "jump", SubResource( 16 ), "fall", "run", SubResource( 17 ), "run", "fall", SubResource( 18 ), "idle", "run", SubResource( 19 ), "run", "idle", SubResource( 20 ), "jump", "run", SubResource( 21 ), "run", "jump", SubResource( 22 ), "idle", "slide", SubResource( 23 ), "slide", "idle", SubResource( 24 ), "run", "slide", SubResource( 25 ), "slide", "run", SubResource( 26 ), "fall", "slide", SubResource( 27 ), "slide", "fall", SubResource( 28 ), "slide", "jump", SubResource( 29 ), "fall", "wall_slide", SubResource( 30 ), "wall_slide", "fall", SubResource( 31 ), "wall_slide", "jump", SubResource( 32 ), "jump", "wall_slide", SubResource( 33 ), "wall_slide", "run", SubResource( 34 ), "wall_slide", "idle", SubResource( 35 ), "jump", "slide", SubResource( 36 ), "run", "wall_slide", SubResource( 37 ), "idle", "wall_slide", SubResource( 38 ), "wall_slide", "climb", SubResource( 39 ), "jump", "climb", SubResource( 40 ), "fall", "climb", SubResource( 41 ), "climb", "fall", SubResource( 42 ), "banished", "fall", SubResource( 43 ), "banished", "jump", SubResource( 44 ) ]
-graph_offset = Vector2( 70.7399, 3.92125 )
+transitions = [ "fall", "idle", SubResource( 11 ), "idle", "fall", SubResource( 12 ), "jump", "idle", SubResource( 13 ), "idle", "jump", SubResource( 14 ), "jump", "fall", SubResource( 15 ), "fall", "jump", SubResource( 16 ), "fall", "run", SubResource( 17 ), "run", "fall", SubResource( 18 ), "idle", "run", SubResource( 19 ), "run", "idle", SubResource( 20 ), "jump", "run", SubResource( 21 ), "run", "jump", SubResource( 22 ), "idle", "slide", SubResource( 23 ), "slide", "idle", SubResource( 24 ), "run", "slide", SubResource( 25 ), "slide", "run", SubResource( 26 ), "fall", "slide", SubResource( 27 ), "slide", "fall", SubResource( 28 ), "slide", "jump", SubResource( 29 ), "fall", "wall_slide", SubResource( 30 ), "wall_slide", "fall", SubResource( 31 ), "wall_slide", "jump", SubResource( 32 ), "jump", "wall_slide", SubResource( 33 ), "wall_slide", "run", SubResource( 34 ), "wall_slide", "idle", SubResource( 35 ), "jump", "slide", SubResource( 36 ), "run", "wall_slide", SubResource( 37 ), "idle", "wall_slide", SubResource( 38 ), "wall_slide", "climb", SubResource( 39 ), "jump", "climb", SubResource( 40 ), "fall", "climb", SubResource( 41 ), "climb", "fall", SubResource( 42 ), "banished", "fall", SubResource( 43 ), "banished", "jump", SubResource( 44 ), "wall_slide", "slide", SubResource( 45 ) ]
+graph_offset = Vector2( 70.7399, 229.537 )

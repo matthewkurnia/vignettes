@@ -5,6 +5,7 @@
 [node name="FocusBox" type="Area2D" groups=[
 "focus_box",
 ]]
+z_index = 1000
 collision_layer = 32
 collision_mask = 0
 script = ExtResource( 1 )

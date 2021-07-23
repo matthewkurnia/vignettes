@@ -2,7 +2,7 @@ extends KinematicBody2D
 
 
 const UP_DIRECTION = Vector2(0, -1)
-const SNAP_VECTOR = Vector2(0, 70.0)
+const SNAP_VECTOR = Vector2(0, 120.0)
 const GRAV = 25.0
 const MAX_SPEED = 360.0
 const ACCEL = 30
@@ -21,20 +21,31 @@ var sliding = false
 onready var state_machine = $StateMachine
 onready var rig = $PlayerRig
 onready var controller = $PlayerController
-onready var floor_ray_r = $FloorRayRight
-onready var floor_ray_l = $FloorRayLeft
-onready var wall_ray_r1 = $WallRayRight1
-onready var wall_ray_r2 = $WallRayRight2
-onready var wall_ray_l1 = $WallRayLeft1
-onready var wall_ray_l2 = $WallRayLeft2
+onready var floor_ray_r = $Raycasts/FloorRayRight
+onready var floor_ray_l = $Raycasts/FloorRayLeft
+onready var wall_ray_r1 = $Raycasts/WallRayRight1
+onready var wall_ray_r2 = $Raycasts/WallRayRight2
+onready var wall_ray_l1 = $Raycasts/WallRayLeft1
+onready var wall_ray_l2 = $Raycasts/WallRayLeft2
+onready var climb_ray_r = $Raycasts/ClimbRayRight
+onready var climb_ray_l = $Raycasts/ClimbRayLeft
+onready var slope_r = $Raycasts/SlopeDetectorRight
+onready var slope_l = $Raycasts/SlopeDetectorLeft
+onready var slope_cr = $Raycasts/SlopeDetectorCenterRight
+onready var slope_cl = $Raycasts/SlopeDetectorCenterLeft
 
 
 func _init():
 	Player.set_player_node(self)
 
 
+func _ready():
+	Player.connect("state_override", state_machine, "change_state")
+
+
 func _physics_process(delta):
 	state_machine.update(delta)
+	var prev_velo = velocity
 	handle_movement()
 
 
@@ -69,7 +80,7 @@ func set_snap(is_snapped):
 
 func get_wall_status():
 #	returns 0 if not on wall.
-#	Returns 1 or -1 depending on which side of wall is colliding
+#	returns 1 or -1 depending on which side of wall is colliding
 	var wall_l = wall_ray_l1.is_colliding() or wall_ray_l2.is_colliding()
 	var wall_r = wall_ray_r1.is_colliding() or wall_ray_r2.is_colliding()
 	if not wall_l and not wall_r:
@@ -81,5 +92,38 @@ func get_wall_status():
 
 func get_edge_status():
 #	for climbing special case
-	return ((wall_ray_l1.is_colliding() and not wall_ray_l2.is_colliding() and direction < 0) or
-			(wall_ray_r1.is_colliding() and not wall_ray_r2.is_colliding() and direction > 0))
+	return ((wall_ray_l1.is_colliding() and not climb_ray_l.is_colliding() and direction < 0) or
+			(wall_ray_r1.is_colliding() and not climb_ray_r.is_colliding() and direction > 0))
+
+
+func get_slope_status():
+#	returns 0 if not approaching slope.
+#	returns direction of slope otherwise.
+	if not slope_l.is_colliding() and not slope_r.is_colliding():
+		return 0
+	var space_state = get_world_2d().direct_space_state
+	var l = ((slope_l.is_colliding() and
+			slope_l.get_collision_normal().dot(Vector2.UP) > 0.95) and
+			(not slope_r.is_colliding() or
+			slope_r.get_collision_normal().dot(Vector2.UP) < 0.95))
+	var r = ((slope_r.is_colliding() and
+			slope_r.get_collision_normal().dot(Vector2.UP) > 0.95) and
+			(not slope_l.is_colliding() or
+			slope_l.get_collision_normal().dot(Vector2.UP) < 0.95))
+	if l:
+		var collision_point = slope_l.get_collision_point()
+		var result = space_state.intersect_ray(
+			collision_point + Vector2(50, 1),
+			collision_point + Vector2(0, 1), [self], 1
+		)
+		if result:
+			return result.position.x - collision_point.x + 7
+	if r:
+		var collision_point = slope_r.get_collision_point()
+		var result = space_state.intersect_ray(
+			collision_point + Vector2(-50, 1),
+			collision_point + Vector2(0, 1), [self], 1
+		)
+		if result:
+			return result.position.x - collision_point.x - 7
+	return 0

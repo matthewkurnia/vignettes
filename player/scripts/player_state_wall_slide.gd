@@ -36,6 +36,7 @@ func update(delta):
 								player.velocity.y * 0.8 - player.JUMP_STRENGTH)
 		player.velocity.x = -player.get_wall_status() * player.JUMP_STRENGTH * 1.2
 		emit_signal("finished", "jump")
+		return
 	
 	var grav_mult = GRAV_MULT
 	var terminal_velo = 500
@@ -53,6 +54,7 @@ func update(delta):
 			terminal_velo = TERMINAL_VELO
 		else:
 			grav_mult = 0.3
-#	player.velocity.x = player.MAX_SPEED * player.get_wall_status()
+	if sign(player.direction) * player.get_wall_status() != -1:
+		player.velocity.x += player.ACCEL * player.get_wall_status()
 	player.velocity.y = min(player.velocity.y + player.GRAV * grav_mult, terminal_velo)
 	handle_movement(player.FRICTION_AIR_FAST, player.FRICTION_AIR, player.ACCEL_AIR)

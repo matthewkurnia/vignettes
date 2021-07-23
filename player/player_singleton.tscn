@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://player/scripts/player_singleton.gd" type="Script" id=1]
+[ext_resource path="res://player/player_death.tscn" type="PackedScene" id=2]
+
+[node name="PlayerSingleton" type="Node"]
+script = ExtResource( 1 )
+PlayerDeath = ExtResource( 2 )
+
+[node name="RespawnDelay" type="Timer" parent="."]
+wait_time = 0.3
+one_shot = true
+
+[node name="FadeDelay" type="Timer" parent="."]
+wait_time = 0.8
+one_shot = true

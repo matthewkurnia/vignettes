@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://addons/rmsmartshape/materials/shape_material.gd" type="Script" id=1]
 [ext_resource path="res://addons/rmsmartshape/shapes/shape_open.gd" type="Script" id=2]
@@ -6,6 +6,12 @@
 [ext_resource path="res://addons/rmsmartshape/shapes/point_array.gd" type="Script" id=4]
 [ext_resource path="res://addons/rmsmartshape/shapes/point.gd" type="Script" id=5]
 [ext_resource path="res://addons/rmsmartshape/shapes/shape_meta.gd" type="Script" id=6]
+[ext_resource path="res://addons/rmsmartshape/materials/edge_material.gd" type="Script" id=7]
+[ext_resource path="res://addons/rmsmartshape/normal_range.gd" type="Script" id=8]
+[ext_resource path="res://addons/rmsmartshape/materials/edge_material_metadata.gd" type="Script" id=9]
+[ext_resource path="res://gizmo/spikes/spikes2.png" type="Texture" id=10]
+[ext_resource path="res://gizmo/spikes/spikes1.png" type="Texture" id=11]
+[ext_resource path="res://game/color_node.gd" type="Script" id=12]
 
 [sub_resource type="Resource" id=1]
 script = ExtResource( 3 )
@@ -15,36 +21,50 @@ width = 1.0
 
 [sub_resource type="Resource" id=2]
 script = ExtResource( 5 )
-position = Vector2( -58.75, -9 )
+position = Vector2( -70, -17.25 )
 point_in = Vector2( 0, 0 )
 point_out = Vector2( 0, 0 )
 properties = SubResource( 1 )
 
 [sub_resource type="Resource" id=3]
 script = ExtResource( 3 )
-texture_idx = 0
+texture_idx = -6
 flip = false
 width = 1.0
 
 [sub_resource type="Resource" id=4]
 script = ExtResource( 5 )
-position = Vector2( 94, -42.25 )
+position = Vector2( 186, -113.25 )
 point_in = Vector2( 0, 0 )
 point_out = Vector2( 0, 0 )
 properties = SubResource( 3 )
 
 [sub_resource type="Resource" id=5]
+script = ExtResource( 3 )
+texture_idx = 0
+flip = false
+width = 1.0
+
+[sub_resource type="Resource" id=6]
+script = ExtResource( 5 )
+position = Vector2( 378, -177.25 )
+point_in = Vector2( 0, 0 )
+point_out = Vector2( 0, 0 )
+properties = SubResource( 5 )
+
+[sub_resource type="Resource" id=7]
 script = ExtResource( 4 )
 _points = {
 3: SubResource( 2 ),
-4: SubResource( 4 )
+4: SubResource( 4 ),
+5: SubResource( 6 )
 }
-_point_order = [ 3, 4 ]
+_point_order = [ 3, 4, 5 ]
 _constraints = {
 }
 _next_key = 3
 
-[sub_resource type="Resource" id=6]
+[sub_resource type="Resource" id=8]
 script = ExtResource( 1 )
 _edge_meta_materials = [  ]
 fill_textures = [  ]
@@ -53,9 +73,84 @@ fill_texture_z_index = -10
 fill_mesh_offset = 0.0
 render_offset = 0.0
 
-[sub_resource type="Resource" id=7]
+[sub_resource type="Resource" id=9]
+script = ExtResource( 7 )
+textures = [ ExtResource( 11 ) ]
+texture_normals = [  ]
+textures_corner_outer = [  ]
+textures_corner_inner = [  ]
+texture_normals_corner_outer = [  ]
+texture_normals_corner_inner = [  ]
+textures_taper_left = [  ]
+textures_taper_right = [  ]
+texture_normals_taper_left = [  ]
+texture_normals_taper_right = [  ]
+randomize_texture = false
+use_corner_texture = true
+use_taper_texture = true
+fit_mode = 0
+
+[sub_resource type="Resource" id=10]
+script = ExtResource( 8 )
+begin = 0.0
+distance = 0.0
+edgeRendering = Vector2( 0, 0 )
+
+[sub_resource type="Resource" id=11]
+script = ExtResource( 9 )
+edge_material = SubResource( 9 )
+normal_range = SubResource( 10 )
+weld = true
+render = true
+z_index = 0
+z_as_relative = true
+offset = 0.0
+
+[sub_resource type="Resource" id=12]
 script = ExtResource( 1 )
-_edge_meta_materials = [  ]
+_edge_meta_materials = [ SubResource( 11 ) ]
+fill_textures = [  ]
+fill_texture_normals = [  ]
+fill_texture_z_index = -10
+fill_mesh_offset = 0.0
+render_offset = 0.0
+
+[sub_resource type="Resource" id=13]
+script = ExtResource( 7 )
+textures = [ ExtResource( 10 ) ]
+texture_normals = [  ]
+textures_corner_outer = [  ]
+textures_corner_inner = [  ]
+texture_normals_corner_outer = [  ]
+texture_normals_corner_inner = [  ]
+textures_taper_left = [  ]
+textures_taper_right = [  ]
+texture_normals_taper_left = [  ]
+texture_normals_taper_right = [  ]
+randomize_texture = false
+use_corner_texture = true
+use_taper_texture = true
+fit_mode = 1
+
+[sub_resource type="Resource" id=14]
+script = ExtResource( 8 )
+begin = 0.0
+distance = 0.0
+edgeRendering = Vector2( 0, 0 )
+
+[sub_resource type="Resource" id=15]
+script = ExtResource( 9 )
+edge_material = SubResource( 13 )
+normal_range = SubResource( 14 )
+weld = true
+render = true
+z_index = 0
+z_as_relative = true
+offset = 0.0
+
+[sub_resource type="Resource" id=16]
+script = ExtResource( 1 )
+_edge_meta_materials = [ SubResource( 15 ) ]
 fill_textures = [  ]
 fill_texture_normals = [  ]
 fill_texture_z_index = -10
@@ -65,10 +160,10 @@ render_offset = 0.0
 [node name="Spikes" type="Node2D"]
 position = Vector2( 6, 17.25 )
 script = ExtResource( 6 )
-_points = SubResource( 5 )
+_points = SubResource( 7 )
 material_overrides = {
 }
-shape_material = SubResource( 6 )
+shape_material = SubResource( 8 )
 tessellation_stages = 5
 tessellation_tolerence = 4.0
 flip_edges = false
@@ -77,22 +172,46 @@ collision_size = 32.0
 collision_offset = 0.0
 collision_polygon_node_path = NodePath("")
 
-[node name="SS2D_Shape_Open" type="Node2D" parent="."]
+[node name="Spikes2" type="Node2D" parent="."]
 script = ExtResource( 2 )
-_points = SubResource( 5 )
+_points = SubResource( 7 )
 material_overrides = {
 }
-shape_material = SubResource( 7 )
+shape_material = SubResource( 12 )
 tessellation_stages = 5
 tessellation_tolerence = 4.0
 flip_edges = false
 render_edges = true
 collision_size = 32.0
+collision_offset = 0.0
+collision_polygon_node_path = NodePath("")
+
+[node name="Spikes1" type="Node2D" parent="."]
+script = ExtResource( 2 )
+_points = SubResource( 7 )
+material_overrides = {
+}
+shape_material = SubResource( 16 )
+tessellation_stages = 5
+tessellation_tolerence = 4.0
+flip_edges = false
+render_edges = true
+collision_size = 64.0
 collision_offset = 1.0
-collision_polygon_node_path = NodePath("../StaticBody2D/CollisionPolygon2D")
+collision_polygon_node_path = NodePath("../Area2D/CollisionPolygon2D")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
+[node name="Area2D" type="Area2D" parent="." groups=[
+"spikes",
+]]
+collision_layer = 8
+collision_mask = 2
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
 modulate = Color( 1, 1, 1, 0.3 )
-polygon = PoolVector2Array( -62.1531, -24.6339, 90.5969, -57.8839, 97.4031, -26.6161, -55.3469, 6.6339 )
+polygon = PoolVector2Array( -81.2359, -47.2125, 175.321, -143.415, 367.881, -207.608, 388.119, -146.892, 196.679, -83.0846, -58.764, 12.7125 )
+
+[node name="ColorNode" type="Node2D" parent="."]
+script = ExtResource( 12 )
+layer = 2
+remote_path = NodePath("../Spikes2")
+modulate_color = false

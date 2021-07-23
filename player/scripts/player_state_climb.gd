@@ -17,6 +17,7 @@ func update(delta):
 		emit_signal("finished", "fall")
 	if Input.is_action_pressed("slide"):
 		player.velocity.y += player.GRAV * GRAV_MULT * 3
+		emit_signal("finished", "fall")
 	
 	player.velocity.y += player.GRAV
 	player.velocity.x = direction * player.MAX_SPEED
