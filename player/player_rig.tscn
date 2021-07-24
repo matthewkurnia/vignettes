@@ -54,26 +54,26 @@ position = Vector2( 200, 200 )
 [node name="AnimationTree" parent="Viewport/PlayerPuppet" index="2"]
 parameters/playback = SubResource( 1 )
 
-[node name="arm_upper_front" parent="Viewport/PlayerPuppet/Root" index="1"]
-position = Vector2( -8.67749, -117.862 )
+[node name="arm_upper_back" parent="Viewport/PlayerPuppet/Root" index="1"]
+position = Vector2( 9.67953, -103.158 )
 
-[node name="arm_upper_back" parent="Viewport/PlayerPuppet/Root" index="2"]
-position = Vector2( 8.56271, -113.737 )
+[node name="arm_upper_front" parent="Viewport/PlayerPuppet/Root" index="2"]
+position = Vector2( -7.60107, -107.11 )
 
 [node name="arm_lower_back" parent="Viewport/PlayerPuppet/Root" index="3"]
-position = Vector2( 33.2209, -126.453 )
+position = Vector2( 27.182, -81.6317 )
 
 [node name="hat_back" parent="Viewport/PlayerPuppet/Root" index="4"]
-position = Vector2( 8.05829, -153.507 )
+position = Vector2( 4.01086, -142.266 )
 
 [node name="leg_upper_back" parent="Viewport/PlayerPuppet/Root" index="5"]
-position = Vector2( 9.63556, -81.4044 )
+position = Vector2( 7.73199, -67.9993 )
 
 [node name="leg_lower_back" parent="Viewport/PlayerPuppet/Root" index="6"]
-position = Vector2( 20.5714, -61.8803 )
+position = Vector2( 25.9634, -55.0226 )
 
 [node name="foot_back" parent="Viewport/PlayerPuppet/Root" index="7"]
-position = Vector2( 28.9652, -36.9071 )
+position = Vector2( 25.1668, -28.6885 )
 
 [node name="Sprite" parent="." index="1"]
 material = SubResource( 3 )

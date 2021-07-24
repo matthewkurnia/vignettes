@@ -55,6 +55,7 @@ func update(delta):
 		else:
 			grav_mult = 0.3
 	if sign(player.direction) * player.get_wall_status() != -1:
-		player.velocity.x += player.ACCEL * player.get_wall_status()
+		player.velocity.x = Util.lirpf(player.velocity.x,
+				player.MAX_SPEED * player.get_wall_status(), player.ACCEL)
 	player.velocity.y = min(player.velocity.y + player.GRAV * grav_mult, terminal_velo)
 	handle_movement(player.FRICTION_AIR_FAST, player.FRICTION_AIR, player.ACCEL_AIR)

@@ -4,12 +4,12 @@ extends KinematicBody2D
 const UP_DIRECTION = Vector2(0, -1)
 const SNAP_VECTOR = Vector2(0, 120.0)
 const GRAV = 25.0
-const MAX_SPEED = 360.0
-const ACCEL = 30
-const ACCEL_AIR = 20
-const FRICTION = 20
+const MAX_SPEED = 400.0
+const ACCEL = 13
+const ACCEL_AIR = 9
+const FRICTION = 15
 const FRICTION_FAST = 15
-const FRICTION_AIR = 15
+const FRICTION_AIR = 10
 const FRICTION_AIR_FAST = 12
 const JUMP_STRENGTH = 700.0
 
