@@ -3,7 +3,7 @@
 [ext_resource path="res://game/game.gd" type="Script" id=1]
 [ext_resource path="res://interface/fade.tscn" type="PackedScene" id=2]
 [ext_resource path="res://game/materials/grain_material.tres" type="Material" id=3]
-[ext_resource path="res://player_test.tscn" type="PackedScene" id=4]
+[ext_resource path="res://demo/level1.tscn" type="PackedScene" id=4]
 [ext_resource path="res://game/materials/clear_material.tres" type="Material" id=5]
 [ext_resource path="res://game/background.tscn" type="PackedScene" id=9]
 [ext_resource path="res://game/materials/overlay_material.tres" type="Material" id=11]
@@ -99,10 +99,10 @@ render_target_update_mode = 3
 
 [node name="Background" parent="WorldRender/Main/MainViewport" instance=ExtResource( 9 )]
 
-[node name="Root" parent="WorldRender/Main/MainViewport" instance=ExtResource( 4 )]
-
 [node name="UI" type="CanvasLayer" parent="WorldRender/Main/MainViewport"]
 layer = 10
+
+[node name="Root" parent="WorldRender/Main/MainViewport" instance=ExtResource( 4 )]
 
 [node name="ClearAll" type="ViewportContainer" parent="WorldRender"]
 material = ExtResource( 5 )

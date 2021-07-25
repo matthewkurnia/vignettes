@@ -812,7 +812,7 @@ tracks/31/keys = {
 
 [sub_resource type="Animation" id=3]
 resource_name = "climb"
-length = 10.0
+length = 0.4
 tracks/0/type = "value"
 tracks/0/path = NodePath("Root/body_lower/body_upper/arm_upper_back/arm_lower_back:position")
 tracks/0/interp = 1
@@ -1608,7 +1608,7 @@ tracks/32/keys = {
 "values": [ Vector2( 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=15]
+[sub_resource type="Animation" id=5]
 step = 0.05
 tracks/0/type = "value"
 tracks/0/path = NodePath("Root/body_lower/body_upper/arm_upper_back/arm_lower_back:position")
@@ -2007,7 +2007,7 @@ tracks/32/keys = {
 "values": [ Vector2( 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=14]
+[sub_resource type="Animation" id=6]
 resource_name = "glide"
 step = 0.05
 tracks/0/type = "value"
@@ -2191,7 +2191,7 @@ tracks/14/keys = {
 "values": [ -0.601 ]
 }
 
-[sub_resource type="Animation" id=16]
+[sub_resource type="Animation" id=7]
 resource_name = "glide_trans"
 length = 0.25
 step = 0.05
@@ -2592,7 +2592,7 @@ tracks/32/keys = {
 "values": [ Vector2( 0.5, 2 ), Vector2( 2, 1 ), Vector2( 1.6, 1.3 ) ]
 }
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=8]
 length = 1.8
 loop = true
 tracks/0/type = "value"
@@ -2992,7 +2992,7 @@ tracks/32/keys = {
 "values": [ Vector2( 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=9]
 length = 0.8
 step = 0.05
 tracks/0/type = "value"
@@ -3392,7 +3392,7 @@ tracks/32/keys = {
 "values": [ Vector2( 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=10]
 length = 0.6
 loop = true
 step = 0.05
@@ -3793,7 +3793,7 @@ tracks/32/keys = {
 "values": [ Vector2( 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id=11]
 length = 0.2
 loop = true
 tracks/0/type = "value"
@@ -4193,12 +4193,12 @@ tracks/32/keys = {
 "values": [ Vector2( 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=10]
+[sub_resource type="Animation" id=12]
 length = 0.02
 loop = true
 step = 0.01
 
-[sub_resource type="Animation" id=11]
+[sub_resource type="Animation" id=13]
 length = 0.5
 step = 0.02
 tracks/0/type = "value"
@@ -4586,7 +4586,7 @@ tracks/31/keys = {
 "values": [ 0.0 ]
 }
 
-[sub_resource type="Animation" id=12]
+[sub_resource type="Animation" id=14]
 length = 0.4
 loop = true
 tracks/0/type = "value"
@@ -4986,7 +4986,7 @@ tracks/32/keys = {
 "values": [ Vector2( 1, 1 ) ]
 }
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=13]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=15]
 
 [node name="PlayerPuppet" instance=ExtResource( 1 )]
 dimension = Vector2( 400, 400 )
@@ -5005,132 +5005,132 @@ anims/banished = SubResource( 1 )
 anims/charge = SubResource( 2 )
 anims/climb = SubResource( 3 )
 anims/default = SubResource( 4 )
-anims/fall = SubResource( 15 )
-"anims/fall (copy)" = SubResource( 14 )
+anims/fall = SubResource( 5 )
+"anims/fall (copy)" = SubResource( 6 )
 anims/glide = ExtResource( 22 )
-anims/glide_trans = SubResource( 16 )
-anims/idle = SubResource( 6 )
-anims/jump = SubResource( 7 )
-anims/run = SubResource( 8 )
-anims/slide = SubResource( 9 )
-anims/spear_shake = SubResource( 10 )
-anims/thrust = SubResource( 11 )
-anims/wall_slide = SubResource( 12 )
+anims/glide_trans = SubResource( 7 )
+anims/idle = SubResource( 8 )
+anims/jump = SubResource( 9 )
+anims/run = SubResource( 10 )
+anims/slide = SubResource( 11 )
+anims/spear_shake = SubResource( 12 )
+anims/thrust = SubResource( 13 )
+anims/wall_slide = SubResource( 14 )
 
 [node name="AnimationTree" parent="." index="2"]
 tree_root = ExtResource( 20 )
 active = true
-parameters/playback = SubResource( 13 )
+parameters/playback = SubResource( 15 )
 parameters/run/TimeScale/scale = 1.0
 
 [node name="Root" parent="." index="3"]
 position = Vector2( 0, 48 )
-scale = Vector2( 0.527344, 0.481771 )
+scale = Vector2( 0.502418, 0.498388 )
 
 [node name="backpack" type="Sprite" parent="Root" index="0"]
 visible = false
 texture = ExtResource( 16 )
 
 [node name="arm_upper_front" type="Sprite" parent="Root" index="1"]
-position = Vector2( -7.78429, -109.811 )
-rotation = 0.0206689
+position = Vector2( -9.16746, -111.517 )
+rotation = 0.0527994
 scale = Vector2( 0.7, 0.7 )
 texture = ExtResource( 10 )
 offset = Vector2( 15.205, 34.0237 )
 
 [node name="arm_upper_back" type="Sprite" parent="Root" index="2"]
-position = Vector2( 9.52514, -105.987 )
-rotation = 0.0875012
+position = Vector2( 8.33011, -108.675 )
+rotation = -0.0573556
 scale = Vector2( 0.7, 0.7 )
 texture = ExtResource( 9 )
 offset = Vector2( -9.99341, 31.5039 )
 
 [node name="arm_lower_back" type="Sprite" parent="Root" index="3"]
-position = Vector2( 16.9073, -79.243 )
-rotation = 0.367731
+position = Vector2( 19.4954, -83.2767 )
+rotation = 0.222875
 scale = Vector2( 0.7, 0.7 )
 texture = ExtResource( 14 )
 offset = Vector2( -23.8377, -5.63348 )
 
 [node name="hat_back" type="Sprite" parent="Root" index="4"]
 material = ExtResource( 18 )
-position = Vector2( 4.29121, -145.001 )
-rotation = 0.00214134
+position = Vector2( 0.0219652, -147.341 )
+rotation = -0.0918973
 scale = Vector2( 0.7, 0.7 )
 texture = ExtResource( 13 )
 offset = Vector2( 0.109314, 85.8731 )
 
 [node name="leg_upper_back" type="Sprite" parent="Root" index="5"]
-position = Vector2( 7.73199, -70.745 )
-rotation = -0.664738
+position = Vector2( 7.73199, -72.8395 )
+rotation = -0.576236
 scale = Vector2( 0.7, 0.7 )
 texture = ExtResource( 8 )
 offset = Vector2( -11.0457, -20.5 )
 
 [node name="leg_lower_back" type="Sprite" parent="Root" index="6"]
-position = Vector2( 24.3387, -55.7451 )
-rotation = 0.109978
+position = Vector2( 22.9479, -56.4305 )
+rotation = 0.0559518
 scale = Vector2( 0.7, 0.7 )
 texture = ExtResource( 15 )
 offset = Vector2( -16.5, -52 )
 
 [node name="foot_back" type="Sprite" parent="Root" index="7"]
 modulate = Color( 0.764706, 0.623529, 0.686275, 1 )
-position = Vector2( 25.4076, -29.4207 )
-rotation = -0.0173873
+position = Vector2( 25.4368, -30.2022 )
+rotation = -0.00697662
 scale = Vector2( 0.7, 0.7 )
 texture = ExtResource( 12 )
 offset = Vector2( -22.1454, -89.2115 )
 
 [node name="body_lower" type="Sprite" parent="Root" index="8"]
-position = Vector2( 0, -79.495 )
+position = Vector2( 0, -81.5895 )
 scale = Vector2( 0.7, 0.7 )
 texture = ExtResource( 3 )
 offset = Vector2( 0, -8 )
 
 [node name="leg_upper_front" type="Sprite" parent="Root/body_lower" index="0"]
 position = Vector2( -9.089, 15.8475 )
-rotation = -0.0441196
+rotation = 0.0381318
 texture = ExtResource( 11 )
 offset = Vector2( 9.089, -23.8475 )
 
 [node name="leg_lower_front" type="Sprite" parent="Root/body_lower/leg_upper_front" index="0"]
 position = Vector2( -12.0665, 28.6228 )
-rotation = 0.369795
+rotation = 0.182707
 texture = ExtResource( 4 )
 offset = Vector2( 21.1555, -52.4703 )
 
 [node name="foot_front" type="Sprite" parent="Root/body_lower/leg_upper_front/leg_lower_front" index="0"]
 position = Vector2( -21.0396, 34.2107 )
-rotation = -0.334883
+rotation = -0.243477
 texture = ExtResource( 12 )
 offset = Vector2( -23.4042, -88.0968 )
 
 [node name="leg_upper_back" type="RemoteTransform2D" parent="Root/body_lower" index="1"]
 position = Vector2( 11.0457, 12.5 )
-rotation = -0.664738
+rotation = -0.576236
 remote_path = NodePath("../../leg_upper_back")
 
 [node name="leg_lower_back" type="RemoteTransform2D" parent="Root/body_lower/leg_upper_back" index="0"]
 position = Vector2( 5.4543, 31.5 )
-rotation = 0.774716
+rotation = 0.632188
 remote_path = NodePath("../../../leg_lower_back")
 
 [node name="foot_back" type="RemoteTransform2D" parent="Root/body_lower/leg_upper_back/leg_lower_back" index="0"]
 position = Vector2( 5.64537, 37.2115 )
-rotation = -0.127366
+rotation = -0.0629285
 remote_path = NodePath("../../../../foot_back")
 
 [node name="body_upper" type="Sprite" parent="Root/body_lower" index="2"]
 show_behind_parent = true
 position = Vector2( -2.26791, -8.0246 )
-rotation = 0.117774
+rotation = 0.061343
 texture = ExtResource( 5 )
 offset = Vector2( 2.26791, 0.0245972 )
 
 [node name="head" type="Sprite" parent="Root/body_lower/body_upper" index="0"]
 position = Vector2( -0.647552, -52.4553 )
-rotation = -0.115633
+rotation = -0.15324
 texture = ExtResource( 6 )
 offset = Vector2( 2.91547, 52.4799 )
 
@@ -5140,7 +5140,7 @@ position = Vector2( 3.92862, -31.9902 )
 texture = ExtResource( 7 )
 offset = Vector2( -1.01315, 84.47 )
 script = ExtResource( 2 )
-bend = -0.304625
+bend = -0.0114686
 
 [node name="hat_back" type="RemoteTransform2D" parent="Root/body_lower/body_upper/head/hat_front" index="0"]
 position = Vector2( -1.12247, -1.40308 )
@@ -5148,7 +5148,7 @@ remote_path = NodePath("../../../../../hat_back")
 
 [node name="arm_upper_front" type="RemoteTransform2D" parent="Root/body_lower/body_upper" index="1"]
 position = Vector2( -12.9371, -33.9991 )
-rotation = -0.0971056
+rotation = -0.0085436
 remote_path = NodePath("../../../arm_upper_front")
 
 [node name="arm_lower_front" type="Sprite" parent="Root/body_lower/body_upper/arm_upper_front" index="0"]
@@ -5164,7 +5164,7 @@ texture = ExtResource( 19 )
 
 [node name="arm_upper_back" type="RemoteTransform2D" parent="Root/body_lower/body_upper" index="2"]
 position = Vector2( 12.2613, -31.4793 )
-rotation = -0.0302733
+rotation = -0.118699
 remote_path = NodePath("../../../arm_upper_back")
 
 [node name="arm_lower_back" type="RemoteTransform2D" parent="Root/body_lower/body_upper/arm_upper_back" index="0"]

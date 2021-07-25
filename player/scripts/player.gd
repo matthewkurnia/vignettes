@@ -2,7 +2,7 @@ extends KinematicBody2D
 
 
 const UP_DIRECTION = Vector2(0, -1)
-const SNAP_VECTOR = Vector2(0, 120.0)
+const SNAP_VECTOR = Vector2(0, 70.0)
 const GRAV = 25.0
 const MAX_SPEED = 400.0
 const ACCEL = 13

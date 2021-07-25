@@ -48,6 +48,7 @@ script = ExtResource( 5 )
 
 [node name="Slide" type="Node" parent="StateMachine"]
 script = ExtResource( 9 )
+ray_path = NodePath("../../Raycasts/Slope")
 
 [node name="WallSlide" type="Node" parent="StateMachine"]
 script = ExtResource( 10 )
@@ -104,12 +105,12 @@ z_index = -10
 [node name="FloorRayRight" type="RayCast2D" parent="Raycasts"]
 position = Vector2( 25, 30 )
 enabled = true
-cast_to = Vector2( 5, 0 )
+cast_to = Vector2( 4.5, 0 )
 
 [node name="FloorRayLeft" type="RayCast2D" parent="Raycasts"]
 position = Vector2( -25, 30 )
 enabled = true
-cast_to = Vector2( -5, 0 )
+cast_to = Vector2( -4.5, 0 )
 
 [node name="WallRayRight1" type="RayCast2D" parent="Raycasts"]
 position = Vector2( 25, 0 )
@@ -151,19 +152,14 @@ position = Vector2( -25, 35 )
 enabled = true
 cast_to = Vector2( 0, 27 )
 
-[node name="SlopeDetectorCenterRight" type="RayCast2D" parent="Raycasts"]
-position = Vector2( 10, 35 )
+[node name="Slope" type="RayCast2D" parent="Raycasts"]
+position = Vector2( 0, 35 )
 enabled = true
-cast_to = Vector2( 0, 27 )
+cast_to = Vector2( 0, 140 )
 
-[node name="SlopeDetectorCenterLeft" type="RayCast2D" parent="Raycasts"]
-position = Vector2( -10, 35 )
-enabled = true
-cast_to = Vector2( 0, 27 )
-
-[connection signal="state_changed" from="StateMachine" to="PlayerController" method="state_changed"]
-[connection signal="state_changed" from="StateMachine" to="DustParticle/jump" method="on_state_changed"]
 [connection signal="state_changed" from="StateMachine" to="PlayerRig" method="play"]
+[connection signal="state_changed" from="StateMachine" to="DustParticle/jump" method="on_state_changed"]
+[connection signal="state_changed" from="StateMachine" to="PlayerController" method="state_changed"]
 [connection signal="state_override" from="PlayerController" to="StateMachine" method="change_state"]
 [connection signal="area_entered" from="PlayerRig/Hitbox" to="PlayerRig/Hitbox" method="area_entered"]
 [connection signal="state_override" from="PlayerRig/Hitbox" to="StateMachine" method="change_state"]

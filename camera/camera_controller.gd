@@ -60,6 +60,7 @@ func _process(delta):
 
 func reset_camera_position():
 	canvas_transform.origin = 0.5 * get_viewport_rect().size - player.global_position
+	target_player = player.global_position+ default_offset
 
 
 func shake(duration: float, strength: float):
