@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://game/color_node.gd" type="Script" id=1]
 [ext_resource path="res://airbrush.png" type="Texture" id=2]
@@ -7,7 +7,7 @@
 [ext_resource path="res://player/scripts/player_particles_run.gd" type="Script" id=5]
 [ext_resource path="res://player/scripts/player_particles_jump.gd" type="Script" id=6]
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=1]
 resource_name = "default"
 length = 0.4
 loop = true
@@ -25,6 +25,51 @@ tracks/0/keys = {
 "values": [ Vector3( 0, -1, 0 ), Vector3( -1, -1, 0 ), Vector3( 1, -1, 0 ), Vector3( -1, -1, 0 ), Vector3( 1, -1, 0 ) ]
 }
 
+[sub_resource type="Gradient" id=5]
+offsets = PoolRealArray( 0, 0.11588, 1 )
+colors = PoolColorArray( 0, 0, 0, 0, 0.548828, 0.190804, 0.190804, 0.815686, 0.984314, 0.00784314, 0.00784314, 0.0980392 )
+
+[sub_resource type="GradientTexture" id=2]
+gradient = SubResource( 5 )
+
+[sub_resource type="Curve" id=3]
+_data = [ Vector2( 0, 0.281818 ), 0.352297, 0.67715, 0, 0, Vector2( 1, 1 ), 0.0275976, -0.358562, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=4]
+curve = SubResource( 3 )
+
+[sub_resource type="ParticlesMaterial" id=6]
+lifetime_randomness = 0.24
+flag_disable_z = true
+direction = Vector3( 0, -1, 0 )
+spread = 26.87
+gravity = Vector3( 0, -100, 0 )
+initial_velocity = 100.0
+initial_velocity_random = 0.49
+orbit_velocity = 0.0
+orbit_velocity_random = 1.0
+linear_accel = 29.31
+linear_accel_random = 0.37
+scale_random = 0.41
+scale_curve = SubResource( 4 )
+color_ramp = SubResource( 2 )
+
+[sub_resource type="ParticlesMaterial" id=7]
+lifetime_randomness = 0.24
+flag_disable_z = true
+direction = Vector3( 0, -1, 0 )
+spread = 15.5
+gravity = Vector3( 0, 400, 0 )
+initial_velocity = 300.0
+initial_velocity_random = 0.49
+orbit_velocity = 0.0
+orbit_velocity_random = 1.0
+linear_accel = 29.31
+linear_accel_random = 0.37
+scale_random = 0.41
+scale_curve = SubResource( 4 )
+color_ramp = SubResource( 2 )
+
 [node name="DustParticle" type="Node2D"]
 script = ExtResource( 1 )
 layer = 2
@@ -32,6 +77,7 @@ layer = 2
 [node name="ParticleController" type="Node2D" parent="."]
 
 [node name="Trail" type="Particles2D" parent="."]
+modulate = Color( 1, 1, 1, 0.607843 )
 emitting = false
 amount = 160
 lifetime = 0.8
@@ -43,23 +89,23 @@ script = ExtResource( 3 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Trail"]
 autoplay = "default"
-anims/default = SubResource( 6 )
+anims/default = SubResource( 1 )
 
 [node name="Run" type="Particles2D" parent="."]
-rotation = -0.0301297
+modulate = Color( 1, 1, 1, 0.505882 )
 emitting = false
 amount = 16
 lifetime = 0.6
 local_coords = false
-process_material = ExtResource( 4 )
+process_material = SubResource( 6 )
 texture = ExtResource( 2 )
 script = ExtResource( 5 )
 
 [node name="jump" type="Particles2D" parent="."]
-modulate = Color( 1, 1, 1, 0.741176 )
+modulate = Color( 1, 1, 1, 0.541176 )
 emitting = false
 amount = 100
 local_coords = false
-process_material = ExtResource( 4 )
+process_material = SubResource( 7 )
 texture = ExtResource( 2 )
 script = ExtResource( 6 )

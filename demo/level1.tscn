@@ -1,0 +1,107 @@
+[gd_scene load_steps=18 format=2]
+
+[ext_resource path="res://addons/rmsmartshape/shapes/point_array.gd" type="Script" id=1]
+[ext_resource path="res://addons/rmsmartshape/shapes/point.gd" type="Script" id=2]
+[ext_resource path="res://addons/rmsmartshape/vertex_properties.gd" type="Script" id=3]
+[ext_resource path="res://wall/wall.tscn" type="PackedScene" id=4]
+[ext_resource path="res://player/player.tscn" type="PackedScene" id=5]
+[ext_resource path="res://parallax/parallax_layer.tscn" type="PackedScene" id=6]
+
+[sub_resource type="Resource" id=1]
+script = ExtResource( 3 )
+texture_idx = 0
+flip = false
+width = 1.0
+
+[sub_resource type="Resource" id=2]
+script = ExtResource( 2 )
+position = Vector2( -512, 256 )
+point_in = Vector2( 0, 0 )
+point_out = Vector2( 0, 0 )
+properties = SubResource( 1 )
+
+[sub_resource type="Resource" id=3]
+script = ExtResource( 3 )
+texture_idx = 1
+flip = false
+width = 1.0
+
+[sub_resource type="Resource" id=4]
+script = ExtResource( 2 )
+position = Vector2( 992, 256 )
+point_in = Vector2( 0, 0 )
+point_out = Vector2( 0, 0 )
+properties = SubResource( 3 )
+
+[sub_resource type="Resource" id=5]
+script = ExtResource( 3 )
+texture_idx = 0
+flip = false
+width = 1.0
+
+[sub_resource type="Resource" id=6]
+script = ExtResource( 2 )
+position = Vector2( 992, 864 )
+point_in = Vector2( 0, 0 )
+point_out = Vector2( 0, 0 )
+properties = SubResource( 5 )
+
+[sub_resource type="Resource" id=7]
+script = ExtResource( 3 )
+texture_idx = 0
+flip = false
+width = 1.0
+
+[sub_resource type="Resource" id=8]
+script = ExtResource( 2 )
+position = Vector2( -512, 256 )
+point_in = Vector2( 0, 0 )
+point_out = Vector2( 0, 0 )
+properties = SubResource( 7 )
+
+[sub_resource type="Resource" id=9]
+script = ExtResource( 3 )
+texture_idx = 0
+flip = false
+width = 1.0
+
+[sub_resource type="Resource" id=10]
+script = ExtResource( 2 )
+position = Vector2( -512, 864 )
+point_in = Vector2( 0, 0 )
+point_out = Vector2( 0, 0 )
+properties = SubResource( 9 )
+
+[sub_resource type="Resource" id=11]
+script = ExtResource( 1 )
+_points = {
+7: SubResource( 2 ),
+8: SubResource( 4 ),
+9: SubResource( 6 ),
+10: SubResource( 8 ),
+11: SubResource( 10 )
+}
+_point_order = [ 7, 8, 9, 11, 10 ]
+_constraints = {
+[ 7, 10 ]: 15
+}
+_next_key = 13
+
+[node name="Root" type="Node2D"]
+
+[node name="ParallaxLayer1" parent="." instance=ExtResource( 6 )]
+
+[node name="ParallaxLayer2" parent="." instance=ExtResource( 6 )]
+
+[node name="MainLayer" parent="." instance=ExtResource( 6 )]
+
+[node name="Wall1" parent="MainLayer" instance=ExtResource( 4 )]
+_points = SubResource( 11 )
+material_overrides = {
+}
+
+[node name="Player" parent="MainLayer" instance=ExtResource( 5 )]
+
+[node name="ParallaxLayer4" parent="." instance=ExtResource( 6 )]
+
+[node name="ParallaxLayer5" parent="." instance=ExtResource( 6 )]

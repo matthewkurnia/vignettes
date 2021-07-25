@@ -35,7 +35,7 @@ void fragment() {
 [sub_resource type="ShaderMaterial" id=3]
 shader = SubResource( 2 )
 shader_param/line_color = Color( 0, 0, 0, 1 )
-shader_param/line_thickness = 2.0
+shader_param/line_thickness = 1.0
 
 [sub_resource type="ViewportTexture" id=4]
 viewport_path = NodePath("Viewport")
@@ -54,26 +54,89 @@ position = Vector2( 200, 200 )
 [node name="AnimationTree" parent="Viewport/PlayerPuppet" index="2"]
 parameters/playback = SubResource( 1 )
 
-[node name="arm_upper_back" parent="Viewport/PlayerPuppet/Root" index="1"]
-position = Vector2( 9.67953, -103.158 )
+[node name="Root" parent="Viewport/PlayerPuppet" index="3"]
+scale = Vector2( 0.529236, 0.48051 )
 
-[node name="arm_upper_front" parent="Viewport/PlayerPuppet/Root" index="2"]
-position = Vector2( -7.60107, -107.11 )
+[node name="arm_upper_front" parent="Viewport/PlayerPuppet/Root" index="1"]
+position = Vector2( -7.59552, -107.753 )
+rotation = 0.0731503
+scale = Vector2( 0.7, 0.7 )
+
+[node name="arm_upper_back" parent="Viewport/PlayerPuppet/Root" index="2"]
+position = Vector2( 9.68417, -103.796 )
+rotation = 0.0503588
+scale = Vector2( 0.7, 0.7 )
 
 [node name="arm_lower_back" parent="Viewport/PlayerPuppet/Root" index="3"]
-position = Vector2( 27.182, -81.6317 )
+position = Vector2( 18.0543, -77.3452 )
+rotation = 0.330589
+scale = Vector2( 0.7, 0.7 )
 
 [node name="hat_back" parent="Viewport/PlayerPuppet/Root" index="4"]
-position = Vector2( 4.01086, -142.266 )
+position = Vector2( 4.30966, -142.886 )
+rotation = -0.00899024
+scale = Vector2( 0.7, 0.7 )
 
 [node name="leg_upper_back" parent="Viewport/PlayerPuppet/Root" index="5"]
-position = Vector2( 7.73199, -67.9993 )
+position = Vector2( 7.73199, -68.6401 )
+rotation = -0.753679
+scale = Vector2( 0.7, 0.7 )
 
 [node name="leg_lower_back" parent="Viewport/PlayerPuppet/Root" index="6"]
-position = Vector2( 25.9634, -55.0226 )
+position = Vector2( 25.6054, -55.1746 )
+rotation = 0.164272
+scale = Vector2( 0.7, 0.7 )
 
 [node name="foot_back" parent="Viewport/PlayerPuppet/Root" index="7"]
-position = Vector2( 25.1668, -28.6885 )
+position = Vector2( 25.2442, -28.8309 )
+rotation = -0.0278499
+scale = Vector2( 0.7, 0.7 )
+
+[node name="body_lower" parent="Viewport/PlayerPuppet/Root" index="8"]
+position = Vector2( 0, -77.3901 )
+rotation = 0.0
+
+[node name="leg_upper_front" parent="Viewport/PlayerPuppet/Root/body_lower" index="0"]
+rotation = -0.126778
+
+[node name="leg_lower_front" parent="Viewport/PlayerPuppet/Root/body_lower/leg_upper_front" index="0"]
+rotation = 0.55781
+
+[node name="foot_front" parent="Viewport/PlayerPuppet/Root/body_lower/leg_upper_front/leg_lower_front" index="0"]
+rotation = -0.426742
+
+[node name="leg_upper_back" parent="Viewport/PlayerPuppet/Root/body_lower" index="1"]
+rotation = -0.753679
+
+[node name="leg_lower_back" parent="Viewport/PlayerPuppet/Root/body_lower/leg_upper_back" index="0"]
+rotation = 0.917951
+
+[node name="foot_back" parent="Viewport/PlayerPuppet/Root/body_lower/leg_upper_back/leg_lower_back" index="0"]
+rotation = -0.192122
+
+[node name="body_upper" parent="Viewport/PlayerPuppet/Root/body_lower" index="2"]
+rotation = 0.125409
+
+[node name="head" parent="Viewport/PlayerPuppet/Root/body_lower/body_upper" index="0"]
+rotation = -0.1344
+
+[node name="hat_front" parent="Viewport/PlayerPuppet/Root/body_lower/body_upper/head" index="0"]
+position = Vector2( 3.92862, -31.9902 )
+rotation = 0.0
+scale = Vector2( 1, 1 )
+bend = -0.253819
+
+[node name="arm_upper_front" parent="Viewport/PlayerPuppet/Root/body_lower/body_upper" index="1"]
+rotation = -0.0522591
+
+[node name="arm_lower_front" parent="Viewport/PlayerPuppet/Root/body_lower/body_upper/arm_upper_front" index="0"]
+rotation = 0.0
+
+[node name="arm_upper_back" parent="Viewport/PlayerPuppet/Root/body_lower/body_upper" index="2"]
+rotation = -0.0750506
+
+[node name="arm_lower_back" parent="Viewport/PlayerPuppet/Root/body_lower/body_upper/arm_upper_back" index="0"]
+rotation = 0.28023
 
 [node name="Sprite" parent="." index="1"]
 material = SubResource( 3 )

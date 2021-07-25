@@ -64,14 +64,18 @@ func _process(delta):
 	
 	animation_tree["parameters/run/TimeScale/scale"] = min(max(0.5 +
 			0.5 * abs(player.velocity.x)/player.MAX_SPEED, 1.0), 1.5)
-	var flap = float(Input.is_action_pressed("jump") and
-			not Input.is_action_pressed("slide")) * 0.75
-	animation_tree["parameters/jump/Add2/add_amount"] = lerp(
-		animation_tree["parameters/jump/Add2/add_amount"], flap, 0.07
-	)
-	animation_tree["parameters/fall/Add2/add_amount"] = lerp(
-		animation_tree["parameters/fall/Add2/add_amount"], flap, 0.07
-	)
+	var glide = (Input.is_action_pressed("jump") and
+			not Input.is_action_pressed("slide"))
+	if glide and curr_anim == "fall":
+		rig.play("glide")
+	elif not glide and curr_anim == "glide":
+		rig.play("fall")
+#	animation_tree["parameters/jump/Add2/add_amount"] = lerp(
+#		animation_tree["parameters/jump/Add2/add_amount"], flap, 0.07
+#	)
+#	animation_tree["parameters/fall/Add2/add_amount"] = lerp(
+#		animation_tree["parameters/fall/Add2/add_amount"], flap, 0.07
+#	)
 
 
 func _on_PlayerRig_anim_played(anim_name):
