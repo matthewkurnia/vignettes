@@ -1,4 +1,4 @@
-[gd_resource type="AnimationNodeStateMachine" load_steps=51 format=2]
+[gd_resource type="AnimationNodeStateMachine" load_steps=53 format=2]
 
 [sub_resource type="AnimationNodeAnimation" id=1]
 animation = "banished"
@@ -147,6 +147,10 @@ switch_mode = 2
 [sub_resource type="AnimationNodeStateMachineTransition" id=50]
 xfade_time = 0.1
 
+[sub_resource type="AnimationNodeStateMachineTransition" id=51]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=52]
+
 [resource]
 states/banished/node = SubResource( 1 )
 states/banished/position = Vector2( 1046.74, 378.157 )
@@ -155,9 +159,9 @@ states/climb/position = Vector2( 264, 409.157 )
 states/fall/node = SubResource( 3 )
 states/fall/position = Vector2( 299, 215 )
 states/glide/node = SubResource( 4 )
-states/glide/position = Vector2( 315.74, 53.7391 )
+states/glide/position = Vector2( 137.74, 104.739 )
 states/glide_trans/node = SubResource( 5 )
-states/glide_trans/position = Vector2( 161.74, 130 )
+states/glide_trans/position = Vector2( -64.26, 183 )
 states/idle/node = SubResource( 6 )
 states/idle/position = Vector2( 527, 130 )
 states/jump/node = SubResource( 7 )
@@ -168,6 +172,6 @@ states/slide/node = SubResource( 11 )
 states/slide/position = Vector2( 500, 409.157 )
 states/wall_slide/node = SubResource( 12 )
 states/wall_slide/position = Vector2( 721, 409.157 )
-transitions = [ "fall", "idle", SubResource( 13 ), "idle", "fall", SubResource( 14 ), "jump", "idle", SubResource( 15 ), "idle", "jump", SubResource( 16 ), "jump", "fall", SubResource( 17 ), "fall", "jump", SubResource( 18 ), "fall", "run", SubResource( 19 ), "run", "fall", SubResource( 20 ), "idle", "run", SubResource( 21 ), "run", "idle", SubResource( 22 ), "jump", "run", SubResource( 23 ), "run", "jump", SubResource( 24 ), "idle", "slide", SubResource( 25 ), "slide", "idle", SubResource( 26 ), "run", "slide", SubResource( 27 ), "slide", "run", SubResource( 28 ), "fall", "slide", SubResource( 29 ), "slide", "fall", SubResource( 30 ), "slide", "jump", SubResource( 31 ), "fall", "wall_slide", SubResource( 32 ), "wall_slide", "fall", SubResource( 33 ), "wall_slide", "jump", SubResource( 34 ), "jump", "wall_slide", SubResource( 35 ), "wall_slide", "run", SubResource( 36 ), "wall_slide", "idle", SubResource( 37 ), "jump", "slide", SubResource( 38 ), "run", "wall_slide", SubResource( 39 ), "idle", "wall_slide", SubResource( 40 ), "wall_slide", "climb", SubResource( 41 ), "jump", "climb", SubResource( 42 ), "fall", "climb", SubResource( 43 ), "climb", "fall", SubResource( 44 ), "banished", "fall", SubResource( 45 ), "banished", "jump", SubResource( 46 ), "wall_slide", "slide", SubResource( 47 ), "fall", "glide_trans", SubResource( 48 ), "glide_trans", "glide", SubResource( 49 ), "glide", "fall", SubResource( 50 ) ]
+transitions = [ "fall", "idle", SubResource( 13 ), "idle", "fall", SubResource( 14 ), "jump", "idle", SubResource( 15 ), "idle", "jump", SubResource( 16 ), "jump", "fall", SubResource( 17 ), "fall", "jump", SubResource( 18 ), "fall", "run", SubResource( 19 ), "run", "fall", SubResource( 20 ), "idle", "run", SubResource( 21 ), "run", "idle", SubResource( 22 ), "jump", "run", SubResource( 23 ), "run", "jump", SubResource( 24 ), "idle", "slide", SubResource( 25 ), "slide", "idle", SubResource( 26 ), "run", "slide", SubResource( 27 ), "slide", "run", SubResource( 28 ), "fall", "slide", SubResource( 29 ), "slide", "fall", SubResource( 30 ), "slide", "jump", SubResource( 31 ), "fall", "wall_slide", SubResource( 32 ), "wall_slide", "fall", SubResource( 33 ), "wall_slide", "jump", SubResource( 34 ), "jump", "wall_slide", SubResource( 35 ), "wall_slide", "run", SubResource( 36 ), "wall_slide", "idle", SubResource( 37 ), "jump", "slide", SubResource( 38 ), "run", "wall_slide", SubResource( 39 ), "idle", "wall_slide", SubResource( 40 ), "wall_slide", "climb", SubResource( 41 ), "jump", "climb", SubResource( 42 ), "fall", "climb", SubResource( 43 ), "climb", "fall", SubResource( 44 ), "banished", "fall", SubResource( 45 ), "banished", "jump", SubResource( 46 ), "wall_slide", "slide", SubResource( 47 ), "fall", "glide_trans", SubResource( 48 ), "glide_trans", "glide", SubResource( 49 ), "glide", "fall", SubResource( 50 ), "glide", "climb", SubResource( 51 ), "glide_trans", "climb", SubResource( 52 ) ]
 start_node = "idle"
-graph_offset = Vector2( 70.7399, -21.2609 )
+graph_offset = Vector2( -100.26, -6.2609 )

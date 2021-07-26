@@ -18,6 +18,8 @@ func _physics_process(delta):
 	if current_state == "banished":
 		player.global_position = banish_position
 		return
+	if current_state == "climb":
+		return
 	if just_touched_wall():
 		emit_signal("state_override", "wall_slide")
 	if not player.is_on_floor() and just_reached_edge() and not player.sliding:
@@ -82,4 +84,4 @@ func just_reached_edge():
 		prev_edge_status = player.get_edge_status()
 		return false
 	prev_edge_status = player.get_edge_status()
-	return prev_edge_status
+	return prev_edge_status != 0

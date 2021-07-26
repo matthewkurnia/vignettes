@@ -157,6 +157,7 @@ modulate = Color( 1, 1, 1, 0.3 )
 polygon = PoolVector2Array( -86.1212, -65.4022, 87.777, -58.5358, 65.8241, 83.1489, -77.4468, 62.0856 )
 
 [node name="ColorNode" type="Node2D" parent="."]
+modulate = Color( 0.537255, 1, 1, 1 )
 script = ExtResource( 11 )
 layer = 3
 remote_path = NodePath("..")

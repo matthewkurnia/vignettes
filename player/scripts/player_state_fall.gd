@@ -4,11 +4,11 @@ extends PlayerState
 const GRAV_MULT = 1.5
 const TERMINAL_VELO = 1600.0
 
-var slide_assisted = false
+#var slide_assisted = false
 
 
 func enter():
-	slide_assisted = false
+#	slide_assisted = false
 	player.set_snap(false)
 
 
@@ -30,9 +30,8 @@ func update(delta):
 	if Input.is_action_pressed("slide"):
 		grav_mult *= 2
 		terminal_velo = TERMINAL_VELO
-		if not slide_assisted and player.get_slope_status() != 0:
-			slide_assisted = true
-			player.position.x += player.get_slope_status()
+#		if not slide_assisted and player.get_slope_status() != 0:
+#			slide_assisted = true
+#			player.position.x += player.get_slope_status()
 	player.velocity.y = Util.lirpf(player.velocity.y, terminal_velo, player.GRAV * grav_mult)
-#	player.velocity.y = min(player.velocity.y + player.GRAV * grav_mult, terminal_velo)
-	handle_movement(player.FRICTION_AIR_FAST, player.FRICTION_AIR, player.ACCEL_AIR)
+	handle_movement(player.FRICTION_AIR_FAST, player.FRICTION_AIR, player.ACCEL_AIR, false)

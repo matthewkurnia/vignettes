@@ -7,10 +7,13 @@ onready var player = Player.get_player_node()
 
 
 func _process(delta):
-	if player.is_on_floor():
+	if player.is_on_floor() or player.is_on_wall():
+		time = OS.get_ticks_msec()
 		self.emitting = (abs(player.velocity.y) > player.JUMP_STRENGTH or
 				abs(player.velocity.x) > player.MAX_SPEED*1.5)
-	else:
+	elif OS.get_ticks_msec() - time < 400:
 		self.emitting = (abs(player.velocity.y) > player.JUMP_STRENGTH or
-				abs(player.velocity.x) > player.MAX_SPEED*2.2)
+				abs(player.velocity.x) > player.MAX_SPEED*2)
+	else:
+		self.emitting = false
 	self.rotation = player.velocity.x / player.MAX_SPEED * 0.5

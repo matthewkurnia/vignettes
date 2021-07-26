@@ -3,21 +3,16 @@ extends PlayerState
 
 const GRAV_MULT = 2
 
-export var ray_path: NodePath
-
-onready var slope_ray = get_node(ray_path)
-
 
 func enter():
 	player.set_snap(true)
-#	Cam.shake(0.1, 9)
-#	if player.get_floor_normal().dot(Vector2.UP) < cos(deg2rad(25)):
-#		player.velocity.x = (player.MAX_SPEED * 3 *
-#				 sign(player.get_floor_normal().dot(Vector2.RIGHT)))
-#		Cam.shake(0.1, 9)
 	if player.velocity.y > player.MAX_SPEED:
 		Cam.shake(0.1, 7)
-#	player.velocity.x = player.get_floor_normal().dot(Vector2.RIGHT) * player.velocity.y
+	var normal = player.get_floor_normal()
+	player.velocity = player.prev_velo.slide(normal)
+#	print(rad2deg(player.velocity.angle_to(Vector2.UP)))
+	if player.get_slope_status() != 0:
+		player.position.x += player.get_slope_status()
 
 
 func exit():
@@ -33,21 +28,11 @@ func update(delta):
 		else:
 			emit_signal("finished", "idle")
 	
-	var normal = slope_ray.get_collision_normal()
-	if normal.dot(Vector2.RIGHT) < 0:
-		normal = normal.rotated(-0.5*PI)
-	else:
-		normal = normal.rotated(0.5*PI)
+#	var normal = slope_ray.get_collision_normal()
+	var normal = player.get_floor_normal()
 	player.velocity.y += player.GRAV * GRAV_MULT
-	player.velocity = (player.velocity.dot(normal) * normal +
-			Vector2(player.GRAV, 0)).clamped(1600)
-#	player.velocity.y = 800
-#	var temp = player.get_floor_normal().dot(Vector2.RIGHT)
-#	if abs(temp) < 0.05:
-#		temp = 0
 #	player.velocity.x = Util.lirpf(player.velocity.x,
-#			player.MAX_SPEED * sign(temp),
+#			player.MAX_SPEED * sign(normal.dot(Vector2.RIGHT)),
 #			player.FRICTION_FAST * 0.5)
-#	player.velocity = player.velocity.clamped(1600)
-#	print(player.velocity)
-#	handle_movement(player.FRICTION_FAST, player.FRICTION, player.ACCEL)
+	player.velocity = player.velocity.slide(normal).clamped(1600)
+	player.set_snap(true)

@@ -5025,112 +5025,112 @@ parameters/run/TimeScale/scale = 1.0
 
 [node name="Root" parent="." index="3"]
 position = Vector2( 0, 48 )
-scale = Vector2( 0.502418, 0.498388 )
+scale = Vector2( 0.519774, 0.486817 )
 
 [node name="backpack" type="Sprite" parent="Root" index="0"]
 visible = false
 texture = ExtResource( 16 )
 
 [node name="arm_upper_front" type="Sprite" parent="Root" index="1"]
-position = Vector2( -9.16746, -111.517 )
-rotation = 0.0527994
+position = Vector2( -8.26338, -112.264 )
+rotation = -0.0220953
 scale = Vector2( 0.7, 0.7 )
 texture = ExtResource( 10 )
 offset = Vector2( 15.205, 34.0237 )
 
 [node name="arm_upper_back" type="Sprite" parent="Root" index="2"]
-position = Vector2( 8.33011, -108.675 )
-rotation = -0.0573556
+position = Vector2( 9.11714, -108.777 )
+rotation = 0.0913368
 scale = Vector2( 0.7, 0.7 )
 texture = ExtResource( 9 )
 offset = Vector2( -9.99341, 31.5039 )
 
 [node name="arm_lower_back" type="Sprite" parent="Root" index="3"]
-position = Vector2( 19.4954, -83.2767 )
-rotation = 0.222875
+position = Vector2( 16.3966, -82.0053 )
+rotation = 0.371567
 scale = Vector2( 0.7, 0.7 )
 texture = ExtResource( 14 )
 offset = Vector2( -23.8377, -5.63348 )
 
 [node name="hat_back" type="Sprite" parent="Root" index="4"]
 material = ExtResource( 18 )
-position = Vector2( 0.0219652, -147.341 )
-rotation = -0.0918973
+position = Vector2( 3.32931, -147.668 )
+rotation = -0.00859707
 scale = Vector2( 0.7, 0.7 )
 texture = ExtResource( 13 )
 offset = Vector2( 0.109314, 85.8731 )
 
 [node name="leg_upper_back" type="Sprite" parent="Root" index="5"]
-position = Vector2( 7.73199, -72.8395 )
-rotation = -0.576236
+position = Vector2( 7.73199, -73.3234 )
+rotation = -0.555792
 scale = Vector2( 0.7, 0.7 )
 texture = ExtResource( 8 )
 offset = Vector2( -11.0457, -20.5 )
 
 [node name="leg_lower_back" type="Sprite" parent="Root" index="6"]
-position = Vector2( 22.9479, -56.4305 )
-rotation = 0.0559518
+position = Vector2( 22.6093, -56.6067 )
+rotation = 0.0434719
 scale = Vector2( 0.7, 0.7 )
 texture = ExtResource( 15 )
 offset = Vector2( -16.5, -52 )
 
 [node name="foot_back" type="Sprite" parent="Root" index="7"]
 modulate = Color( 0.764706, 0.623529, 0.686275, 1 )
-position = Vector2( 25.4368, -30.2022 )
-rotation = -0.00697662
+position = Vector2( 25.4253, -30.4115 )
+rotation = -0.00457174
 scale = Vector2( 0.7, 0.7 )
 texture = ExtResource( 12 )
 offset = Vector2( -22.1454, -89.2115 )
 
 [node name="body_lower" type="Sprite" parent="Root" index="8"]
-position = Vector2( 0, -81.5895 )
+position = Vector2( 0, -82.0734 )
 scale = Vector2( 0.7, 0.7 )
 texture = ExtResource( 3 )
 offset = Vector2( 0, -8 )
 
 [node name="leg_upper_front" type="Sprite" parent="Root/body_lower" index="0"]
 position = Vector2( -9.089, 15.8475 )
-rotation = 0.0381318
+rotation = 0.0571317
 texture = ExtResource( 11 )
 offset = Vector2( 9.089, -23.8475 )
 
 [node name="leg_lower_front" type="Sprite" parent="Root/body_lower/leg_upper_front" index="0"]
 position = Vector2( -12.0665, 28.6228 )
-rotation = 0.182707
+rotation = 0.13949
 texture = ExtResource( 4 )
 offset = Vector2( 21.1555, -52.4703 )
 
 [node name="foot_front" type="Sprite" parent="Root/body_lower/leg_upper_front/leg_lower_front" index="0"]
 position = Vector2( -21.0396, 34.2107 )
-rotation = -0.243477
+rotation = -0.222362
 texture = ExtResource( 12 )
 offset = Vector2( -23.4042, -88.0968 )
 
 [node name="leg_upper_back" type="RemoteTransform2D" parent="Root/body_lower" index="1"]
 position = Vector2( 11.0457, 12.5 )
-rotation = -0.576236
+rotation = -0.555792
 remote_path = NodePath("../../leg_upper_back")
 
 [node name="leg_lower_back" type="RemoteTransform2D" parent="Root/body_lower/leg_upper_back" index="0"]
 position = Vector2( 5.4543, 31.5 )
-rotation = 0.632188
+rotation = 0.599264
 remote_path = NodePath("../../../leg_lower_back")
 
 [node name="foot_back" type="RemoteTransform2D" parent="Root/body_lower/leg_upper_back/leg_lower_back" index="0"]
 position = Vector2( 5.64537, 37.2115 )
-rotation = -0.0629285
+rotation = -0.0480436
 remote_path = NodePath("../../../../foot_back")
 
 [node name="body_upper" type="Sprite" parent="Root/body_lower" index="2"]
 show_behind_parent = true
 position = Vector2( -2.26791, -8.0246 )
-rotation = 0.061343
+rotation = 0.0983282
 texture = ExtResource( 5 )
 offset = Vector2( 2.26791, 0.0245972 )
 
 [node name="head" type="Sprite" parent="Root/body_lower/body_upper" index="0"]
 position = Vector2( -0.647552, -52.4553 )
-rotation = -0.15324
+rotation = -0.106925
 texture = ExtResource( 6 )
 offset = Vector2( 2.91547, 52.4799 )
 
@@ -5140,7 +5140,7 @@ position = Vector2( 3.92862, -31.9902 )
 texture = ExtResource( 7 )
 offset = Vector2( -1.01315, 84.47 )
 script = ExtResource( 2 )
-bend = -0.0114686
+bend = -0.293069
 
 [node name="hat_back" type="RemoteTransform2D" parent="Root/body_lower/body_upper/head/hat_front" index="0"]
 position = Vector2( -1.12247, -1.40308 )
@@ -5148,7 +5148,7 @@ remote_path = NodePath("../../../../../hat_back")
 
 [node name="arm_upper_front" type="RemoteTransform2D" parent="Root/body_lower/body_upper" index="1"]
 position = Vector2( -12.9371, -33.9991 )
-rotation = -0.0085436
+rotation = -0.120424
 remote_path = NodePath("../../../arm_upper_front")
 
 [node name="arm_lower_front" type="Sprite" parent="Root/body_lower/body_upper/arm_upper_front" index="0"]
@@ -5164,7 +5164,7 @@ texture = ExtResource( 19 )
 
 [node name="arm_upper_back" type="RemoteTransform2D" parent="Root/body_lower/body_upper" index="2"]
 position = Vector2( 12.2613, -31.4793 )
-rotation = -0.118699
+rotation = -0.00699141
 remote_path = NodePath("../../../arm_upper_back")
 
 [node name="arm_lower_back" type="RemoteTransform2D" parent="Root/body_lower/body_upper/arm_upper_back" index="0"]
