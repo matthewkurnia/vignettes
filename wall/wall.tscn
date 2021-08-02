@@ -33,7 +33,7 @@ width = 1.0
 
 [sub_resource type="Resource" id=4]
 script = ExtResource( 9 )
-position = Vector2( 83.6583, -55.1387 )
+position = Vector2( 96, -64 )
 point_in = Vector2( 0, 0 )
 point_out = Vector2( 0, 0 )
 properties = SubResource( 3 )
@@ -154,7 +154,7 @@ z_index = 5
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Collision"]
 modulate = Color( 1, 1, 1, 0.3 )
-polygon = PoolVector2Array( -86.1212, -65.4022, 87.777, -58.5358, 65.8241, 83.1489, -77.4468, 62.0856 )
+polygon = PoolVector2Array( -85.9912, -65.093, 100.757, -67.8387, 65.454, 82.9119, -77.4468, 62.0856 )
 
 [node name="ColorNode" type="Node2D" parent="."]
 modulate = Color( 0.537255, 1, 1, 1 )

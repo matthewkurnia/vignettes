@@ -113,6 +113,8 @@ var tb_collision: ToolButton = null
 var tb_snap: MenuButton = null
 # The PopupMenu that belongs to tb_snap
 var tb_snap_popup: PopupMenu = null
+# Snap config
+onready var snap_config = SnapConfig.new()
 
 # Edge Stuff
 var on_edge: bool = false
@@ -161,8 +163,10 @@ func gui_display_snap_settings():
 func _snapping_item_selected(id: int):
 	if id == 0:
 		tb_snap_popup.set_item_checked(id, not tb_snap_popup.is_item_checked(id))
+		snap_config.set_use(tb_snap_popup.is_item_checked(id))
 	if id == 1:
 		tb_snap_popup.set_item_checked(id, not tb_snap_popup.is_item_checked(id))
+		snap_config.set_relative(tb_snap_popup.is_item_checked(id))
 	elif id == 3:
 		gui_display_snap_settings()
 
@@ -210,9 +214,17 @@ func _gui_build_toolbar():
 	tb_snap_popup.hide_on_checkable_item_selection = false
 	tb_hb.add_child(tb_snap)
 	tb_snap_popup.connect("id_pressed", self, "_snapping_item_selected")
-
+	load_snap_config()
+	
 	tb_hb.hide()
 	tb_hb_legacy_import.hide()
+
+
+func load_snap_config():
+	tb_snap_popup.set_item_checked(0, snap_config.get_use())
+	tb_snap_popup.set_item_checked(1, snap_config.get_relative())
+	gui_snap_settings.set_snap_offset(snap_config.get_offset())
+	gui_snap_settings.set_snap_step(snap_config.get_step())
 
 
 func create_tool_button(icon, tooltip):
@@ -420,10 +432,12 @@ func use_snap() -> bool:
 
 
 func get_snap_offset() -> Vector2:
+	snap_config.set_offset(gui_snap_settings.get_snap_offset())
 	return gui_snap_settings.get_snap_offset()
 
 
 func get_snap_step() -> Vector2:
+	snap_config.set_step(gui_snap_settings.get_snap_step())
 	return gui_snap_settings.get_snap_step()
 
 

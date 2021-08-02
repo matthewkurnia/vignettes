@@ -47,7 +47,7 @@ func _process(delta):
 		if curr_anim == "wall_slide":
 			var init_angle = player.get_wall_normal().angle_to(Vector2.UP)
 			rig.rotation = lerp(rig.rotation,
-					(abs(init_angle) - 0.5*PI) * -sign(init_angle), 0.2)
+					(abs(init_angle) - 0.5*PI) * -sign(init_angle), 0.1)
 		if player.velocity.y < 0:
 			rig.rotation = lerp(rig.rotation, ratio_x * PI*0.07, 0.4)
 		else:
@@ -58,10 +58,10 @@ func _process(delta):
 		sprite.scale.y = lerp(sprite.scale.y, 1, 0.1)
 		rig.position.y = lerp(rig.position.y,
 				init_pos.y +
-				abs(tan(player.get_floor_normal().angle_to(Vector2.UP))) * 10,
+				abs(tan(player.get_floor_normal().angle_to(Vector2.UP))) * 5,
 				0.1)
 		rig.rotation = lerp(rig.rotation,
-				(player.get_floor_normal().angle() + PI/2),
+				Util.clamp_signed(player.get_floor_normal().angle() + 0.5*PI, 0, 0.25*PI),
 				0.2)
 	
 	animation_tree["parameters/run/TimeScale/scale"] = min(max(0.5 +

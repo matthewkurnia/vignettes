@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://game/color_node.gd" type="Script" id=1]
 [ext_resource path="res://player/explosion/explosion2.png" type="Texture" id=2]
@@ -8,15 +8,16 @@
 [ext_resource path="res://player/explosion/explosion3.png" type="Texture" id=6]
 [ext_resource path="res://airbrush.png" type="Texture" id=7]
 [ext_resource path="res://player/player_death.gd" type="Script" id=8]
+[ext_resource path="res://invert_material.tres" type="Material" id=9]
 
-[sub_resource type="Gradient" id=7]
+[sub_resource type="Gradient" id=1]
 offsets = PoolRealArray( 0, 0.473214 )
 colors = PoolColorArray( 0, 0, 0, 1, 0, 0, 0, 0 )
 
-[sub_resource type="GradientTexture" id=8]
-gradient = SubResource( 7 )
+[sub_resource type="GradientTexture" id=2]
+gradient = SubResource( 1 )
 
-[sub_resource type="ParticlesMaterial" id=9]
+[sub_resource type="ParticlesMaterial" id=3]
 flag_disable_z = true
 direction = Vector3( 0, -1, 0 )
 spread = 129.92
@@ -25,20 +26,9 @@ initial_velocity = 500.0
 initial_velocity_random = 0.11
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
-color_ramp = SubResource( 8 )
+color_ramp = SubResource( 2 )
 
-[sub_resource type="Shader" id=4]
-code = "shader_type canvas_item;
-
-void fragment() {
-	COLOR.rgb = vec3(1.0 - texture(SCREEN_TEXTURE, SCREEN_UV).r);
-	COLOR.a = texture(TEXTURE, UV).a;
-}"
-
-[sub_resource type="ShaderMaterial" id=5]
-shader = SubResource( 4 )
-
-[sub_resource type="SpriteFrames" id=6]
+[sub_resource type="SpriteFrames" id=4]
 animations = [ {
 "frames": [ ExtResource( 4 ), ExtResource( 2 ), ExtResource( 6 ), ExtResource( 5 ), ExtResource( 3 ), null ],
 "loop": false,
@@ -59,12 +49,12 @@ emitting = false
 amount = 20
 one_shot = true
 explosiveness = 0.71
-process_material = SubResource( 9 )
+process_material = SubResource( 3 )
 texture = ExtResource( 7 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-material = SubResource( 5 )
+material = ExtResource( 9 )
 scale = Vector2( 0.15, 0.15 )
-frames = SubResource( 6 )
+frames = SubResource( 4 )
 animation = "explode"
 offset = Vector2( 40, 25 )

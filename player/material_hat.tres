@@ -34,6 +34,6 @@ void fragment() {
 [resource]
 shader = SubResource( 1 )
 shader_param/bend_direction = 0.0
-shader_param/bend_ammount = -0.197672
+shader_param/bend_ammount = -0.254074
 shader_param/bend_pivot_x = 0.5
 shader_param/bend_pivot_y = 0.304

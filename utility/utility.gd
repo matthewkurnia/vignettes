@@ -25,6 +25,10 @@ func lirpv(from: Vector2, to: Vector2, distance: float) -> Vector2:
 	return from + resultant
 
 
+func clamp_signed(value: float, arg_min: float, arg_max: float) -> float:
+	return sign(value) * min(max(abs(value), arg_min), arg_max)
+
+
 func min_v(vector1: Vector2, vector2: Vector2) -> Vector2:
 	if vector1.length() < vector2.length():
 		return vector1

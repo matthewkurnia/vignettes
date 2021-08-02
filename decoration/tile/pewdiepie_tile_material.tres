@@ -2,12 +2,13 @@
 
 [ext_resource path="res://decoration/sprites/soft_noise.png" type="Texture" id=1]
 
-[sub_resource type="Shader" id=1]
+[sub_resource type="Shader" id=2]
 resource_local_to_scene = true
 code = "shader_type canvas_item;
 
 uniform float rotation = 0.0;
 uniform sampler2D noise;
+uniform sampler2D mask;
 uniform float frequency_x = 1.0;
 uniform float frequency_y = 1.0;
 uniform float amplitude = 3.0;
@@ -34,12 +35,13 @@ void fragment() {
 	tiled_uv.x += amplitude * sin(TIME + tiled_uv.y * frequency_x);
 	tiled_uv.y += amplitude * cos(TIME + tiled_uv.x * frequency_x);
 	COLOR = texture(TEXTURE, tiled_uv);
+	COLOR.a *= texture(mask, UV).a;
 	
 }"
 
 [resource]
 resource_local_to_scene = true
-shader = SubResource( 1 )
+shader = SubResource( 2 )
 shader_param/rotation = 1.776
 shader_param/frequency_x = 0.1
 shader_param/frequency_y = 0.1

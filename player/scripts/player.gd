@@ -31,6 +31,7 @@ onready var climb_ray_l = $Raycasts/ClimbRayLeft
 onready var slope_r = $Raycasts/SlopeDetectorRight
 onready var slope_l = $Raycasts/SlopeDetectorLeft
 onready var slope = $Raycasts/Slope
+onready var floor_threshold = 0.5*PI - atan(wall_ray_r.cast_to.length()/60)
 
 
 func _init():
@@ -49,19 +50,16 @@ func _physics_process(delta):
 
 func handle_movement():
 #	Created due to weird issues with steep slopes and behaviour of move_and_slide
-	var floor_threshold = deg2rad(45)
-	if sliding:
-		floor_threshold = deg2rad(80)
 	var velo = move_and_slide_with_snap(velocity, snap, UP_DIRECTION,
-			not sliding, 4, floor_threshold)
+			not (sliding or get_floor_normal().dot(Vector2.UP) < 0.707107), 4, floor_threshold)
 	var collision
 	if get_slide_count() > 0:
 		collision = get_slide_collision(0)
 	if collision:
 		if collision.normal.dot(Vector2.UP) >= cos(0.25*PI):
 			velocity.y = velo.y
-		else:
-			velocity = velo
+			return
+	velocity = velo
 	return
 
 

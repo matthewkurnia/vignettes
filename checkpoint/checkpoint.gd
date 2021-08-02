@@ -21,9 +21,9 @@ func set_spawn_offset(value):
 
 
 func _draw():
-#	if Engine.editor_hint:
-	draw_rect(Rect2(-0.5*size, size), Color.green, false, 5.0)
-	draw_arc(spawn_offset, 10, -0.1, 2*PI, 30, Color.greenyellow, 5.0)
+	if Engine.editor_hint:
+		draw_rect(Rect2(-0.5*size, size), Color.green, false, 5.0)
+		draw_arc(spawn_offset, 10, -0.1, 2*PI, 30, Color.greenyellow, 5.0)
 
 
 func _ready():
@@ -34,6 +34,6 @@ func _ready():
 	collision.shape.extents = 0.5 * size
 
 
-func body_entered(body):
+func on_body_entered(body):
 	if body == player:
 		Player.set_spawn_position(self.global_position + spawn_offset)

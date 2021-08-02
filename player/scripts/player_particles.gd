@@ -16,4 +16,4 @@ func _process(delta):
 				abs(player.velocity.x) > player.MAX_SPEED*2)
 	else:
 		self.emitting = false
-	self.rotation = player.velocity.x / player.MAX_SPEED * 0.5
+	self.rotation = Util.clamp_signed(player.velocity.x / player.MAX_SPEED * 0.5, 0.0, deg2rad(75))

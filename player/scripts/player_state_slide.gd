@@ -3,6 +3,10 @@ extends PlayerState
 
 const GRAV_MULT = 2
 
+export var slope_ray_path: NodePath
+
+onready var slope_ray = get_node(slope_ray_path)
+
 
 func enter():
 	player.set_snap(true)
@@ -28,11 +32,7 @@ func update(delta):
 		else:
 			emit_signal("finished", "idle")
 	
-#	var normal = slope_ray.get_collision_normal()
 	var normal = player.get_floor_normal()
 	player.velocity.y += player.GRAV * GRAV_MULT
-#	player.velocity.x = Util.lirpf(player.velocity.x,
-#			player.MAX_SPEED * sign(normal.dot(Vector2.RIGHT)),
-#			player.FRICTION_FAST * 0.5)
 	player.velocity = player.velocity.slide(normal).clamped(1600)
 	player.set_snap(true)

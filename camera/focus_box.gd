@@ -46,15 +46,15 @@ func _draw():
 	if Engine.editor_hint:
 		draw_rect(Rect2(-0.5 * extents/focus_amount + margin,
 				extents/focus_amount - 2*margin),
-				Color.lightgreen, false, 5.0)
+				Color.lightcoral, false, 5.0)
 		draw_rect(Rect2(-0.5 * extents/focus_amount,
 				extents/focus_amount),
-				Color.lightseagreen, false, 5.0)
+				Color.lightsalmon, false, 5.0)
 		if lock_horizontal:
 			draw_line(Vector2(0, -400), Vector2(0, 400), Color.red, 5.0)
 		if lock_vertical:
 			draw_line(Vector2(-400, 0), Vector2(400, 0), Color.red, 5.0)
-		draw_circle(center_position, 20, Color.lightcyan)
+		draw_circle(center_position, 20, Color.darkorange)
 
 
 func _ready():

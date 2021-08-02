@@ -16,10 +16,9 @@ func area_entered(area):
 		emit_signal("state_override", "jump")
 	if area.is_in_group("booster"):
 		if area.activate():
-			player_controller.banish_position = area.global_position
+			player_controller.banish_position = area.get_banish_position()
 			if not area.is_connected("launch", player_controller, "launch"):
 				area.connect("launch", player_controller, "launch")
-			area.activate()
 			emit_signal("state_override", "banished")
 	if area.is_in_group("spikes"):
 		player_controller.banish_position = player.global_position

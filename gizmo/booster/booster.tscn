@@ -1,16 +1,49 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=30 format=2]
 
 [ext_resource path="res://gizmo/booster/booster.gd" type="Script" id=1]
 [ext_resource path="res://decoration/tile/scrolling_tile.tres" type="Material" id=2]
 [ext_resource path="res://decoration/tiling_sprite.tscn" type="PackedScene" id=3]
+[ext_resource path="res://decoration/sprites/arrow.png" type="Texture" id=4]
 [ext_resource path="res://decoration/sprites/semicircle.png" type="Texture" id=5]
 [ext_resource path="res://game/color_node.gd" type="Script" id=6]
 [ext_resource path="res://airbrush.png" type="Texture" id=7]
+[ext_resource path="res://gizmo/booster/dotted_line.png" type="Texture" id=8]
+[ext_resource path="res://gizmo/booster/dot.gd" type="Script" id=9]
 
 [sub_resource type="CircleShape2D" id=1]
 radius = 64.0
 
-[sub_resource type="Shader" id=2]
+[sub_resource type="Animation" id=2]
+resource_name = "default"
+length = 0.8
+loop = true
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.45 ),
+"transitions": PoolRealArray( -2, -2 ),
+"update": 0,
+"values": [ Vector2( 0, -100 ), Vector2( 0, -115 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.05, 0.55 ),
+"transitions": PoolRealArray( -1.56917, -1.56917 ),
+"update": 0,
+"values": [ Vector2( 0.18, 0.18 ), Vector2( 0.2, 0.2 ) ]
+}
+
+[sub_resource type="Shader" id=3]
 resource_local_to_scene = true
 code = "shader_type canvas_item;
 
@@ -23,17 +56,17 @@ void fragment() {
 	COLOR.a = texture(TEXTURE, UV).a;
 }"
 
-[sub_resource type="ShaderMaterial" id=3]
-resource_local_to_scene = true
-shader = SubResource( 2 )
-shader_param/flip = true
-
 [sub_resource type="ShaderMaterial" id=4]
 resource_local_to_scene = true
-shader = SubResource( 2 )
+shader = SubResource( 3 )
 shader_param/flip = true
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="ShaderMaterial" id=5]
+resource_local_to_scene = true
+shader = SubResource( 3 )
+shader_param/flip = true
+
+[sub_resource type="Animation" id=6]
 length = 0.4
 step = 0.05
 tracks/0/type = "value"
@@ -109,7 +142,7 @@ tracks/5/keys = {
 "values": [ Vector2( 0, 0 ), Vector2( 0, -80 ) ]
 }
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=7]
 length = 0.4
 step = 0.05
 tracks/0/type = "value"
@@ -173,7 +206,7 @@ tracks/4/keys = {
 "values": [ Vector2( 1, 1 ), Vector2( 1.2, 1.2 ), Vector2( 0.2, 0.2 ) ]
 }
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=8]
 length = 1.6
 loop = true
 tracks/0/type = "value"
@@ -249,7 +282,7 @@ tracks/5/keys = {
 "values": [ Vector2( 0, 0 ) ]
 }
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=9]
 length = 0.1
 loop = true
 step = 0.05
@@ -278,118 +311,166 @@ tracks/1/keys = {
 "values": [ 100.0, 106.0 ]
 }
 
-[sub_resource type="AnimationNodeAdd2" id=9]
-
-[sub_resource type="AnimationNodeAnimation" id=10]
-animation = "shake"
+[sub_resource type="AnimationNodeAdd2" id=10]
 
 [sub_resource type="AnimationNodeAnimation" id=11]
+animation = "shake"
+
+[sub_resource type="AnimationNodeAnimation" id=12]
 animation = "activate"
 
-[sub_resource type="AnimationNodeBlendTree" id=12]
+[sub_resource type="AnimationNodeBlendTree" id=13]
 graph_offset = Vector2( -100, 63 )
-nodes/Add2/node = SubResource( 9 )
+nodes/Add2/node = SubResource( 10 )
 nodes/Add2/position = Vector2( 180, 120 )
-nodes/Animation/node = SubResource( 11 )
+nodes/Animation/node = SubResource( 12 )
 nodes/Animation/position = Vector2( -40, 100 )
-"nodes/Animation 2/node" = SubResource( 10 )
+"nodes/Animation 2/node" = SubResource( 11 )
 "nodes/Animation 2/position" = Vector2( -40, 220 )
 nodes/output/position = Vector2( 420, 140 )
 node_connections = [ "output", 0, "Add2", "Add2", 0, "Animation", "Add2", 1, "Animation 2" ]
 
-[sub_resource type="AnimationNodeAnimation" id=13]
+[sub_resource type="AnimationNodeAnimation" id=14]
 animation = "deactivate"
 
-[sub_resource type="AnimationNodeAnimation" id=14]
+[sub_resource type="AnimationNodeAnimation" id=15]
 animation = "idle"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=15]
+[sub_resource type="AnimationNodeStateMachineTransition" id=16]
 xfade_time = 0.1
 
-[sub_resource type="AnimationNodeStateMachineTransition" id=16]
-
 [sub_resource type="AnimationNodeStateMachineTransition" id=17]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id=18]
 switch_mode = 2
 auto_advance = true
 xfade_time = 0.1
 
-[sub_resource type="AnimationNodeStateMachine" id=18]
-states/activate/node = SubResource( 12 )
+[sub_resource type="AnimationNodeStateMachine" id=19]
+states/activate/node = SubResource( 13 )
 states/activate/position = Vector2( 668, 121 )
-states/deactivate/node = SubResource( 13 )
+states/deactivate/node = SubResource( 14 )
 states/deactivate/position = Vector2( 550, 222 )
-states/idle/node = SubResource( 14 )
+states/idle/node = SubResource( 15 )
 states/idle/position = Vector2( 437, 121 )
-transitions = [ "idle", "activate", SubResource( 15 ), "activate", "deactivate", SubResource( 16 ), "deactivate", "idle", SubResource( 17 ) ]
+transitions = [ "idle", "activate", SubResource( 16 ), "activate", "deactivate", SubResource( 17 ), "deactivate", "idle", SubResource( 18 ) ]
 start_node = "idle"
 
-[sub_resource type="AnimationNodeStateMachinePlayback" id=19]
+[sub_resource type="AnimationNodeStateMachinePlayback" id=20]
 
-[node name="Booster" type="Area2D" groups=[
+[node name="Booster" type="Line2D"]
+points = PoolVector2Array( 0, 0, 500, 0 )
+default_color = Color( 1, 1, 1, 1 )
+texture = ExtResource( 8 )
+texture_mode = 1
+
+[node name="Booster" type="Area2D" parent="." groups=[
 "booster",
 ]]
 collision_layer = 4
 collision_mask = 2
 script = ExtResource( 1 )
+line_path = NodePath(".")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Booster"]
 shape = SubResource( 1 )
 
-[node name="Control" type="Node2D" parent="."]
+[node name="Control" type="Node2D" parent="Booster"]
 scale = Vector2( 0.2, 0.2 )
 
-[node name="ColorNode" type="Node2D" parent="Control"]
+[node name="ColorNode" type="Node2D" parent="Booster/Control"]
 scale = Vector2( 2, 1 )
 script = ExtResource( 6 )
 layer = 2
 
-[node name="Indicator" parent="Control/ColorNode" instance=ExtResource( 3 )]
+[node name="Indicator" parent="Booster/Control/ColorNode" instance=ExtResource( 3 )]
 modulate = Color( 0, 0.156863, 1, 1 )
 material = ExtResource( 2 )
 scale = Vector2( 1, 5.16 )
 texture = ExtResource( 7 )
 
-[node name="Sprite" type="Sprite" parent="Control/ColorNode"]
+[node name="Sprite" type="Sprite" parent="Booster/Control/ColorNode"]
 modulate = Color( 0, 0.0156863, 1, 1 )
 scale = Vector2( 0.4, 4 )
 texture = ExtResource( 7 )
 
-[node name="ColorNode" type="Node2D" parent="."]
+[node name="ColorNode" type="Node2D" parent="Booster"]
 script = ExtResource( 6 )
 layer = 2
 
-[node name="Sprite" type="Sprite" parent="ColorNode"]
+[node name="Sprite" type="Sprite" parent="Booster/ColorNode"]
 texture = ExtResource( 7 )
 
-[node name="Semi1" type="Sprite" parent="."]
+[node name="Arrow" type="Sprite" parent="Booster/ColorNode"]
+position = Vector2( 0, -114.832 )
+rotation = -0.785398
+scale = Vector2( 0.196255, 0.196255 )
+texture = ExtResource( 4 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Booster/ColorNode/Arrow"]
+autoplay = "default"
+anims/default = SubResource( 2 )
+
+[node name="Semi1" type="Sprite" parent="Booster"]
 modulate = Color( 0.627451, 0.627451, 0.627451, 1 )
-material = SubResource( 3 )
-position = Vector2( 31.1016, 0 )
+material = SubResource( 4 )
+position = Vector2( 32.6233, 0 )
 rotation = 1.5708
 scale = Vector2( 0.1, 0.1 )
 texture = ExtResource( 5 )
 
-[node name="Semi2" type="Sprite" parent="."]
+[node name="Semi2" type="Sprite" parent="Booster"]
 modulate = Color( 0.627451, 0.627451, 0.627451, 1 )
-material = SubResource( 4 )
-position = Vector2( -31.1016, 0 )
+material = SubResource( 5 )
+position = Vector2( -32.6233, 0 )
 rotation = -1.5708
 scale = Vector2( 0.1, 0.1 )
 texture = ExtResource( 5 )
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/activate = SubResource( 5 )
-anims/deactivate = SubResource( 6 )
-anims/idle = SubResource( 7 )
-anims/shake = SubResource( 8 )
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Booster"]
+anims/activate = SubResource( 6 )
+anims/deactivate = SubResource( 7 )
+anims/idle = SubResource( 8 )
+anims/shake = SubResource( 9 )
 
-[node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource( 18 )
+[node name="AnimationTree" type="AnimationTree" parent="Booster"]
+tree_root = SubResource( 19 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
-parameters/playback = SubResource( 19 )
+parameters/playback = SubResource( 20 )
 parameters/activate/Add2/add_amount = 1.0
 
-[node name="Cooldown" type="Timer" parent="."]
+[node name="Cooldown" type="Timer" parent="Booster"]
 wait_time = 0.4
 one_shot = true
+
+[node name="Delay" type="Timer" parent="Booster"]
+wait_time = 1.2
+one_shot = true
+
+[node name="Tween" type="Tween" parent="Booster"]
+
+[node name="Booster2" type="Line2D" parent="."]
+visible = false
+points = PoolVector2Array( 0, 0, 500, 0 )
+default_color = Color( 1, 1, 1, 1 )
+texture = ExtResource( 8 )
+texture_mode = 1
+
+[node name="ColorNode" type="Node2D" parent="."]
+script = ExtResource( 6 )
+layer = 2
+remote_path = NodePath("..")
+duplicate_remote = true
+ignore_rotation = true
+
+[node name="Sprite1" type="Sprite" parent="ColorNode"]
+scale = Vector2( 0.6, 0.6 )
+texture = ExtResource( 7 )
+
+[node name="Sprite2" type="Sprite" parent="ColorNode"]
+position = Vector2( 502.682, 0 )
+scale = Vector2( 0.6, 0.6 )
+texture = ExtResource( 7 )
+script = ExtResource( 9 )
+line_path = NodePath("../..")

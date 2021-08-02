@@ -2,6 +2,7 @@ extends Area2D
 
 
 const MIN_WEIGHT = 0.001
+const RETURN_WEIGHT = 0.03
 const MAX_WEIGHT = 0.07
 const WEIGHT_ACCEL = 0.0007
 
@@ -77,8 +78,8 @@ func area_entered(area):
 
 func area_exited(area):
 	if area.is_in_group("focus_box"):
-		weight = MIN_WEIGHT
 		focus_box = null
+		weight = RETURN_WEIGHT
 
 
 func _on_ShakeTimer_timeout():

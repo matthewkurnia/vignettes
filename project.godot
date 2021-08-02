@@ -29,6 +29,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://enemy/enemy_ground.gd"
 }, {
+"base": "Node2D",
+"class": "MainRoot",
+"language": "GDScript",
+"path": "res://game/main.gd"
+}, {
+"base": "Node2D",
+"class": "ObjectPlacer2D",
+"language": "GDScript",
+"path": "res://addons/object_placer/object_placer.gd"
+}, {
 "base": "State",
 "class": "PlayerState",
 "language": "GDScript",
@@ -165,15 +175,27 @@ _global_script_classes=[ {
 "path": "res://addons/rmsmartshape/vertex_properties.gd"
 }, {
 "base": "Node",
+"class": "SnapConfig",
+"language": "GDScript",
+"path": "res://snap_settings.gd"
+}, {
+"base": "Node",
 "class": "State",
 "language": "GDScript",
 "path": "res://state.gd"
+}, {
+"base": "Sprite",
+"class": "TilingSprite",
+"language": "GDScript",
+"path": "res://decoration/tile.gd"
 } ]
 _global_script_class_icons={
 "AirEnemy": "",
 "ColorNode": "",
 "Enemy": "",
 "GroundedEnemy": "",
+"MainRoot": "",
+"ObjectPlacer2D": "res://addons/object_placer/icon.svg",
 "PlayerState": "",
 "RMS2D_Material": "",
 "RMS2D_VertexProperties": "",
@@ -201,7 +223,9 @@ _global_script_class_icons={
 "SS2D_Shape_Render": "",
 "SS2D_Strings": "",
 "SS2D_VertexProperties": "",
-"State": ""
+"SnapConfig": "",
+"State": "",
+"TilingSprite": ""
 }
 
 [application]
@@ -216,6 +240,7 @@ Util="*res://utility/util.tscn"
 Game="*res://game/game_singleton.gd"
 Player="*res://player/player_singleton.tscn"
 Cam="*res://camera/camera_singleton.gd"
+Demo="*res://demo/demo.gd"
 
 [display]
 
@@ -228,7 +253,7 @@ window/stretch/aspect="keep"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "res://addons/Trail/plugin.cfg", "res://addons/rmsmartshape/plugin.cfg" )
+enabled=PoolStringArray( "res://addons/Trail/plugin.cfg", "res://addons/object_placer/plugin.cfg", "res://addons/rmsmartshape/plugin.cfg" )
 
 [importer_defaults]
 
@@ -240,7 +265,7 @@ texture={
 "compress/normal_map": 0,
 "detect_3d": true,
 "flags/anisotropic": false,
-"flags/filter": true,
+"flags/filter": false,
 "flags/mipmaps": false,
 "flags/repeat": 1,
 "flags/srgb": 2,

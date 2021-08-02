@@ -12,19 +12,25 @@ var active = true
 
 func _physics_process(delta):
 	if not has_player:
+		animation_player.playback_speed = 1.0
 		animation_player.play("reactivate")
 		set_physics_process(false)
 
 
-func body_entered(body):
+func on_body_entered(body):
+	check_player(body, 3.0, 1.0)
+
+
+func check_player(body, time: float, speed: float = 1.0):
 	if body == player:
 		if active:
+			animation_player.playback_speed = speed
+			timer.start(time)
 			animation_player.play("deactivate")
-			timer.start()
 		has_player = true
 
 
-func body_exited(body):
+func on_body_exited(body):
 	if body == player:
 		has_player = false
 

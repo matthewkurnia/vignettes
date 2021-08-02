@@ -34,7 +34,7 @@ func update(delta):
 		buffer.stop()
 		player.velocity.y = min(-player.JUMP_STRENGTH,
 								player.velocity.y * 0.8 - player.JUMP_STRENGTH)
-		player.velocity.x = -player.get_wall_status() * player.JUMP_STRENGTH
+		player.velocity.x = -player.get_wall_status() * player.JUMP_STRENGTH * 1.2
 		emit_signal("finished", "jump")
 		return
 	

@@ -5,6 +5,7 @@ export(Game.Layer) var layer = Game.Layer.OVERLAY
 export var remote_path: NodePath
 export var duplicate_remote = false
 export var modulate_color = true
+export var ignore_rotation = false
 
 
 func _ready():
@@ -26,6 +27,8 @@ func reparrent(rt):
 			remote_node.get_parent().remove_child(remote_node)
 		self.add_child(remote_node)
 		remote_node.global_position = prev_position
+		if ignore_rotation:
+			remote_node.rotation = 0
 	if modulate_color:
 		self.modulate = Color.black
 	get_parent().add_child(rt)

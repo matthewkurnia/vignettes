@@ -163,7 +163,6 @@ rotation = 1.5708
 shape = SubResource( 1 )
 
 [node name="Parts" type="Node2D" parent="."]
-position = Vector2( 0, -4.55315 )
 
 [node name="ColorNode" type="Node2D" parent="Parts"]
 modulate = Color( 0.721569, 0.235294, 0.235294, 1 )
@@ -173,7 +172,7 @@ layer = 2
 
 [node name="Particles2D" type="Particles2D" parent="Parts/ColorNode"]
 amount = 30
-local_coords = false
+visibility_rect = Rect2( -500, -500, 1000, 1000 )
 process_material = SubResource( 6 )
 texture = ExtResource( 5 )
 
