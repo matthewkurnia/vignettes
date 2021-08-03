@@ -5,6 +5,7 @@ signal state_override(state)
 
 export var PlayerDeath: PackedScene
 
+var input_enabled := true
 var health: int
 var actor: Node
 var damage: int = 1
@@ -14,6 +15,11 @@ var camera
 
 onready var respawn_delay = $RespawnDelay
 onready var fade_delay = $FadeDelay
+
+
+func _input(event):
+	if Input.is_action_just_pressed("ui_accept"):
+		set_input_enabled(not input_enabled)
 
 
 func set_player_node(node):
@@ -26,6 +32,10 @@ func get_player_node():
 
 func set_spawn_position(pos: Vector2):
 	spawn_position = pos
+
+
+func set_input_enabled(value: bool):
+	input_enabled = value
 
 
 func start_death_sequence():

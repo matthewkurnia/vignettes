@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=32 format=2]
 
 [ext_resource path="res://addons/rmsmartshape/materials/shape_material.gd" type="Script" id=1]
 [ext_resource path="res://addons/rmsmartshape/shapes/shape_open.gd" type="Script" id=2]
@@ -12,38 +12,39 @@
 [ext_resource path="res://gizmo/spikes/spikes2.png" type="Texture" id=10]
 [ext_resource path="res://gizmo/spikes/spikes1.png" type="Texture" id=11]
 [ext_resource path="res://game/color_node.gd" type="Script" id=12]
+[ext_resource path="res://decoration/sprites/soft_noise.png" type="Texture" id=13]
 
-[sub_resource type="Resource" id=1]
+[sub_resource type="Resource" id=19]
 script = ExtResource( 3 )
 texture_idx = 0
 flip = false
 width = 1.0
 
-[sub_resource type="Resource" id=2]
+[sub_resource type="Resource" id=20]
 script = ExtResource( 5 )
 position = Vector2( -70, -17.25 )
 point_in = Vector2( 0, 0 )
 point_out = Vector2( 0, 0 )
-properties = SubResource( 1 )
+properties = SubResource( 19 )
 
-[sub_resource type="Resource" id=3]
+[sub_resource type="Resource" id=21]
 script = ExtResource( 3 )
 texture_idx = -6
 flip = false
 width = 1.0
 
-[sub_resource type="Resource" id=4]
+[sub_resource type="Resource" id=22]
 script = ExtResource( 5 )
 position = Vector2( 186, -113.25 )
 point_in = Vector2( 0, 0 )
 point_out = Vector2( 0, 0 )
-properties = SubResource( 3 )
+properties = SubResource( 21 )
 
-[sub_resource type="Resource" id=5]
+[sub_resource type="Resource" id=23]
 script = ExtResource( 4 )
 _points = {
-3: SubResource( 2 ),
-4: SubResource( 4 )
+3: SubResource( 20 ),
+4: SubResource( 22 )
 }
 _point_order = [ 3, 4 ]
 _constraints = {
@@ -58,6 +59,53 @@ fill_texture_normals = [  ]
 fill_texture_z_index = -10
 fill_mesh_offset = 0.0
 render_offset = 0.0
+
+[sub_resource type="Shader" id=17]
+resource_local_to_scene = true
+code = "shader_type canvas_item;
+
+uniform float rotation = 0.0;
+uniform sampler2D noise;
+uniform sampler2D mask;
+uniform float frequency_x = 1.0;
+uniform float frequency_y = 1.0;
+uniform float amplitude = 3.0;
+uniform vec2 tile_factor = vec2(1.0, 1.0);
+
+vec2 rotate_uv(vec2 uv, vec2 pivot, float rot) {
+    float sine = sin(rot);
+    float cosine = cos(rot);
+
+    uv -= pivot;
+	float new_x = uv.x * cosine - uv.y * sine;
+	float new_y = uv.x * sine + uv.y * cosine;
+    uv.x = new_x;
+    uv.y = new_y;
+    uv += pivot;
+
+    return uv;
+}
+
+void fragment() {
+	vec2 tiled_uv = rotate_uv(UV * tile_factor, vec2(0.5), rotation);
+	vec2 t_uv = UV + vec2(TIME*frequency_x, TIME * frequency_y);
+	tiled_uv += texture(noise, t_uv).rg * amplitude;
+	tiled_uv.x += amplitude * sin(TIME * frequency_x + tiled_uv.y * frequency_x);
+	tiled_uv.y += amplitude * cos(TIME * frequency_y + tiled_uv.x * frequency_y);
+	COLOR = texture(TEXTURE, tiled_uv);
+	COLOR.a *= texture(mask, UV).a;
+	
+}"
+
+[sub_resource type="ShaderMaterial" id=18]
+resource_local_to_scene = true
+shader = SubResource( 17 )
+shader_param/rotation = 0.0
+shader_param/frequency_x = -0.15
+shader_param/frequency_y = 0.04
+shader_param/amplitude = 0.05
+shader_param/tile_factor = Vector2( 1, 1 )
+shader_param/noise = ExtResource( 13 )
 
 [sub_resource type="Resource" id=7]
 script = ExtResource( 7 )
@@ -75,6 +123,7 @@ randomize_texture = false
 use_corner_texture = true
 use_taper_texture = true
 fit_mode = 0
+material = SubResource( 18 )
 
 [sub_resource type="Resource" id=8]
 script = ExtResource( 8 )
@@ -101,7 +150,54 @@ fill_texture_z_index = -10
 fill_mesh_offset = 0.0
 render_offset = 0.0
 
-[sub_resource type="Resource" id=11]
+[sub_resource type="Shader" id=11]
+resource_local_to_scene = true
+code = "shader_type canvas_item;
+
+uniform float rotation = 0.0;
+uniform sampler2D noise;
+uniform sampler2D mask;
+uniform float frequency_x = 1.0;
+uniform float frequency_y = 1.0;
+uniform float amplitude = 3.0;
+uniform vec2 tile_factor = vec2(1.0, 1.0);
+
+vec2 rotate_uv(vec2 uv, vec2 pivot, float rot) {
+    float sine = sin(rot);
+    float cosine = cos(rot);
+
+    uv -= pivot;
+	float new_x = uv.x * cosine - uv.y * sine;
+	float new_y = uv.x * sine + uv.y * cosine;
+    uv.x = new_x;
+    uv.y = new_y;
+    uv += pivot;
+
+    return uv;
+}
+
+void fragment() {
+	vec2 tiled_uv = rotate_uv(UV * tile_factor, vec2(0.5), rotation);
+	vec2 t_uv = UV + vec2(TIME*frequency_x, TIME * frequency_y);
+	tiled_uv += texture(noise, t_uv).rg * amplitude;
+	tiled_uv.x += amplitude * sin(TIME + tiled_uv.y * frequency_x);
+	tiled_uv.y += amplitude * cos(TIME + tiled_uv.x * frequency_x);
+	COLOR = texture(TEXTURE, tiled_uv);
+	COLOR.a *= texture(mask, UV).a;
+	
+}"
+
+[sub_resource type="ShaderMaterial" id=12]
+resource_local_to_scene = true
+shader = SubResource( 11 )
+shader_param/rotation = 0.0
+shader_param/frequency_x = 0.3
+shader_param/frequency_y = 0.1
+shader_param/amplitude = 0.04
+shader_param/tile_factor = Vector2( 1, 1 )
+shader_param/noise = ExtResource( 13 )
+
+[sub_resource type="Resource" id=13]
 script = ExtResource( 7 )
 textures = [ ExtResource( 10 ) ]
 texture_normals = [  ]
@@ -117,26 +213,27 @@ randomize_texture = false
 use_corner_texture = true
 use_taper_texture = true
 fit_mode = 1
+material = SubResource( 12 )
 
-[sub_resource type="Resource" id=12]
+[sub_resource type="Resource" id=14]
 script = ExtResource( 8 )
 begin = 0.0
 distance = 0.0
 edgeRendering = Vector2( 0, 0 )
 
-[sub_resource type="Resource" id=13]
+[sub_resource type="Resource" id=15]
 script = ExtResource( 9 )
-edge_material = SubResource( 11 )
-normal_range = SubResource( 12 )
+edge_material = SubResource( 13 )
+normal_range = SubResource( 14 )
 weld = true
 render = true
 z_index = 0
 z_as_relative = true
 offset = 0.0
 
-[sub_resource type="Resource" id=14]
+[sub_resource type="Resource" id=16]
 script = ExtResource( 1 )
-_edge_meta_materials = [ SubResource( 13 ) ]
+_edge_meta_materials = [ SubResource( 15 ) ]
 fill_textures = [  ]
 fill_texture_normals = [  ]
 fill_texture_z_index = -10
@@ -146,7 +243,7 @@ render_offset = 0.0
 [node name="Spikes" type="Node2D"]
 position = Vector2( 6, 17.25 )
 script = ExtResource( 6 )
-_points = SubResource( 5 )
+_points = SubResource( 23 )
 material_overrides = {
 }
 shape_material = SubResource( 6 )
@@ -160,7 +257,7 @@ collision_polygon_node_path = NodePath("")
 
 [node name="Spikes2" type="Node2D" parent="."]
 script = ExtResource( 2 )
-_points = SubResource( 5 )
+_points = SubResource( 23 )
 material_overrides = {
 }
 shape_material = SubResource( 10 )
@@ -174,10 +271,10 @@ collision_polygon_node_path = NodePath("")
 
 [node name="Spikes1" type="Node2D" parent="."]
 script = ExtResource( 2 )
-_points = SubResource( 5 )
+_points = SubResource( 23 )
 material_overrides = {
 }
-shape_material = SubResource( 14 )
+shape_material = SubResource( 16 )
 tessellation_stages = 5
 tessellation_tolerence = 4.0
 flip_edges = false

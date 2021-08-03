@@ -44,11 +44,12 @@ func set_lock_vertical(value):
 
 func _draw():
 	if Engine.editor_hint:
-		draw_rect(Rect2(-0.5 * extents/focus_amount + margin,
-				extents/focus_amount - 2*margin),
+		var ext = extents
+		if focus_amount != 0:
+			ext = ext/focus_amount
+		draw_rect(Rect2(-0.5 * ext + margin, ext - 2*margin),
 				Color.lightcoral, false, 5.0)
-		draw_rect(Rect2(-0.5 * extents/focus_amount,
-				extents/focus_amount),
+		draw_rect(Rect2(-0.5 * ext, ext),
 				Color.lightsalmon, false, 5.0)
 		if lock_horizontal:
 			draw_line(Vector2(0, -400), Vector2(0, 400), Color.red, 5.0)
@@ -61,7 +62,10 @@ func _ready():
 	if Engine.editor_hint:
 		return
 	collision.shape = RectangleShape2D.new()
-	collision.shape.extents = extents * 0.5 / focus_amount - margin
+	if focus_amount != 0:
+		collision.shape.extents = extents * 0.5 / focus_amount - margin
+	else:
+		collision.shape.extents = extents * 0.5 - margin
 
 
 func get_global_focus_point():

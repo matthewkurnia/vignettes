@@ -1,4 +1,4 @@
-[gd_scene load_steps=229 format=2]
+[gd_scene load_steps=233 format=2]
 
 [ext_resource path="res://addons/rmsmartshape/shapes/point_array.gd" type="Script" id=1]
 [ext_resource path="res://addons/rmsmartshape/shapes/point.gd" type="Script" id=2]
@@ -1158,7 +1158,7 @@ width = 1.0
 
 [sub_resource type="Resource" id=163]
 script = ExtResource( 2 )
-position = Vector2( 4768, 992 )
+position = Vector2( 13792, 2272 )
 point_in = Vector2( 0, 0 )
 point_out = Vector2( 0, 0 )
 properties = SubResource( 162 )
@@ -1418,12 +1418,38 @@ width = 1.0
 
 [sub_resource type="Resource" id=203]
 script = ExtResource( 2 )
-position = Vector2( 5088, -1376 )
+position = Vector2( 14240, -1280 )
 point_in = Vector2( 0, 0 )
 point_out = Vector2( 0, 0 )
 properties = SubResource( 202 )
 
 [sub_resource type="Resource" id=204]
+script = ExtResource( 3 )
+texture_idx = 0
+flip = false
+width = 1.0
+
+[sub_resource type="Resource" id=205]
+script = ExtResource( 2 )
+position = Vector2( 6848, -1216 )
+point_in = Vector2( -864, 0 )
+point_out = Vector2( 2112, 64 )
+properties = SubResource( 204 )
+
+[sub_resource type="Resource" id=206]
+script = ExtResource( 3 )
+texture_idx = 0
+flip = false
+width = 1.0
+
+[sub_resource type="Resource" id=207]
+script = ExtResource( 2 )
+position = Vector2( 10784, -1408 )
+point_in = Vector2( -1952, 0 )
+point_out = Vector2( 2752, -96 )
+properties = SubResource( 206 )
+
+[sub_resource type="Resource" id=208]
 script = ExtResource( 1 )
 _points = {
 7: SubResource( 159 ),
@@ -1448,119 +1474,121 @@ _points = {
 43: SubResource( 197 ),
 44: SubResource( 199 ),
 45: SubResource( 201 ),
-46: SubResource( 203 )
+46: SubResource( 203 ),
+47: SubResource( 205 ),
+48: SubResource( 207 )
 }
-_point_order = [ 7, 8, 38, 25, 26, 39, 29, 15, 40, 30, 18, 41, 21, 31, 43, 34, 23, 45, 44, 46, 9, 11, 10 ]
+_point_order = [ 7, 8, 38, 25, 26, 39, 29, 15, 40, 30, 18, 41, 21, 31, 43, 34, 23, 45, 44, 47, 48, 46, 9, 11, 10 ]
 _constraints = {
 [ 7, 10 ]: 15
 }
-_next_key = 47
+_next_key = 49
 
-[sub_resource type="Resource" id=205]
+[sub_resource type="Resource" id=209]
 script = ExtResource( 3 )
 texture_idx = 0
 flip = false
 width = 1.0
 
-[sub_resource type="Resource" id=206]
+[sub_resource type="Resource" id=210]
 script = ExtResource( 2 )
 position = Vector2( -96, -32 )
 point_in = Vector2( 0, 0 )
 point_out = Vector2( 0, 0 )
-properties = SubResource( 205 )
+properties = SubResource( 209 )
 
-[sub_resource type="Resource" id=207]
+[sub_resource type="Resource" id=211]
 script = ExtResource( 3 )
 texture_idx = 0
 flip = false
 width = 1.0
 
-[sub_resource type="Resource" id=208]
+[sub_resource type="Resource" id=212]
 script = ExtResource( 2 )
 position = Vector2( 320, -32 )
 point_in = Vector2( 0, 0 )
 point_out = Vector2( 0, 0 )
-properties = SubResource( 207 )
+properties = SubResource( 211 )
 
-[sub_resource type="Resource" id=209]
+[sub_resource type="Resource" id=213]
 script = ExtResource( 1 )
 _points = {
-3: SubResource( 206 ),
-4: SubResource( 208 )
+3: SubResource( 210 ),
+4: SubResource( 212 )
 }
 _point_order = [ 3, 4 ]
 _constraints = {
 }
 _next_key = 3
 
-[sub_resource type="Resource" id=210]
+[sub_resource type="Resource" id=214]
 script = ExtResource( 3 )
 texture_idx = 0
 flip = false
 width = 1.0
 
-[sub_resource type="Resource" id=211]
+[sub_resource type="Resource" id=215]
 script = ExtResource( 2 )
 position = Vector2( -200.487, -55.196 )
 point_in = Vector2( 0, 0 )
 point_out = Vector2( 0, 0 )
-properties = SubResource( 210 )
+properties = SubResource( 214 )
 
-[sub_resource type="Resource" id=212]
+[sub_resource type="Resource" id=216]
 script = ExtResource( 3 )
 texture_idx = -6
 flip = false
 width = 1.0
 
-[sub_resource type="Resource" id=213]
+[sub_resource type="Resource" id=217]
 script = ExtResource( 2 )
 position = Vector2( 218.109, 25.4529 )
 point_in = Vector2( 0, 0 )
 point_out = Vector2( 0, 0 )
-properties = SubResource( 212 )
+properties = SubResource( 216 )
 
-[sub_resource type="Resource" id=214]
+[sub_resource type="Resource" id=218]
 script = ExtResource( 1 )
 _points = {
-3: SubResource( 211 ),
-4: SubResource( 213 )
+3: SubResource( 215 ),
+4: SubResource( 217 )
 }
 _point_order = [ 3, 4 ]
 _constraints = {
 }
 _next_key = 3
 
-[sub_resource type="Resource" id=215]
+[sub_resource type="Resource" id=219]
 script = ExtResource( 3 )
 texture_idx = 0
 flip = false
 width = 1.0
 
-[sub_resource type="Resource" id=216]
+[sub_resource type="Resource" id=220]
 script = ExtResource( 2 )
 position = Vector2( -166, -17.25 )
 point_in = Vector2( 0, 0 )
 point_out = Vector2( 0, 0 )
-properties = SubResource( 215 )
+properties = SubResource( 219 )
 
-[sub_resource type="Resource" id=217]
+[sub_resource type="Resource" id=221]
 script = ExtResource( 3 )
 texture_idx = -6
 flip = false
 width = 1.0
 
-[sub_resource type="Resource" id=218]
+[sub_resource type="Resource" id=222]
 script = ExtResource( 2 )
 position = Vector2( 410, 14.75 )
 point_in = Vector2( 0, 0 )
 point_out = Vector2( 0, 0 )
-properties = SubResource( 217 )
+properties = SubResource( 221 )
 
-[sub_resource type="Resource" id=219]
+[sub_resource type="Resource" id=223]
 script = ExtResource( 1 )
 _points = {
-3: SubResource( 216 ),
-4: SubResource( 218 )
+3: SubResource( 220 ),
+4: SubResource( 222 )
 }
 _point_order = [ 3, 4 ]
 _constraints = {
@@ -1610,7 +1638,7 @@ material_overrides = {
 
 [node name="Wall7" parent="MainLayer/Walls" instance=ExtResource( 4 )]
 position = Vector2( 17024, 832 )
-_points = SubResource( 204 )
+_points = SubResource( 208 )
 material_overrides = {
 }
 
@@ -1618,19 +1646,19 @@ material_overrides = {
 
 [node name="Spikes" parent="MainLayer/Spikes" instance=ExtResource( 7 )]
 position = Vector2( 6368, 320 )
-_points = SubResource( 209 )
+_points = SubResource( 213 )
 material_overrides = {
 }
 
 [node name="Spikes2" parent="MainLayer/Spikes" instance=ExtResource( 7 )]
 position = Vector2( 7174, 305.25 )
-_points = SubResource( 214 )
+_points = SubResource( 218 )
 material_overrides = {
 }
 
 [node name="Spikes3" parent="MainLayer/Spikes" instance=ExtResource( 7 )]
 position = Vector2( 14502, -142.75 )
-_points = SubResource( 219 )
+_points = SubResource( 223 )
 material_overrides = {
 }
 

@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://game/game.gd" type="Script" id=1]
 [ext_resource path="res://interface/fade.tscn" type="PackedScene" id=2]
 [ext_resource path="res://game/materials/grain_material.tres" type="Material" id=3]
 [ext_resource path="res://demo/level2.tscn" type="PackedScene" id=4]
 [ext_resource path="res://game/materials/clear_material.tres" type="Material" id=5]
+[ext_resource path="res://game/color_layer.gd" type="Script" id=6]
 [ext_resource path="res://game/background.tscn" type="PackedScene" id=9]
 [ext_resource path="res://game/materials/overlay_material.tres" type="Material" id=11]
 [ext_resource path="res://game/materials/particles_material.tres" type="Material" id=12]
@@ -15,6 +16,7 @@ main_path = NodePath("WorldRender/Main/MainViewport/Root")
 overlay_path = NodePath("WorldRender/Overlay/OverlayViewport/Root")
 particles_path = NodePath("WorldRender/Particles/ParticlesViewport/Root")
 clear_path = NodePath("WorldRender/Clear/OverlayViewport/Root")
+fade_path = NodePath("WorldRender/ClearAll/OverlayViewport/Root/Fade")
 
 [node name="WorldRender" type="Node" parent="."]
 
@@ -43,6 +45,7 @@ render_target_update_mode = 3
 [node name="Background" parent="WorldRender/Particles/ParticlesViewport" instance=ExtResource( 9 )]
 
 [node name="Root" type="CanvasLayer" parent="WorldRender/Particles/ParticlesViewport"]
+script = ExtResource( 6 )
 
 [node name="Overlay" type="ViewportContainer" parent="WorldRender"]
 material = ExtResource( 11 )
@@ -62,6 +65,7 @@ render_target_update_mode = 3
 [node name="Background" parent="WorldRender/Overlay/OverlayViewport" instance=ExtResource( 9 )]
 
 [node name="Root" type="CanvasLayer" parent="WorldRender/Overlay/OverlayViewport"]
+script = ExtResource( 6 )
 
 [node name="Clear" type="ViewportContainer" parent="WorldRender"]
 material = ExtResource( 5 )
@@ -81,6 +85,7 @@ render_target_update_mode = 3
 [node name="Background" parent="WorldRender/Clear/OverlayViewport" instance=ExtResource( 9 )]
 
 [node name="Root" type="CanvasLayer" parent="WorldRender/Clear/OverlayViewport"]
+script = ExtResource( 6 )
 
 [node name="Main" type="ViewportContainer" parent="WorldRender"]
 material = ExtResource( 3 )

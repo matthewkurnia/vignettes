@@ -24,8 +24,8 @@ func _physics_process(delta):
 		emit_signal("state_override", "wall_slide")
 	if not player.is_on_floor() and just_reached_edge() and not player.sliding:
 		emit_signal("state_override", "climb")
-	if Input.is_action_just_pressed("slide"):
-		slide.start()
+	if not Player.input_enabled:
+		return
 	player.direction = sign(Input.get_action_strength("move_right") -
 					  Input.get_action_strength("move_left"))
 	player.sliding = Input.is_action_pressed("slide")
@@ -43,11 +43,6 @@ func _physics_process(delta):
 		if coyote.time_left > 0:
 			emit_signal("state_override", "jump")
 			jump()
-
-
-func _input(event):
-	if current_state == "banished":
-		return
 
 
 func jump():

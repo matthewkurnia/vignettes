@@ -1,13 +1,8 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://addons/rmsmartshape/shapes/shape_closed.gd" type="Script" id=1]
-[ext_resource path="res://wall/cracks.png" type="Texture" id=2]
-[ext_resource path="res://wall/edge.png" type="Texture" id=3]
-[ext_resource path="res://addons/rmsmartshape/normal_range.gd" type="Script" id=4]
+[ext_resource path="res://wall/shape_material.tres" type="Resource" id=2]
 [ext_resource path="res://addons/rmsmartshape/shapes/point_array.gd" type="Script" id=5]
-[ext_resource path="res://addons/rmsmartshape/materials/edge_material.gd" type="Script" id=6]
-[ext_resource path="res://addons/rmsmartshape/materials/edge_material_metadata.gd" type="Script" id=7]
-[ext_resource path="res://addons/rmsmartshape/materials/shape_material.gd" type="Script" id=8]
 [ext_resource path="res://addons/rmsmartshape/shapes/point.gd" type="Script" id=9]
 [ext_resource path="res://addons/rmsmartshape/vertex_properties.gd" type="Script" id=10]
 [ext_resource path="res://game/color_node.gd" type="Script" id=11]
@@ -92,55 +87,13 @@ _constraints = {
 }
 _next_key = 13
 
-[sub_resource type="Resource" id=12]
-script = ExtResource( 6 )
-textures = [ ExtResource( 3 ) ]
-texture_normals = [  ]
-textures_corner_outer = [  ]
-textures_corner_inner = [  ]
-texture_normals_corner_outer = [  ]
-texture_normals_corner_inner = [  ]
-textures_taper_left = [  ]
-textures_taper_right = [  ]
-texture_normals_taper_left = [  ]
-texture_normals_taper_right = [  ]
-randomize_texture = false
-use_corner_texture = true
-use_taper_texture = true
-fit_mode = 0
-
-[sub_resource type="Resource" id=13]
-script = ExtResource( 4 )
-begin = 0.0
-distance = 0.0
-edgeRendering = Vector2( 0, 0 )
-
-[sub_resource type="Resource" id=14]
-script = ExtResource( 7 )
-edge_material = SubResource( 12 )
-normal_range = SubResource( 13 )
-weld = true
-render = true
-z_index = 0
-z_as_relative = true
-offset = 0.0
-
-[sub_resource type="Resource" id=15]
-script = ExtResource( 8 )
-_edge_meta_materials = [ SubResource( 14 ) ]
-fill_textures = [ ExtResource( 2 ) ]
-fill_texture_normals = [  ]
-fill_texture_z_index = -1
-fill_mesh_offset = 0.0
-render_offset = 0.0
-
 [node name="Wall1" type="Node2D"]
 z_index = 10
 script = ExtResource( 1 )
 _points = SubResource( 11 )
 material_overrides = {
 }
-shape_material = SubResource( 15 )
+shape_material = ExtResource( 2 )
 tessellation_stages = 5
 tessellation_tolerence = 4.0
 flip_edges = false
@@ -163,3 +116,4 @@ layer = 3
 remote_path = NodePath("..")
 duplicate_remote = true
 modulate_color = false
+ignore_rotation = true

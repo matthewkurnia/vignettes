@@ -8,13 +8,13 @@
 [ext_resource path="res://decoration/sprites/soft_noise.png" type="Texture" id=6]
 [ext_resource path="res://gizmo/holo_box/holo_box.png" type="Texture" id=7]
 
-[sub_resource type="RectangleShape2D" id=5]
-extents = Vector2( 500, 300 )
-
 [sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 600, 450 )
+
+[sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 128, 32 )
 
-[sub_resource type="Shader" id=2]
+[sub_resource type="Shader" id=3]
 resource_local_to_scene = true
 code = "shader_type canvas_item;
 
@@ -51,9 +51,9 @@ void fragment() {
 	
 }"
 
-[sub_resource type="ShaderMaterial" id=3]
+[sub_resource type="ShaderMaterial" id=4]
 resource_local_to_scene = true
-shader = SubResource( 2 )
+shader = SubResource( 3 )
 shader_param/rotation = -0.379
 shader_param/frequency_x = 0.1
 shader_param/frequency_y = 0.1
@@ -62,9 +62,9 @@ shader_param/tile_factor = Vector2( 8, 2 )
 shader_param/noise = ExtResource( 6 )
 shader_param/mask = ExtResource( 7 )
 
-[sub_resource type="ShaderMaterial" id=4]
+[sub_resource type="ShaderMaterial" id=5]
 resource_local_to_scene = true
-shader = SubResource( 2 )
+shader = SubResource( 3 )
 shader_param/rotation = -2.506
 shader_param/frequency_x = -0.161
 shader_param/frequency_y = 0.149
@@ -77,67 +77,67 @@ shader_param/mask = ExtResource( 7 )
 resource_name = "open"
 length = 1.6
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite1:scale")
+tracks/0/path = NodePath(".:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 1.2, 1.5 ),
-"transitions": PoolRealArray( -2, -2 ),
-"update": 0,
-"values": [ Vector2( 8, 2 ), Vector2( 0, 2 ) ]
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("Sprite2:scale")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 1.2, 1.5 ),
-"transitions": PoolRealArray( -2, -2 ),
-"update": 0,
-"values": [ Vector2( 8, 2 ), Vector2( 0, 2 ) ]
-}
-tracks/2/type = "value"
-tracks/2/path = NodePath("TilingSprite:modulate")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 0.7, 1.1 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Color( 0.470588, 0.470588, 0.470588, 1 ), Color( 0.470588, 0.470588, 0.470588, 0 ) ]
-}
-tracks/3/type = "value"
-tracks/3/path = NodePath("TilingSprite2:modulate")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 0.4, 0.8 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Color( 0, 0, 0, 1 ), Color( 0, 0, 0, 0 ) ]
-}
-tracks/4/type = "value"
-tracks/4/path = NodePath(".:visible")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
 "times": PoolRealArray( 0, 1.6 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ true, false ]
 }
+tracks/1/type = "value"
+tracks/1/path = NodePath("TilingSprite:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.5, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0.470588, 0.470588, 0.470588, 1 ), Color( 0.470588, 0.470588, 0.470588, 0 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("TilingSprite2:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.1, 0.6 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 1 ), Color( 0, 0, 0, 0 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Sprite1:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 1.1, 1.5 ),
+"transitions": PoolRealArray( -2, -2 ),
+"update": 0,
+"values": [ Vector2( 8, 2 ), Vector2( 0, 2 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Sprite2:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 1.1, 1.5 ),
+"transitions": PoolRealArray( -2, -2 ),
+"update": 0,
+"values": [ Vector2( 8, 2 ), Vector2( 0, 2 ) ]
+}
 
-[node name="Door" type="StaticBody2D"]
+[node name="Door1" type="StaticBody2D"]
 script = ExtResource( 3 )
 Indicator = ExtResource( 2 )
 
@@ -146,10 +146,10 @@ collision_layer = 0
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource( 5 )
+shape = SubResource( 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 1 )
+shape = SubResource( 2 )
 
 [node name="Sprite1" type="Sprite" parent="."]
 modulate = Color( 0.419608, 0.419608, 0.419608, 1 )
@@ -168,7 +168,7 @@ offset = Vector2( 16, 0 )
 
 [node name="TilingSprite" parent="." instance=ExtResource( 5 )]
 modulate = Color( 0.470588, 0.470588, 0.470588, 1 )
-material = SubResource( 3 )
+material = SubResource( 4 )
 position = Vector2( 0, -9.53674e-07 )
 scale = Vector2( 8, 2 )
 texture = ExtResource( 4 )
@@ -177,7 +177,7 @@ texture = ExtResource( 4 )
 visible = false
 modulate = Color( 0.470588, 0.470588, 0.470588, 1 )
 self_modulate = Color( 0.611765, 0.611765, 0.611765, 1 )
-material = SubResource( 3 )
+material = SubResource( 4 )
 position = Vector2( 0, -9.53674e-07 )
 rotation = 3.14159
 scale = Vector2( 8, 2 )
@@ -185,7 +185,7 @@ texture = ExtResource( 4 )
 
 [node name="TilingSprite2" parent="." instance=ExtResource( 5 )]
 modulate = Color( 0, 0, 0, 1 )
-material = SubResource( 4 )
+material = SubResource( 5 )
 position = Vector2( 0, -9.53674e-07 )
 scale = Vector2( 8, 2 )
 texture = ExtResource( 4 )
