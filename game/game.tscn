@@ -1,18 +1,43 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://game/game.gd" type="Script" id=1]
 [ext_resource path="res://interface/fade.tscn" type="PackedScene" id=2]
 [ext_resource path="res://game/materials/grain_material.tres" type="Material" id=3]
-[ext_resource path="res://demo/level2.tscn" type="PackedScene" id=4]
+[ext_resource path="res://game/border.png" type="Texture" id=4]
 [ext_resource path="res://game/materials/clear_material.tres" type="Material" id=5]
 [ext_resource path="res://game/color_layer.gd" type="Script" id=6]
+[ext_resource path="res://demo/pause_menu.tscn" type="PackedScene" id=7]
+[ext_resource path="res://wall/animated_noise.tres" type="Texture" id=8]
 [ext_resource path="res://game/background.tscn" type="PackedScene" id=9]
+[ext_resource path="res://grunge.png" type="Texture" id=10]
 [ext_resource path="res://game/materials/overlay_material.tres" type="Material" id=11]
 [ext_resource path="res://game/materials/particles_material.tres" type="Material" id=12]
 
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+
+uniform float amplitude = 0.1;
+uniform sampler2D noise;
+
+void fragment() {
+	vec2 uv = UV;
+	uv.y += amplitude * (texture(noise, UV).r - 0.5);
+	uv.x += amplitude * (texture(noise, UV).r - 0.5);
+	COLOR = texture(TEXTURE, uv);
+}"
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = SubResource( 1 )
+shader_param/amplitude = 0.05
+shader_param/noise = ExtResource( 8 )
+
+[sub_resource type="ShaderMaterial" id=3]
+shader = SubResource( 1 )
+shader_param/amplitude = 0.1
+shader_param/noise = ExtResource( 8 )
+
 [node name="Game" type="Node2D"]
 script = ExtResource( 1 )
-main_path = NodePath("WorldRender/Main/MainViewport/Root")
 overlay_path = NodePath("WorldRender/Overlay/OverlayViewport/Root")
 particles_path = NodePath("WorldRender/Particles/ParticlesViewport/Root")
 clear_path = NodePath("WorldRender/Clear/OverlayViewport/Root")
@@ -23,14 +48,15 @@ fade_path = NodePath("WorldRender/ClearAll/OverlayViewport/Root/Fade")
 [node name="ColorRect" type="ColorRect" parent="WorldRender"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+rect_min_size = Vector2( 1920, 1080 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Particles" type="ViewportContainer" parent="WorldRender"]
 material = ExtResource( 12 )
-anchor_right = 1.0
-anchor_bottom = 1.0
+margin_right = 1920.0
+margin_bottom = 1080.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -49,8 +75,8 @@ script = ExtResource( 6 )
 
 [node name="Overlay" type="ViewportContainer" parent="WorldRender"]
 material = ExtResource( 11 )
-anchor_right = 1.0
-anchor_bottom = 1.0
+margin_right = 1920.0
+margin_bottom = 1080.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -69,8 +95,8 @@ script = ExtResource( 6 )
 
 [node name="Clear" type="ViewportContainer" parent="WorldRender"]
 material = ExtResource( 5 )
-anchor_right = 1.0
-anchor_bottom = 1.0
+margin_right = 1920.0
+margin_bottom = 1080.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -89,8 +115,8 @@ script = ExtResource( 6 )
 
 [node name="Main" type="ViewportContainer" parent="WorldRender"]
 material = ExtResource( 3 )
-anchor_right = 1.0
-anchor_bottom = 1.0
+margin_right = 1920.0
+margin_bottom = 1080.0
 mouse_filter = 1
 __meta__ = {
 "_edit_use_anchors_": false
@@ -102,17 +128,18 @@ handle_input_locally = false
 disable_3d = true
 render_target_update_mode = 3
 
-[node name="Root" parent="WorldRender/Main/MainViewport" instance=ExtResource( 4 )]
-
 [node name="Background" parent="WorldRender/Main/MainViewport" instance=ExtResource( 9 )]
 
 [node name="UI" type="CanvasLayer" parent="WorldRender/Main/MainViewport"]
 layer = 10
 
+[node name="Pause" parent="WorldRender/Main/MainViewport/UI" instance=ExtResource( 7 )]
+visible = false
+
 [node name="ClearAll" type="ViewportContainer" parent="WorldRender"]
 material = ExtResource( 5 )
-anchor_right = 1.0
-anchor_bottom = 1.0
+margin_right = 1920.0
+margin_bottom = 1080.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -129,3 +156,19 @@ render_target_update_mode = 3
 [node name="Root" type="CanvasLayer" parent="WorldRender/ClearAll/OverlayViewport"]
 
 [node name="Fade" parent="WorldRender/ClearAll/OverlayViewport/Root" instance=ExtResource( 2 )]
+
+[node name="border" type="Sprite" parent="WorldRender/ClearAll/OverlayViewport/Root"]
+modulate = Color( 0, 0, 0, 0.341176 )
+material = SubResource( 2 )
+position = Vector2( 960, 540 )
+texture = ExtResource( 4 )
+
+[node name="TextureRect" type="TextureRect" parent="WorldRender"]
+visible = false
+material = SubResource( 3 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+texture = ExtResource( 10 )
+__meta__ = {
+"_edit_use_anchors_": false
+}

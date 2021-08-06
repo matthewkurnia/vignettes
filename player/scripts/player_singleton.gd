@@ -17,16 +17,15 @@ onready var respawn_delay = $RespawnDelay
 onready var fade_delay = $FadeDelay
 
 
-func _input(event):
-	if Input.is_action_just_pressed("ui_accept"):
-		set_input_enabled(not input_enabled)
-
-
 func set_player_node(node):
 	actor = node
 
 
 func get_player_node():
+	if not actor:
+		var nodes = get_tree().get_nodes_in_group("player")
+		if nodes:
+			return nodes[0]
 	return actor
 
 

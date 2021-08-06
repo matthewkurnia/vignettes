@@ -22,7 +22,9 @@ radius = 16.0
 [sub_resource type="CapsuleShape2D" id=2]
 radius = 25.0
 
-[node name="Player" type="KinematicBody2D"]
+[node name="Player" type="KinematicBody2D" groups=[
+"player",
+]]
 collision_layer = 2
 script = ExtResource( 3 )
 
@@ -149,9 +151,9 @@ cast_to = Vector2( 0, 140 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Raycasts"]
 
-[connection signal="state_changed" from="StateMachine" to="PlayerRig/DustParticle/jump" method="on_state_changed"]
-[connection signal="state_changed" from="StateMachine" to="PlayerController" method="state_changed"]
 [connection signal="state_changed" from="StateMachine" to="PlayerRig" method="play"]
+[connection signal="state_changed" from="StateMachine" to="PlayerController" method="state_changed"]
+[connection signal="state_changed" from="StateMachine" to="PlayerRig/DustParticle/jump" method="on_state_changed"]
 [connection signal="state_override" from="PlayerController" to="StateMachine" method="change_state"]
 [connection signal="area_entered" from="PlayerRig/Hitbox" to="PlayerRig/Hitbox" method="area_entered"]
 [connection signal="state_override" from="PlayerRig/Hitbox" to="StateMachine" method="change_state"]

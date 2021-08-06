@@ -17,7 +17,8 @@ func _ready():
 
 
 func collect():
-	emit_signal("collected")
+	call_deferred("emit_signal", "collected")
+#	emit_signal("collected")
 	Demo.set_key_collected(self)
 	spawn_effect()
 	self.visible = false

@@ -1,0 +1,341 @@
+[gd_scene load_steps=21 format=2]
+
+[ext_resource path="res://fonts/small_text_font.tres" type="DynamicFont" id=1]
+[ext_resource path="res://airbrush.png" type="Texture" id=2]
+[ext_resource path="res://wall/animated_noise.tres" type="Texture" id=3]
+[ext_resource path="res://wall/distorsion_material.tres" type="Material" id=4]
+[ext_resource path="res://decoration/sprites/stripe_small.png" type="Texture" id=5]
+[ext_resource path="res://decoration/tiling_sprite.tscn" type="PackedScene" id=6]
+[ext_resource path="res://transform_anim/vibration.tscn" type="PackedScene" id=7]
+[ext_resource path="res://decoration/sprites/crosshair.png" type="Texture" id=8]
+[ext_resource path="res://decoration/sprites/soft_noise.png" type="Texture" id=9]
+[ext_resource path="res://decoration/sprites/glitch_noise_tile.png" type="Texture" id=10]
+[ext_resource path="res://decoration/sprites/grid_medium.png" type="Texture" id=11]
+[ext_resource path="res://fonts/big_title_font.tres" type="DynamicFont" id=12]
+[ext_resource path="res://demo/title_pointer.gd" type="Script" id=13]
+
+[sub_resource type="Shader" id=11]
+code = "shader_type canvas_item;
+
+uniform float amplitude = 0.1;
+uniform sampler2D noise;
+
+void fragment() {
+	vec2 uv = UV;
+	uv.y += amplitude * (texture(noise, UV).r - 0.5);
+	uv.x += amplitude * (texture(noise, UV).r - 0.5);
+	COLOR = texture(TEXTURE, uv);
+}"
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = SubResource( 11 )
+shader_param/amplitude = 0.01
+shader_param/noise = ExtResource( 3 )
+
+[sub_resource type="Shader" id=12]
+resource_local_to_scene = true
+code = "shader_type canvas_item;
+
+uniform float rotation = 0.0;
+uniform vec2 tile_factor = vec2(1.0, 1.0);
+
+vec2 rotate_uv(vec2 uv, vec2 pivot, float rot) {
+    float sine = sin(rot);
+    float cosine = cos(rot);
+
+    uv -= pivot;
+	float new_x = uv.x * cosine - uv.y * sine;
+	float new_y = uv.x * sine + uv.y * cosine;
+    uv.x = new_x;
+    uv.y = new_y;
+    uv += pivot;
+
+    return uv;
+}
+
+void fragment() {
+	vec2 tiled_uv = rotate_uv(UV * tile_factor, vec2(0.5), rotation);
+	COLOR = texture(TEXTURE, tiled_uv);
+}"
+
+[sub_resource type="ShaderMaterial" id=6]
+resource_local_to_scene = true
+shader = SubResource( 12 )
+shader_param/rotation = 0.0
+shader_param/tile_factor = Vector2( 24.1286, 10.2209 )
+
+[sub_resource type="Shader" id=13]
+resource_local_to_scene = true
+code = "shader_type canvas_item;
+
+uniform float rotation = 0.0;
+uniform sampler2D noise;
+uniform sampler2D mask;
+uniform float frequency_x = 1.0;
+uniform float frequency_y = 1.0;
+uniform float amplitude = 3.0;
+uniform vec2 tile_factor = vec2(1.0, 1.0);
+
+vec2 rotate_uv(vec2 uv, vec2 pivot, float rot) {
+    float sine = sin(rot);
+    float cosine = cos(rot);
+
+    uv -= pivot;
+	float new_x = uv.x * cosine - uv.y * sine;
+	float new_y = uv.x * sine + uv.y * cosine;
+    uv.x = new_x;
+    uv.y = new_y;
+    uv += pivot;
+
+    return uv;
+}
+
+void fragment() {
+	vec2 tiled_uv = rotate_uv(UV * tile_factor, vec2(0.5), rotation);
+	vec2 t_uv = UV + vec2(TIME*frequency_x, TIME * frequency_y);
+	tiled_uv += texture(noise, t_uv).rg * amplitude;
+	tiled_uv.x += amplitude * sin(TIME * frequency_x + tiled_uv.y * frequency_x);
+	tiled_uv.y += amplitude * cos(TIME * frequency_y + tiled_uv.x * frequency_y);
+	COLOR = texture(TEXTURE, tiled_uv);
+	COLOR.a *= texture(mask, UV).a;
+	
+}"
+
+[sub_resource type="ShaderMaterial" id=9]
+resource_local_to_scene = true
+shader = SubResource( 13 )
+shader_param/rotation = 1.776
+shader_param/frequency_x = 0.1
+shader_param/frequency_y = 0.1
+shader_param/amplitude = 0.1
+shader_param/tile_factor = Vector2( 1, 1 )
+shader_param/noise = ExtResource( 9 )
+
+[sub_resource type="Animation" id=10]
+resource_name = "loop"
+length = 0.7
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 0.5, 2 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 50, 0 ) ]
+}
+
+[node name="TitleScreen" type="Node2D"]
+__meta__ = {
+"_edit_horizontal_guides_": [ 960.449 ]
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_left = -478.877
+margin_top = -360.217
+margin_right = 2553.12
+margin_bottom = 1613.78
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="airbrush" type="Sprite" parent="."]
+modulate = Color( 1, 1, 1, 0.529412 )
+material = ExtResource( 4 )
+position = Vector2( -200, 1544 )
+scale = Vector2( 18.058, 19.9477 )
+texture = ExtResource( 2 )
+
+[node name="airbrush2" type="Sprite" parent="."]
+modulate = Color( 1, 1, 1, 0.529412 )
+material = ExtResource( 4 )
+position = Vector2( 1896, 120 )
+scale = Vector2( 18.058, 19.9477 )
+texture = ExtResource( 2 )
+
+[node name="airbrush3" type="Sprite" parent="."]
+modulate = Color( 1, 1, 1, 0.529412 )
+material = ExtResource( 4 )
+position = Vector2( 648, 296 )
+scale = Vector2( 13.4665, 6.97387 )
+texture = ExtResource( 2 )
+
+[node name="airbrush4" type="Sprite" parent="."]
+modulate = Color( 1, 1, 1, 0.529412 )
+material = ExtResource( 4 )
+position = Vector2( 1335.28, -238.13 )
+rotation = -1.57079
+scale = Vector2( 18.058, 0.135264 )
+texture = ExtResource( 2 )
+
+[node name="airbrush5" type="Sprite" parent="."]
+modulate = Color( 1, 1, 1, 0.529412 )
+material = ExtResource( 4 )
+position = Vector2( 1334.56, 392.561 )
+rotation = -3.14159
+scale = Vector2( 16.698, 0.135264 )
+texture = ExtResource( 2 )
+
+[node name="airbrush6" type="Sprite" parent="."]
+modulate = Color( 1, 1, 1, 0.368627 )
+material = ExtResource( 4 )
+position = Vector2( 1334.56, 392.561 )
+rotation = -3.14159
+scale = Vector2( 3.81801, 0.735262 )
+texture = ExtResource( 2 )
+
+[node name="Title1" type="Label" parent="."]
+material = SubResource( 2 )
+margin_left = 400.0
+margin_top = 176.0
+margin_right = 1046.0
+margin_bottom = 436.0
+custom_fonts/font = ExtResource( 12 )
+text = "TITLE"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title2" type="Label" parent="."]
+modulate = Color( 1, 1, 1, 0.498039 )
+material = SubResource( 2 )
+margin_left = 1888.0
+margin_top = 176.0
+margin_right = 2534.0
+margin_bottom = 436.0
+custom_fonts/font = ExtResource( 12 )
+text = "TITLE"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title3" type="Label" parent="."]
+modulate = Color( 1, 1, 1, 0.498039 )
+material = SubResource( 2 )
+margin_left = 400.0
+margin_top = 1048.0
+margin_right = 1046.0
+margin_bottom = 1308.0
+custom_fonts/font = ExtResource( 12 )
+text = "TITLE"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title4" type="Label" parent="."]
+modulate = Color( 1, 1, 1, 0.498039 )
+material = SubResource( 2 )
+margin_left = -407.458
+margin_top = 484.127
+margin_right = 238.542
+margin_bottom = 744.127
+custom_fonts/font = ExtResource( 12 )
+text = "TITLE"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Subtitle" type="Label" parent="."]
+material = SubResource( 2 )
+margin_left = 1336.06
+margin_top = 797.335
+margin_right = 1592.06
+margin_bottom = 965.335
+custom_fonts/font = ExtResource( 1 )
+text = "SUBTITLE"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Menu" type="Label" parent="."]
+material = SubResource( 2 )
+margin_left = 1080.0
+margin_top = 544.0
+margin_right = 1336.0
+margin_bottom = 616.0
+custom_fonts/font = ExtResource( 1 )
+text = "MENU_1"
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="TilingSprite" parent="." instance=ExtResource( 6 )]
+material = SubResource( 6 )
+position = Vector2( 154, 658 )
+rotation = 1.57079
+scale = Vector2( 24.1286, 10.2209 )
+texture = ExtResource( 11 )
+
+[node name="Vibration" parent="TilingSprite" instance=ExtResource( 7 )]
+amplitude = 1.0
+
+[node name="crosshair" type="Sprite" parent="."]
+position = Vector2( 992, 56 )
+texture = ExtResource( 8 )
+
+[node name="Vibration2" parent="crosshair" instance=ExtResource( 7 )]
+amplitude = 1.0
+
+[node name="crosshair2" type="Sprite" parent="."]
+position = Vector2( 1776, 680 )
+texture = ExtResource( 8 )
+
+[node name="Vibration2" parent="crosshair2" instance=ExtResource( 7 )]
+amplitude = 1.0
+
+[node name="crosshair3" type="Sprite" parent="."]
+position = Vector2( 416, 1008 )
+texture = ExtResource( 8 )
+
+[node name="Vibration2" parent="crosshair3" instance=ExtResource( 7 )]
+amplitude = 1.0
+
+[node name="crosshair4" type="Sprite" parent="."]
+position = Vector2( 1336, 1008 )
+texture = ExtResource( 8 )
+
+[node name="Vibration2" parent="crosshair4" instance=ExtResource( 7 )]
+amplitude = 1.0
+
+[node name="glitch_noise_tile" type="Sprite" parent="."]
+material = SubResource( 9 )
+position = Vector2( 104, 128 )
+texture = ExtResource( 10 )
+
+[node name="Vibration" parent="glitch_noise_tile" instance=ExtResource( 7 )]
+amplitude = 0.5
+
+[node name="glitch_noise_tile2" type="Sprite" parent="."]
+modulate = Color( 1, 1, 1, 0.462745 )
+material = SubResource( 9 )
+position = Vector2( 637.5, 754.061 )
+rotation = -1.57079
+scale = Vector2( 0.806641, 1.39024 )
+texture = ExtResource( 10 )
+
+[node name="Vibration" parent="glitch_noise_tile2" instance=ExtResource( 7 )]
+amplitude = -0.8
+
+[node name="Pointer" type="Sprite" parent="."]
+position = Vector2( 1357, 557 )
+scale = Vector2( 0.26, 0.2 )
+texture = ExtResource( 2 )
+offset = Vector2( 42.1752, 0 )
+script = ExtResource( 13 )
+menu_label_path = NodePath("../Menu")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Pointer"]
+autoplay = "loop"
+anims/loop = SubResource( 10 )
+
+[node name="stripe_small" type="Sprite" parent="."]
+visible = false
+position = Vector2( 1338.34, 157.876 )
+rotation = 1.57079
+scale = Vector2( 29.7726, 0.561482 )
+texture = ExtResource( 5 )

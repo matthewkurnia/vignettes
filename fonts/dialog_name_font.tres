@@ -1,0 +1,10 @@
+[gd_resource type="DynamicFont" load_steps=2 format=2]
+
+[ext_resource path="res://fonts/le-murmure.otf" type="DynamicFontData" id=1]
+
+[resource]
+size = 128
+use_filter = true
+extra_spacing_bottom = -26
+extra_spacing_char = -7
+font_data = ExtResource( 1 )

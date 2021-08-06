@@ -62,7 +62,8 @@ func update_text(text):
 		text = text.replace(speed_settings, '')
 	
 	# Updating the text and starting the animation from 0
-	text_label.bbcode_text = text
+#	text_label.bbcode_text = text
+	text_label.set("bbcode_text", text)
 	text_label.visible_characters = 0
 	
 	start_text_timer()

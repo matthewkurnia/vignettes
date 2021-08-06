@@ -30,7 +30,7 @@ void fragment() {
 }"
 
 [sub_resource type="Gradient" id=2]
-colors = PoolColorArray( 0.146973, 0.141806, 0.141806, 1, 0.0283952, 0, 0.0883789, 1 )
+colors = PoolColorArray( 0.136475, 0.140657, 0.167969, 1, 0, 0, 0, 1 )
 
 [sub_resource type="GradientTexture" id=3]
 gradient = SubResource( 2 )

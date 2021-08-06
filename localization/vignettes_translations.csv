@@ -1,0 +1,30 @@
+keys,en
+TEST_1,The quick brown fox.
+TEST_2,Is this golden syrup?
+TEST_3,Mopping is fun!
+TITLE,Vignettes.
+SUBTITLE,"Sometimes in life
+we make choices
+that we later regret.
+
+
+Pre-Alpha 0.0.1 demo
+Memodol 2021"
+MENU_1,"New Game
+
+Quit"
+MENU_2,"Continue
+
+New Game
+
+Quit"
+PAUSE_MENU,"Continue
+
+Back to main menu
+
+Quit"
+PAUSED,Paused
+PROLOGUE,Prologue
+CHAPTER_1,Chapter 1
+END,"End of Demo
+Thank you for playing"

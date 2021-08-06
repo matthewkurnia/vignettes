@@ -1,6 +1,6 @@
 [gd_resource type="ShaderMaterial" load_steps=2 format=2]
 
-[sub_resource type="Shader" id=1]
+[sub_resource type="Shader" id=4]
 resource_local_to_scene = true
 code = "shader_type canvas_item;
 
@@ -28,6 +28,6 @@ void fragment() {
 
 [resource]
 resource_local_to_scene = true
-shader = SubResource( 1 )
+shader = SubResource( 4 )
 shader_param/rotation = 0.0
 shader_param/tile_factor = Vector2( 1, 1 )

@@ -37,3 +37,4 @@ func _ready():
 func on_body_entered(body):
 	if body == player:
 		Player.set_spawn_position(self.global_position + spawn_offset)
+		Demo.set_spawn(self.global_position + spawn_offset)

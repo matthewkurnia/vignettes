@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://addons/dialogic/Dialog.tscn" type="PackedScene" id=1]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Control" type="ColorRect" parent="."]
+margin_right = 2182.0
+margin_bottom = 1269.0
+
+[node name="Control2" type="Control" parent="."]
+margin_left = 699.254
+margin_right = 1923.25
+margin_bottom = 1079.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="DialogNode" parent="Control2" instance=ExtResource( 1 )]
+timeline = "timeline-1627977307.json"
+offset = Vector2( 500, 0 )

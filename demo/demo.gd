@@ -2,13 +2,14 @@ extends Node
 
 
 const SAVE_PATH = "res://demo_save.data"
-const RESET = true
-
-
-var demo_data = {
-	"scene": null,
+const STARTING_PATH = "res://demo/title_cards/prologue.tscn"
+const RESET = false
+const INIT_DATA = {
+	"scene": STARTING_PATH,
 	"spawn": Vector2.ZERO
 }
+
+var demo_data = INIT_DATA
 
 
 func _enter_tree():
@@ -36,30 +37,36 @@ func load_data():
 		save_data()
 
 
+func reset_data():
+	demo_data = INIT_DATA
+	save_data()
+
+
+func fresh():
+	return demo_data.scene == STARTING_PATH
+
+
 func get_spawn():
 	return demo_data.spawn
-
 
 func set_spawn(spawn_position: Vector2):
 	demo_data.spawn = spawn_position
 	save_data()
 
 
-func get_scene():
+func get_last_scene():
 	return demo_data.scene
 
-
-func set_scene(scene: PackedScene):
-	demo_data.scene = scene
-	save_data()
-
-
-func set_key_collected(key: Node):
-	var path = key.get_path()
-	demo_data[path] = true
+func set_last_scene(scene_path: String):
+	demo_data.scene = scene_path
 	save_data()
 
 
 func get_key_collected(key: Node):
 	var path = key.get_path()
 	return demo_data.keys().has(path)
+
+func set_key_collected(key: Node):
+	var path = key.get_path()
+	demo_data[path] = true
+	save_data()

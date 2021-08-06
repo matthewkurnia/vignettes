@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://addons/dialogic/Example Assets/Fonts/DefaultFont.tres" type="DynamicFont" id=1]
 [ext_resource path="res://addons/dialogic/Example Assets/backgrounds/background-2.png" type="Texture" id=2]
 [ext_resource path="res://addons/dialogic/Example Assets/next-indicator/next-indicator.png" type="Texture" id=3]
 [ext_resource path="res://addons/dialogic/Nodes/TextBubble.gd" type="Script" id=4]
 [ext_resource path="res://addons/dialogic/Nodes/random_audio_stream_player.gd" type="Script" id=5]
+[ext_resource path="res://rich_text_localized.gd" type="Script" id=6]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 1, 1, 1, 0 )
@@ -101,6 +102,7 @@ bbcode_enabled = true
 bbcode_text = "Placeholder text for testing and formatting."
 meta_underlined = false
 text = "Placeholder text for testing and formatting."
+script = ExtResource( 6 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -178,8 +180,4 @@ __meta__ = {
 
 [node name="TypingSFX" type="AudioStreamPlayer" parent="."]
 script = ExtResource( 5 )
-samples = [  ]
-select_samples_from_folder = ""
 random_strategy = 2
-random_volume_range = 0.0
-random_pitch_range = 0.0

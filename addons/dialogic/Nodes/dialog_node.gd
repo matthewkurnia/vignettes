@@ -24,6 +24,8 @@ export(String, "TimelineDropdown") var timeline: String
 export(bool) var reset_saves = true
 ## Should we show debug information when running?
 export(bool) var debug_mode = true
+## Offset when displaying in game
+export(Vector2) var offset = Vector2.ZERO
 
 # Event end/start
 signal event_start(type, event)
@@ -110,12 +112,12 @@ func resize_main():
 		set_global_position(Vector2(0,0))
 		reference = get_viewport().get_visible_rect().size
 
-	$Options.rect_position.x = (reference.x / 2) - ($Options.rect_size.x / 2)
-	$Options.rect_position.y = (reference.y / 2) - ($Options.rect_size.y / 2)
+	$Options.rect_position.x = (reference.x / 2) - ($Options.rect_size.x / 2) + offset.x
+	$Options.rect_position.y = (reference.y / 2) - ($Options.rect_size.y / 2) + offset.y
 	
-	$TextBubble.rect_position.x = (reference.x / 2) - ($TextBubble.rect_size.x / 2)
+	$TextBubble.rect_position.x = (reference.x / 2) - ($TextBubble.rect_size.x / 2) + offset.x
 	if current_theme != null:
-		$TextBubble.rect_position.y = (reference.y) - ($TextBubble.rect_size.y) - current_theme.get_value('box', 'bottom_gap', 40)
+		$TextBubble.rect_position.y = (reference.y) - ($TextBubble.rect_size.y) - current_theme.get_value('box', 'bottom_gap', 40) + offset.y
 	
 	
 	var pos_x = 0

@@ -1,0 +1,87 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://wall/animated_noise.tres" type="Texture" id=1]
+[ext_resource path="res://fonts/big_title_font.tres" type="DynamicFont" id=2]
+[ext_resource path="res://demo/title_card.gd" type="Script" id=3]
+[ext_resource path="res://wall/distorsion_material.tres" type="Material" id=4]
+[ext_resource path="res://airbrush.png" type="Texture" id=5]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+
+uniform float amplitude = 0.1;
+uniform sampler2D noise;
+
+void fragment() {
+	vec2 uv = UV;
+	uv.y += amplitude * (texture(noise, UV).r - 0.5);
+	uv.x += amplitude * (texture(noise, UV).r - 0.5);
+	COLOR = texture(TEXTURE, uv);
+}"
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = SubResource( 1 )
+shader_param/amplitude = 0.01
+shader_param/noise = ExtResource( 1 )
+
+[node name="TitleCard" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Title" type="Label" parent="CenterContainer"]
+modulate = Color( 0, 0, 0, 1 )
+material = SubResource( 2 )
+margin_left = 778.0
+margin_top = 410.0
+margin_right = 1142.0
+margin_bottom = 670.0
+custom_fonts/font = ExtResource( 2 )
+text = "LOREM"
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="airbrush" type="Sprite" parent="."]
+modulate = Color( 0, 0, 0, 0.529412 )
+material = ExtResource( 4 )
+position = Vector2( 8, 1040 )
+scale = Vector2( 18.058, 19.9477 )
+texture = ExtResource( 5 )
+
+[node name="airbrush2" type="Sprite" parent="."]
+modulate = Color( 0, 0, 0, 0.529412 )
+material = ExtResource( 4 )
+position = Vector2( 1216, -192 )
+scale = Vector2( 18.058, 19.9477 )
+texture = ExtResource( 5 )
+
+[node name="airbrush3" type="Sprite" parent="."]
+modulate = Color( 0, 0, 0, 0.529412 )
+material = ExtResource( 4 )
+position = Vector2( 2080, 1160 )
+scale = Vector2( 18.058, 19.9477 )
+texture = ExtResource( 5 )
+
+[node name="airbrush4" type="Sprite" parent="."]
+modulate = Color( 0, 0, 0, 0.529412 )
+material = ExtResource( 4 )
+position = Vector2( 952, 520 )
+rotation = 1.57079
+scale = Vector2( 3.031, 6.26562 )
+texture = ExtResource( 5 )
