@@ -15,6 +15,8 @@ onready var player = Player.get_player_node()
 
 
 func _physics_process(delta):
+	if not Player.input_enabled:
+		return
 	if current_state == "banished":
 		player.global_position = banish_position
 		return

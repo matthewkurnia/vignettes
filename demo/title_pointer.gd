@@ -1,7 +1,7 @@
 extends Sprite
 
 
-const INTERVAL = 44
+const INTERVAL = 47
 
 export var menu_label_path: NodePath
 
@@ -13,10 +13,19 @@ onready var menu_label = get_node(menu_label_path)
 
 
 func _ready():
-	print(Demo.fresh())
+#	print(Demo.fresh())
 	if not Demo.fresh():
 		n = 3
 		menu_label.set("text", "MENU_2")
+
+
+func _input(event):
+	var ui_pressed = Input.is_action_just_pressed("ui_down")
+	ui_pressed = ui_pressed or Input.is_action_just_pressed("ui_up")
+	ui_pressed = ui_pressed or Input.is_action_just_pressed("ui_accept")
+	ui_pressed = ui_pressed or Input.is_action_just_pressed("ui_cancel")
+	if ui_pressed:
+		$AudioStreamPlayer.play()
 
 
 func _process(delta):

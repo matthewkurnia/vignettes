@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://decoration/blurred_line.tscn" type="PackedScene" id=1]
+
+[node name="BlurredCrosshair" type="Node2D"]
+
+[node name="BlurredLine" parent="." instance=ExtResource( 1 )]
+modulate = Color( 0, 1, 1, 0.392157 )
+
+[node name="BlurredLine2" parent="." instance=ExtResource( 1 )]
+modulate = Color( 0, 1, 1, 0.392157 )
+rotation = 1.57079
+
+[node name="BlurredLine3" parent="." instance=ExtResource( 1 )]
+rotation = 1.57079
+scale = Vector2( 0.729954, -1.18251 )

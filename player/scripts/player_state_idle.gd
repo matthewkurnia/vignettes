@@ -14,7 +14,8 @@ func update(delta):
 		emit_signal("finished", "run")
 	if not player.is_on_floor():
 		emit_signal("finished", "fall")
-	if Input.is_action_pressed("slide"):
+	if Input.is_action_pressed("slide") and Player.input_enabled:
+		print("asdf")
 		emit_signal("finished", "slide")
 	
 	player.velocity.y += player.GRAV

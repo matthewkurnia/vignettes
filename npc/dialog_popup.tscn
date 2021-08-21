@@ -1,0 +1,217 @@
+[gd_scene load_steps=17 format=2]
+
+[ext_resource path="res://npc/dialog_popup.gd" type="Script" id=1]
+[ext_resource path="res://airbrush.png" type="Texture" id=2]
+[ext_resource path="res://wall/distorsion_material.tres" type="Material" id=3]
+[ext_resource path="res://game/color_node.gd" type="Script" id=4]
+[ext_resource path="res://decoration/sprites/stripe_small.png" type="Texture" id=5]
+[ext_resource path="res://decoration/sprites/soft_noise.png" type="Texture" id=6]
+[ext_resource path="res://decoration/grid.tscn" type="PackedScene" id=7]
+[ext_resource path="res://decoration/pew_rect.tscn" type="PackedScene" id=8]
+[ext_resource path="res://decoration/spinning_crosshair.tscn" type="PackedScene" id=9]
+[ext_resource path="res://decoration/seaweed.tscn" type="PackedScene" id=10]
+
+[sub_resource type="Shader" id=1]
+resource_local_to_scene = true
+code = "shader_type canvas_item;
+
+uniform float rotation = 0.0;
+uniform vec2 tile_factor = vec2(1.0, 1.0);
+
+vec2 rotate_uv(vec2 uv, vec2 pivot, float rot) {
+    float sine = sin(rot);
+    float cosine = cos(rot);
+
+    uv -= pivot;
+	float new_x = uv.x * cosine - uv.y * sine;
+	float new_y = uv.x * sine + uv.y * cosine;
+    uv.x = new_x;
+    uv.y = new_y;
+    uv += pivot;
+
+    return uv;
+}
+
+void fragment() {
+	vec2 tiled_uv = rotate_uv(UV * tile_factor, vec2(0.5), rotation);
+	COLOR = textureLod(TEXTURE, tiled_uv, 2.0);
+}"
+
+[sub_resource type="ShaderMaterial" id=2]
+resource_local_to_scene = true
+shader = SubResource( 1 )
+shader_param/rotation = 0.0
+shader_param/tile_factor = Vector2( 23.4388, 19.0561 )
+
+[sub_resource type="Shader" id=3]
+resource_local_to_scene = true
+code = "shader_type canvas_item;
+
+uniform float rotation = 0.0;
+uniform float frequency = 1.0;
+uniform float amplitude = 0.3;
+uniform vec2 tile_factor = vec2(1.0, 1.0);
+
+vec2 rotate_uv(vec2 uv, vec2 pivot, float rot) {
+    float sine = sin(rot);
+    float cosine = cos(rot);
+
+    uv -= pivot;
+	float new_x = uv.x * cosine - uv.y * sine;
+	float new_y = uv.x * sine + uv.y * cosine;
+    uv.x = new_x;
+    uv.y = new_y;
+    uv += pivot;
+
+    return uv;
+}
+
+void fragment() {
+	vec2 tiled_uv = rotate_uv(UV * tile_factor, vec2(0.5), rotation);
+	tiled_uv.x += amplitude * sin(TIME * frequency + tiled_uv.y * frequency);
+	tiled_uv.y += amplitude * cos(TIME * frequency + tiled_uv.x * frequency);
+	COLOR = texture(TEXTURE, tiled_uv);
+	COLOR.a *= UV.y;
+}"
+
+[sub_resource type="ShaderMaterial" id=4]
+resource_local_to_scene = true
+shader = SubResource( 3 )
+shader_param/rotation = 0.0
+shader_param/frequency = 8.272
+shader_param/amplitude = -0.054
+shader_param/tile_factor = Vector2( 1, 4.0021 )
+
+[sub_resource type="Shader" id=5]
+resource_local_to_scene = true
+code = "shader_type canvas_item;
+
+uniform float rotation = 0.0;
+uniform sampler2D noise;
+uniform sampler2D mask;
+uniform float frequency_x = 1.0;
+uniform float frequency_y = 1.0;
+uniform float amplitude = 3.0;
+uniform vec2 tile_factor = vec2(1.0, 1.0);
+
+vec2 rotate_uv(vec2 uv, vec2 pivot, float rot) {
+    float sine = sin(rot);
+    float cosine = cos(rot);
+
+    uv -= pivot;
+	float new_x = uv.x * cosine - uv.y * sine;
+	float new_y = uv.x * sine + uv.y * cosine;
+    uv.x = new_x;
+    uv.y = new_y;
+    uv += pivot;
+
+    return uv;
+}
+
+void fragment() {
+	vec2 tiled_uv = rotate_uv(UV * tile_factor, vec2(0.5), rotation);
+	vec2 t_uv = UV + vec2(TIME*frequency_x, TIME * frequency_y);
+	tiled_uv += texture(noise, t_uv).rg * amplitude;
+	tiled_uv.x += amplitude * sin(TIME * frequency_x + tiled_uv.y * frequency_x);
+	tiled_uv.y += amplitude * cos(TIME * frequency_y + tiled_uv.x * frequency_y);
+	COLOR = texture(TEXTURE, tiled_uv);
+	COLOR.a *= texture(mask, UV).a;
+	
+}"
+
+[sub_resource type="ShaderMaterial" id=6]
+resource_local_to_scene = true
+shader = SubResource( 5 )
+shader_param/rotation = 0.0
+shader_param/frequency_x = -0.406
+shader_param/frequency_y = 0.201
+shader_param/amplitude = 3.0
+shader_param/tile_factor = Vector2( 51.5382, 25.3524 )
+shader_param/noise = ExtResource( 6 )
+
+[node name="DialogPopup" type="CanvasLayer"]
+layer = 10
+script = ExtResource( 1 )
+init_color = Color( 1, 1, 1, 0 )
+final_color = Color( 1, 1, 1, 0.729412 )
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="BgrLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="BgrLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="SpinningCrosshair" parent="BgrLayer/ColorRect" instance=ExtResource( 9 )]
+position = Vector2( 91.2983, 77.5394 )
+
+[node name="Grid" parent="BgrLayer/ColorRect" instance=ExtResource( 7 )]
+material = SubResource( 2 )
+position = Vector2( 412.438, 1090.45 )
+scale = Vector2( 23.4388, 19.0561 )
+
+[node name="airbrush1" type="Sprite" parent="BgrLayer/ColorRect"]
+modulate = Color( 0, 0, 0, 0.529412 )
+material = ExtResource( 3 )
+position = Vector2( 410.055, 564.114 )
+scale = Vector2( 10.7163, 11.3477 )
+texture = ExtResource( 2 )
+
+[node name="airbrush2" type="Sprite" parent="BgrLayer/ColorRect"]
+modulate = Color( 0, 0, 0, 0.529412 )
+material = ExtResource( 3 )
+position = Vector2( 1943.06, 94.5954 )
+scale = Vector2( 10.7163, 11.3477 )
+texture = ExtResource( 2 )
+
+[node name="airbrush3" type="Sprite" parent="BgrLayer/ColorRect"]
+modulate = Color( 0, 0, 0, 0.529412 )
+material = ExtResource( 3 )
+position = Vector2( 1538.6, 1152.43 )
+scale = Vector2( 10.7163, 11.3477 )
+texture = ExtResource( 2 )
+
+[node name="airbrush5" type="Sprite" parent="BgrLayer/ColorRect"]
+modulate = Color( 0, 0, 0, 0.529412 )
+material = ExtResource( 3 )
+position = Vector2( 93.468, 72.6749 )
+scale = Vector2( 3.25522, 3.13852 )
+texture = ExtResource( 2 )
+
+[node name="airbrush4" type="Sprite" parent="BgrLayer/ColorRect"]
+modulate = Color( 0, 0, 0, 0.529412 )
+material = ExtResource( 3 )
+position = Vector2( 883.977, 518.596 )
+scale = Vector2( 0.236309, 11.3477 )
+texture = ExtResource( 2 )
+
+[node name="Seaweed1" parent="BgrLayer/ColorRect" instance=ExtResource( 10 )]
+modulate = Color( 0, 1, 1, 0.462745 )
+material = SubResource( 4 )
+position = Vector2( 1121.15, 857.741 )
+scale = Vector2( 1, 4.0021 )
+
+[node name="PewRect1" parent="BgrLayer/ColorRect" instance=ExtResource( 8 )]
+modulate = Color( 0, 0, 0, 0.643137 )
+material = SubResource( 6 )
+position = Vector2( 1634.17, 15.8148 )
+scale = Vector2( 51.5382, 25.3524 )
+texture = ExtResource( 5 )
+
+[node name="ColorNode" type="Node2D" parent="."]
+script = ExtResource( 4 )
+layer = 3
+
+[node name="CanvasLayer" type="CanvasLayer" parent="ColorNode"]
+
+[node name="ColorRect" type="ColorRect" parent="ColorNode/CanvasLayer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}

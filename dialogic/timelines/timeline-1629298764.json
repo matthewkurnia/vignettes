@@ -1,0 +1,107 @@
+{
+	"events": [
+		{
+			"action": "join",
+			"character": "character-1629300129.json",
+			"event_id": "dialogic_002",
+			"mirror": false,
+			"portrait": "",
+			"position": {
+				"0": false,
+				"1": false,
+				"2": false,
+				"3": false,
+				"4": false
+			}
+		},
+		{
+			"character": "character-1629300129.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "INTRO_PRE_1"
+		},
+		{
+			"character": "character-1629300129.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "INTRO_PRE_2"
+		},
+		{
+			"character": "character-1629300129.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "INTRO_PRE_3"
+		},
+		{
+			"character": "character-1629300129.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "INTRO_PRE_4"
+		},
+		{
+			"action": "join",
+			"character": "character-1629299976.json",
+			"event_id": "dialogic_002",
+			"mirror": false,
+			"portrait": "",
+			"position": {
+				"0": false,
+				"1": false,
+				"2": false,
+				"3": false,
+				"4": false
+			}
+		},
+		{
+			"event_id": "dialogic_023",
+			"wait_seconds": 4
+		},
+		{
+			"character": "character-1629299976.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "INTRO_POST_1"
+		},
+		{
+			"character": "character-1629299976.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "INTRO_POST_2"
+		},
+		{
+			"character": "character-1629299976.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "INTRO_POST_3"
+		},
+		{
+			"character": "character-1629299976.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "INTRO_POST_4"
+		},
+		{
+			"character": "character-1629299976.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "INTRO_POST_5"
+		},
+		{
+			"character": "character-1629299976.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "INTRO_POST_6"
+		},
+		{
+			"character": "character-1629299976.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "INTRO_POST_7"
+		}
+	],
+	"metadata": {
+		"dialogic-version": "1.3",
+		"file": "timeline-1629298764.json",
+		"name": "intro"
+	}
+}

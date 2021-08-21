@@ -39,6 +39,7 @@ func activate():
 
 
 func deactivate():
+	Music.fade_in_out("glitch")
 	active = false
 	cooldown.start()
 	arrow.visible = true

@@ -42,7 +42,6 @@ func move_random(speed: float, acceleration: float = ACCEL):
 
 
 func knockback(value: Vector2):
-	print("asdf")
 	velocity = value * 1.5
 
 

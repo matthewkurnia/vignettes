@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://airbrush.png" type="Texture" id=1]
+[ext_resource path="res://wall/distorsion_material_subtle.tres" type="Material" id=2]
+
+[node name="BlurredLine" type="Sprite"]
+modulate = Color( 0, 1, 1, 0.313726 )
+material = ExtResource( 2 )
+scale = Vector2( 0.16, 8.16 )
+texture = ExtResource( 1 )

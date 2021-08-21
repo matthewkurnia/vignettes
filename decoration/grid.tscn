@@ -1,0 +1,45 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://decoration/tiling_sprite.tscn" type="PackedScene" id=1]
+[ext_resource path="res://transform_anim/vibration.tscn" type="PackedScene" id=2]
+[ext_resource path="res://decoration/sprites/grid_medium.png" type="Texture" id=3]
+
+[sub_resource type="Shader" id=1]
+resource_local_to_scene = true
+code = "shader_type canvas_item;
+
+uniform float rotation = 0.0;
+uniform vec2 tile_factor = vec2(1.0, 1.0);
+
+vec2 rotate_uv(vec2 uv, vec2 pivot, float rot) {
+    float sine = sin(rot);
+    float cosine = cos(rot);
+
+    uv -= pivot;
+	float new_x = uv.x * cosine - uv.y * sine;
+	float new_y = uv.x * sine + uv.y * cosine;
+    uv.x = new_x;
+    uv.y = new_y;
+    uv += pivot;
+
+    return uv;
+}
+
+void fragment() {
+	vec2 tiled_uv = rotate_uv(UV * tile_factor, vec2(0.5), rotation);
+	COLOR = textureLod(TEXTURE, tiled_uv, 2.0);
+}"
+
+[sub_resource type="ShaderMaterial" id=2]
+resource_local_to_scene = true
+shader = SubResource( 1 )
+shader_param/rotation = 0.0
+shader_param/tile_factor = Vector2( 6.99681, 11.1961 )
+
+[node name="Grid" instance=ExtResource( 1 )]
+modulate = Color( 0, 0, 1, 0.811765 )
+material = SubResource( 2 )
+scale = Vector2( 6.99681, 11.1961 )
+texture = ExtResource( 3 )
+
+[node name="Vibration" parent="." index="0" instance=ExtResource( 2 )]

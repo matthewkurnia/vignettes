@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/static.wav-8a013ec2ebfd189e58bfbe3bdf34f14a.sample"
+
+[deps]
+
+source_file="res://audio/ambience/static.wav"
+dest_files=[ "res://.import/static.wav-8a013ec2ebfd189e58bfbe3bdf34f14a.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=true
+compress/mode=0

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/booster_reset.wav-e7f03b979506892935b8a602c4741123.sample"
+
+[deps]
+
+source_file="res://audio/sfx/booster_reset.wav"
+dest_files=[ "res://.import/booster_reset.wav-e7f03b979506892935b8a602c4741123.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=true
+compress/mode=0

@@ -1,0 +1,15 @@
+[remap]
+
+importer="ogg_vorbis"
+type="AudioStreamOGGVorbis"
+path="res://.import/musician_song.ogg-6af99dd1691b294be79166341a5bbcc5.oggstr"
+
+[deps]
+
+source_file="res://npc/musician/musician_song.ogg"
+dest_files=[ "res://.import/musician_song.ogg-6af99dd1691b294be79166341a5bbcc5.oggstr" ]
+
+[params]
+
+loop=true
+loop_offset=0

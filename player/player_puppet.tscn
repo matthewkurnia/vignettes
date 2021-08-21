@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=2]
+[gd_scene load_steps=39 format=2]
 
 [ext_resource path="res://character_animation/puppet.tscn" type="PackedScene" id=1]
 [ext_resource path="res://character_animation/bend_anim.gd" type="Script" id=2]
@@ -22,6 +22,7 @@
 [ext_resource path="res://player/player_anim_state_machine.tres" type="AnimationNodeStateMachine" id=20]
 [ext_resource path="res://wall/fill_white.png" type="Texture" id=21]
 [ext_resource path="res://player/glide.tres" type="Animation" id=22]
+[ext_resource path="res://audio/sfx/step.wav" type="AudioStream" id=24]
 
 [sub_resource type="Animation" id=1]
 resource_name = "banished"
@@ -1208,6 +1209,20 @@ tracks/32/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ Vector2( 1, 1 ) ]
+}
+tracks/33/type = "method"
+tracks/33/path = NodePath("Jump")
+tracks/33/interp = 1
+tracks/33/loop_wrap = true
+tracks/33/imported = false
+tracks/33/enabled = true
+tracks/33/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ 0.0 ],
+"method": "play"
+} ]
 }
 
 [sub_resource type="Animation" id=4]
@@ -3391,6 +3406,20 @@ tracks/32/keys = {
 "update": 0,
 "values": [ Vector2( 1, 1 ) ]
 }
+tracks/33/type = "method"
+tracks/33/path = NodePath("Jump")
+tracks/33/interp = 1
+tracks/33/loop_wrap = true
+tracks/33/imported = false
+tracks/33/enabled = true
+tracks/33/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ 0.0 ],
+"method": "play"
+} ]
+}
 
 [sub_resource type="Animation" id=10]
 length = 0.6
@@ -3791,6 +3820,34 @@ tracks/32/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ Vector2( 1, 1 ) ]
+}
+tracks/33/type = "method"
+tracks/33/path = NodePath("Step1")
+tracks/33/interp = 1
+tracks/33/loop_wrap = true
+tracks/33/imported = false
+tracks/33/enabled = true
+tracks/33/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ 0.0 ],
+"method": "play"
+} ]
+}
+tracks/34/type = "method"
+tracks/34/path = NodePath("Step2")
+tracks/34/interp = 1
+tracks/34/loop_wrap = true
+tracks/34/imported = false
+tracks/34/enabled = true
+tracks/34/keys = {
+"times": PoolRealArray( 0.3 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ 0.0 ],
+"method": "play"
+} ]
 }
 
 [sub_resource type="Animation" id=11]
@@ -5025,112 +5082,112 @@ parameters/run/TimeScale/scale = 1.0
 
 [node name="Root" parent="." index="3"]
 position = Vector2( 0, 48 )
-scale = Vector2( 0.508345, 0.494437 )
+scale = Vector2( 0.513055, 0.491296 )
 
 [node name="backpack" type="Sprite" parent="Root" index="0"]
 visible = false
 texture = ExtResource( 16 )
 
 [node name="arm_upper_front" type="Sprite" parent="Root" index="1"]
-position = Vector2( -8.96106, -113.551 )
-rotation = -0.0260179
+position = Vector2( -8.40865, -107.608 )
+rotation = 0.130312
 scale = Vector2( 0.7, 0.7 )
 texture = ExtResource( 10 )
 offset = Vector2( 15.205, 34.0237 )
 
 [node name="arm_upper_back" type="Sprite" parent="Root" index="2"]
-position = Vector2( 8.51179, -110.561 )
-rotation = 0.0382861
+position = Vector2( 8.9922, -104.224 )
+rotation = -0.0726584
 scale = Vector2( 0.7, 0.7 )
 texture = ExtResource( 9 )
 offset = Vector2( -9.99341, 31.5039 )
 
 [node name="arm_lower_back" type="Sprite" parent="Root" index="3"]
-position = Vector2( 17.2006, -84.2131 )
-rotation = 0.318516
+position = Vector2( 20.5448, -78.9997 )
+rotation = 0.207572
 scale = Vector2( 0.7, 0.7 )
 texture = ExtResource( 14 )
 offset = Vector2( -23.8377, -5.63348 )
 
 [node name="hat_back" type="Sprite" parent="Root" index="4"]
 material = ExtResource( 18 )
-position = Vector2( 1.40189, -149.28 )
-rotation = -0.0463175
+position = Vector2( 1.45727, -143.136 )
+rotation = -0.0792433
 scale = Vector2( 0.7, 0.7 )
 texture = ExtResource( 13 )
 offset = Vector2( 0.109314, 85.8731 )
 
 [node name="leg_upper_back" type="Sprite" parent="Root" index="5"]
-position = Vector2( 7.73199, -74.811 )
-rotation = -0.492935
+position = Vector2( 7.73199, -68.7072 )
+rotation = -0.750846
 scale = Vector2( 0.7, 0.7 )
 texture = ExtResource( 8 )
 offset = Vector2( -11.0457, -20.5 )
 
 [node name="leg_lower_back" type="Sprite" parent="Root" index="6"]
-position = Vector2( 21.5298, -57.1928 )
-rotation = 0.00510065
+position = Vector2( 25.5672, -55.191 )
+rotation = 0.162543
 scale = Vector2( 0.7, 0.7 )
 texture = ExtResource( 15 )
 offset = Vector2( -16.5, -52 )
 
 [node name="foot_back" type="Sprite" parent="Root" index="7"]
 modulate = Color( 0.764706, 0.623529, 0.686275, 1 )
-position = Vector2( 25.3487, -31.1249 )
-rotation = 0.00282228
+position = Vector2( 25.2515, -28.8468 )
+rotation = -0.0275166
 scale = Vector2( 0.7, 0.7 )
 texture = ExtResource( 12 )
 offset = Vector2( -22.1454, -89.2115 )
 
 [node name="body_lower" type="Sprite" parent="Root" index="8"]
-position = Vector2( 0, -83.5609 )
+position = Vector2( 0, -77.4572 )
 scale = Vector2( 0.7, 0.7 )
 texture = ExtResource( 3 )
 offset = Vector2( 0, -8 )
 
 [node name="leg_upper_front" type="Sprite" parent="Root/body_lower" index="0"]
 position = Vector2( -9.089, 15.8475 )
-rotation = 0.115549
+rotation = -0.124145
 texture = ExtResource( 11 )
 offset = Vector2( 9.089, -23.8475 )
 
 [node name="leg_lower_front" type="Sprite" parent="Root/body_lower/leg_upper_front" index="0"]
 position = Vector2( -12.0665, 28.6228 )
-rotation = 0.00661503
+rotation = 0.551821
 texture = ExtResource( 4 )
 offset = Vector2( 21.1555, -52.4703 )
 
 [node name="foot_front" type="Sprite" parent="Root/body_lower/leg_upper_front/leg_lower_front" index="0"]
 position = Vector2( -21.0396, 34.2107 )
-rotation = -0.157443
+rotation = -0.423816
 texture = ExtResource( 12 )
 offset = Vector2( -23.4042, -88.0968 )
 
 [node name="leg_upper_back" type="RemoteTransform2D" parent="Root/body_lower" index="1"]
 position = Vector2( 11.0457, 12.5 )
-rotation = -0.492935
+rotation = -0.750846
 remote_path = NodePath("../../leg_upper_back")
 
 [node name="leg_lower_back" type="RemoteTransform2D" parent="Root/body_lower/leg_upper_back" index="0"]
 position = Vector2( 5.4543, 31.5 )
-rotation = 0.498036
+rotation = 0.913389
 remote_path = NodePath("../../../leg_lower_back")
 
 [node name="foot_back" type="RemoteTransform2D" parent="Root/body_lower/leg_upper_back/leg_lower_back" index="0"]
 position = Vector2( 5.64537, 37.2115 )
-rotation = -0.00227837
+rotation = -0.19006
 remote_path = NodePath("../../../../foot_back")
 
 [node name="body_upper" type="Sprite" parent="Root/body_lower" index="2"]
 show_behind_parent = true
 position = Vector2( -2.26791, -8.0246 )
-rotation = 0.0698226
+rotation = 0.0924119
 texture = ExtResource( 5 )
 offset = Vector2( 2.26791, 0.0245972 )
 
 [node name="head" type="Sprite" parent="Root/body_lower/body_upper" index="0"]
 position = Vector2( -0.647552, -52.4553 )
-rotation = -0.11614
+rotation = -0.171655
 texture = ExtResource( 6 )
 offset = Vector2( 2.91547, 52.4799 )
 
@@ -5140,7 +5197,7 @@ position = Vector2( 3.92862, -31.9902 )
 texture = ExtResource( 7 )
 offset = Vector2( -1.01315, 84.47 )
 script = ExtResource( 2 )
-bend = -0.193254
+bend = -0.0605652
 
 [node name="hat_back" type="RemoteTransform2D" parent="Root/body_lower/body_upper/head/hat_front" index="0"]
 position = Vector2( -1.12247, -1.40308 )
@@ -5148,7 +5205,7 @@ remote_path = NodePath("../../../../../hat_back")
 
 [node name="arm_upper_front" type="RemoteTransform2D" parent="Root/body_lower/body_upper" index="1"]
 position = Vector2( -12.9371, -33.9991 )
-rotation = -0.0958405
+rotation = 0.0378998
 remote_path = NodePath("../../../arm_upper_front")
 
 [node name="arm_lower_front" type="Sprite" parent="Root/body_lower/body_upper/arm_upper_front" index="0"]
@@ -5164,7 +5221,7 @@ texture = ExtResource( 19 )
 
 [node name="arm_upper_back" type="RemoteTransform2D" parent="Root/body_lower/body_upper" index="2"]
 position = Vector2( 12.2613, -31.4793 )
-rotation = -0.0315365
+rotation = -0.16507
 remote_path = NodePath("../../../arm_upper_back")
 
 [node name="arm_lower_back" type="RemoteTransform2D" parent="Root/body_lower/body_upper/arm_upper_back" index="0"]
@@ -5179,3 +5236,17 @@ position = Vector2( -1.49829, -96.6408 )
 scale = Vector2( 5, 5 )
 z_index = -10
 texture = ExtResource( 21 )
+
+[node name="Step1" type="AudioStreamPlayer" parent="." index="4"]
+stream = ExtResource( 24 )
+bus = "Sfx"
+
+[node name="Step2" type="AudioStreamPlayer" parent="." index="5"]
+stream = ExtResource( 24 )
+pitch_scale = 1.21
+bus = "Sfx"
+
+[node name="Jump" type="AudioStreamPlayer" parent="." index="6"]
+stream = ExtResource( 24 )
+pitch_scale = 0.81
+bus = "Sfx"

@@ -40,7 +40,8 @@ func _init():
 
 func _ready():
 	Player.connect("state_override", state_machine, "change_state")
-	self.global_position = Demo.get_spawn()
+	if Demo.get_spawn() != Vector2.ZERO:
+		self.global_position = Demo.get_spawn()
 	Cam.reset_camera_position()
 
 

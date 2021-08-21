@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/lvl2_strings.wav-e64c9b09c23584ef571007192617977a.sample"
+
+[deps]
+
+source_file="res://audio/music/lvl2_strings.wav"
+dest_files=[ "res://.import/lvl2_strings.wav-e64c9b09c23584ef571007192617977a.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

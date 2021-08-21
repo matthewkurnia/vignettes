@@ -1,0 +1,10 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://decoration/tiling_sprite.tscn" type="PackedScene" id=1]
+[ext_resource path="res://decoration/sprites/dots.png" type="Texture" id=2]
+[ext_resource path="res://decoration/tile/basic_tile_material.tres" type="Material" id=3]
+
+[node name="Dots1" instance=ExtResource( 1 )]
+material = ExtResource( 3 )
+scale = Vector2( 5.25844, 5.25595 )
+texture = ExtResource( 2 )

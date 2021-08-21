@@ -3,9 +3,8 @@ TEST_1,The quick brown fox.
 TEST_2,Is this golden syrup?
 TEST_3,Mopping is fun!
 TITLE,Vignettes.
-SUBTITLE,"Sometimes in life
-we make choices
-that we later regret.
+SUBTITLE,"Propter vitam vivendi
+perdere causas.
 
 
 Pre-Alpha 0.0.1 demo
@@ -28,3 +27,52 @@ PROLOGUE,Prologue
 CHAPTER_1,Chapter 1
 END,"End of Demo
 Thank you for playing"
+TUTORIAL_1,Arrow keys to move.
+TUTORIAL_2,Press 'x' to jump.
+TUTORIAL_3,Press and hold 'c' to slide.
+COMPLIMENT_1,"Wow, you're so talented!"
+COMPLIMENT_2,"Well done, kid."
+COMPLIMENT_3,You're a genius!
+COMPLIMENT_4,How are you so smart? You're so young!
+COMPLIMENT_5,You're going to be super successful. I know it.
+INTRO_PRE_1,Hey! I'm Anna.
+INTRO_PRE_2,Anna Whittaker Murrat. (for the sake of formality)
+INTRO_PRE_3,One of my favorite pastimes is drawing characters.
+INTRO_PRE_4,Here's a favorite of mine.
+INTRO_POST_1,"Unlike a lot of people, I don't like naming my characters?"
+INTRO_POST_2,"I don't know, I just call her ""farmer girl""."
+INTRO_POST_3,"Don't ask my ""why the Japanese aesthetic Anna""."
+INTRO_POST_4,"I watched Princess Mononoke when I was five and immediately got obsessed, okay?"
+INTRO_POST_5,"Anywho, I've got to do some errands."
+INTRO_POST_6,Feel free to look around though! :)
+INTRO_POST_7,I'll leave you to it then.
+SCHO_LVL1_1,"Hello, little one. You are unfamiliar with this place, are you not?"
+SCHO_LVL1_2,...
+SCHO_LVL1_3,The silent type. I see.
+SCHO_LVL1_4,"Er.. Apologies, my words have preceded my manners."
+SCHO_LVL1_5,I am known as The Scholar. It is my purpose to accumulate knowledge about all things.
+SCHO_LVL1_6,"If your question is where is this place, well that knowledge is beyond all of our kind. Even me."
+SCHO_LVL1_7,"Often this place is called names such as ""Void"" or ""Limbo"", But I detest verbose words that has no meaning."
+SCHO_LVL1_8,"You were always her favorite, little one. Shame she brought this upon you too."
+SCHO_LVL1_9,Your journey ahead shall be perilous. I shall observe your voyage with great interest.
+SCHO_LVL1_10,"Godspeed, little one."
+SCHO_LVL2_1,The trial is different for all of us. Mine was of knowledge.
+SCHO_LVL2_2,"I have read and memorized a hundred-thousand books, and yet I remember so few."
+SCHO_LVL2_3,You see now why I am perpetually reading. I must do so lest I lose my intelligence
+SCHO_LVL2_4,"The trial never ends for any of us. You think you've reached your destination but you have not, cannot, will not reach it."
+SCHO_LVL2_5,Truly a sisyphean existence.
+SCHO_LVL2_6,The road ahead is more treacherous yet.
+SCHO_LVL2_7,"Some doors shall be locked, and you shall open them."
+SCHO_LVL2_8,Godspeed.
+MUSC_1,Who has disturbed me?
+MUSC_2,"Ah, it is you. The favorite."
+MUSC_3,...
+MUSC_4,No response. I suppose you were designed that way.
+MUSC_5,I did not think she will give up on you.
+MUSC_6,I guess I was mistaken.
+MUSC_7,They call me the musician. None of us have names you see.
+MUSC_8,"I suppose you've met the scholar. He is the eldest of all of us, he was here when she played her first song."
+MUSC_9,Years has passed since I heard her playing. I guess she lost passion.
+MUSC_10,"I, however, will not. I shall practice until my performance is without fault."
+MUSC_11,Distract me again and I'll have your head on a platter.
+MUSC_12,Now go.

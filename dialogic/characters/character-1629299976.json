@@ -1,0 +1,20 @@
+{
+	"color": "#fff75656",
+	"description": "",
+	"display_name": "_",
+	"display_name_bool": true,
+	"id": "character-1629299976.json",
+	"mirror_portraits": true,
+	"name": "Farmer Girl",
+	"nickname": "",
+	"nickname_bool": false,
+	"offset_x": -400,
+	"offset_y": 500,
+	"portraits": [
+		{
+			"name": "Default",
+			"path": "res://key_art/kid.png"
+		}
+	],
+	"scale": 60
+}

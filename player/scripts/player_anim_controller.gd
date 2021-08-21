@@ -22,6 +22,11 @@ func _ready():
 
 
 func _process(delta):
+	if ["wall_slide", "slide"].has(curr_anim):
+		$Slide.volume_db = min(player.velocity.length()/10 - 80, -5)
+	else:
+		$Slide.volume_db = -80
+	
 #	Banished special case
 	if curr_anim == "banished":
 		rig.visible = false
@@ -85,6 +90,7 @@ func _on_PlayerRig_anim_played(anim_name):
 	if anim_name == "charge":
 		get_parent().play_immediate(anim_name)
 	if curr_anim == "fall" and ["idle", "run"].has(anim_name):
+		$Land.play()
 		sprite.scale.x = 1.3
 		sprite.scale.y = 0.75
 	curr_anim = anim_name

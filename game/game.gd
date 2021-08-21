@@ -44,6 +44,7 @@ func add_to_viewport(node: Node2D, layer):
 
 func change_scene(scene_path: String):
 	Game.is_menu = scene_path == MAIN_PATH
+	main_viewport.gui_disable_input = true
 	var scene = load(scene_path)
 	if not Game.is_menu:
 		Demo.set_last_scene(scene_path)
@@ -56,4 +57,5 @@ func change_scene(scene_path: String):
 	main.queue_free()
 	main = scene.instance()
 	main_viewport.add_child(main)
+	main_viewport.gui_disable_input = false
 	fade.fade_out(0.5)

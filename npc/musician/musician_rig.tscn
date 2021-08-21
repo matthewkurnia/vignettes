@@ -1,0 +1,26 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://npc/musician/musician_puppet.tscn" type="PackedScene" id=1]
+[ext_resource path="res://character_animation/character_rig.tscn" type="PackedScene" id=2]
+[ext_resource path="res://character_animation/character_outline_material.tres" type="Material" id=3]
+
+[sub_resource type="ViewportTexture" id=1]
+viewport_path = NodePath("Viewport")
+
+[sub_resource type="ViewportTexture" id=2]
+viewport_path = NodePath("Viewport")
+
+[node name="MusicianRig" instance=ExtResource( 2 )]
+
+[node name="Viewport" parent="." index="0"]
+size = Vector2( 400, 600 )
+
+[node name="Puppet" parent="Viewport" index="0" instance=ExtResource( 1 )]
+position = Vector2( 200, 300 )
+
+[node name="Sprite" parent="." index="1"]
+material = ExtResource( 3 )
+texture = SubResource( 1 )
+
+[node name="Sprite" parent="Sprite/ColorNode" index="0"]
+texture = SubResource( 2 )

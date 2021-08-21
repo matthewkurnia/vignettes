@@ -280,6 +280,8 @@ Player="*res://player/player_singleton.tscn"
 Cam="*res://camera/camera_singleton.gd"
 Demo="*res://demo/demo.gd"
 DialogicSingleton="*res://addons/dialogic/Other/DialogicSingleton.gd"
+Audio="*res://audio/audio.tscn"
+Music="*res://audio/music.tscn"
 
 [display]
 
@@ -293,7 +295,7 @@ window/stretch/aspect="keep"
 
 [editor_plugins]
 
-enabled=PoolStringArray( "res://addons/Trail/plugin.cfg", "res://addons/dialogic/plugin.cfg", "res://addons/object_placer/plugin.cfg", "res://addons/rmsmartshape/plugin.cfg" )
+enabled=PoolStringArray( "res://addons/Trail/plugin.cfg", "res://addons/dialogic/plugin.cfg", "res://addons/mixing-desk/plugin.cfg", "res://addons/object_placer/plugin.cfg", "res://addons/rmsmartshape/plugin.cfg" )
 
 [importer_defaults]
 

@@ -1,0 +1,101 @@
+[gd_scene load_steps=19 format=2]
+
+[ext_resource path="res://audio/music/lvl2_base.wav" type="AudioStream" id=1]
+[ext_resource path="res://addons/mixing-desk/music/song.gd" type="Script" id=2]
+[ext_resource path="res://addons/mixing-desk/music/mixing_desk_music.gd" type="Script" id=3]
+[ext_resource path="res://addons/mixing-desk/music/containers/core_cont.gd" type="Script" id=4]
+[ext_resource path="res://audio/music/lvl2_strings.wav" type="AudioStream" id=5]
+[ext_resource path="res://audio/music/lvl2_arpeggio.wav" type="AudioStream" id=6]
+[ext_resource path="res://audio/music/lvl2_drums.wav" type="AudioStream" id=7]
+[ext_resource path="res://audio/music/lvl2_bass.wav" type="AudioStream" id=8]
+[ext_resource path="res://audio/music/lvl2_glitch.wav" type="AudioStream" id=9]
+[ext_resource path="res://audio/music/lvl2_choir.wav" type="AudioStream" id=10]
+[ext_resource path="res://audio/music/lvl1_base.wav" type="AudioStream" id=11]
+[ext_resource path="res://audio/music/lvl1_arpeggio.wav" type="AudioStream" id=12]
+[ext_resource path="res://audio/music/lvl1_glitch.wav" type="AudioStream" id=13]
+[ext_resource path="res://audio/music/lvl1_bass.wav" type="AudioStream" id=14]
+[ext_resource path="res://audio/music/lvl1_drums.wav" type="AudioStream" id=15]
+[ext_resource path="res://audio/music/lvl1_choir.wav" type="AudioStream" id=16]
+[ext_resource path="res://audio/music/lvl1_strings.wav" type="AudioStream" id=17]
+[ext_resource path="res://audio/music.gd" type="Script" id=18]
+
+[node name="Music" type="Node"]
+script = ExtResource( 18 )
+
+[node name="lvl1" type="Node" parent="."]
+script = ExtResource( 3 )
+play_mode = 1
+
+[node name="Song" type="Node" parent="lvl1"]
+script = ExtResource( 2 )
+tempo = 100
+bars = 4
+beats_in_bar = 7
+transition_beats = 2.0
+
+[node name="CoreContainer" type="Node" parent="lvl1/Song"]
+script = ExtResource( 4 )
+
+[node name="arpeggio" type="AudioStreamPlayer" parent="lvl1/Song/CoreContainer"]
+stream = ExtResource( 12 )
+volume_db = -80.0
+
+[node name="base" type="AudioStreamPlayer" parent="lvl1/Song/CoreContainer"]
+stream = ExtResource( 11 )
+
+[node name="bass" type="AudioStreamPlayer" parent="lvl1/Song/CoreContainer"]
+stream = ExtResource( 14 )
+
+[node name="choir" type="AudioStreamPlayer" parent="lvl1/Song/CoreContainer"]
+stream = ExtResource( 16 )
+
+[node name="drums" type="AudioStreamPlayer" parent="lvl1/Song/CoreContainer"]
+stream = ExtResource( 15 )
+
+[node name="glitch" type="AudioStreamPlayer" parent="lvl1/Song/CoreContainer"]
+stream = ExtResource( 13 )
+volume_db = -80.0
+
+[node name="strings" type="AudioStreamPlayer" parent="lvl1/Song/CoreContainer"]
+stream = ExtResource( 17 )
+
+[node name="lvl2" type="Node" parent="."]
+script = ExtResource( 3 )
+play_mode = 1
+
+[node name="Song" type="Node" parent="lvl2"]
+script = ExtResource( 2 )
+tempo = 120
+bars = 8
+beats_in_bar = 9
+transition_beats = 2.0
+
+[node name="CoreContainer" type="Node" parent="lvl2/Song"]
+script = ExtResource( 4 )
+
+[node name="arpeggio" type="AudioStreamPlayer" parent="lvl2/Song/CoreContainer"]
+stream = ExtResource( 6 )
+volume_db = -80.0
+
+[node name="base" type="AudioStreamPlayer" parent="lvl2/Song/CoreContainer"]
+stream = ExtResource( 1 )
+
+[node name="bass" type="AudioStreamPlayer" parent="lvl2/Song/CoreContainer"]
+stream = ExtResource( 8 )
+
+[node name="choir" type="AudioStreamPlayer" parent="lvl2/Song/CoreContainer"]
+stream = ExtResource( 10 )
+
+[node name="drums" type="AudioStreamPlayer" parent="lvl2/Song/CoreContainer"]
+stream = ExtResource( 7 )
+
+[node name="glitch" type="AudioStreamPlayer" parent="lvl2/Song/CoreContainer"]
+stream = ExtResource( 9 )
+volume_db = -80.0
+
+[node name="strings" type="AudioStreamPlayer" parent="lvl2/Song/CoreContainer"]
+stream = ExtResource( 5 )
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true

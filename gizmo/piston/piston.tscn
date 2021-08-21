@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://gizmo/piston/piston_bottom.PNG" type="Texture" id=1]
 [ext_resource path="res://gizmo/piston/piston_top.PNG" type="Texture" id=2]
@@ -7,6 +7,8 @@
 [ext_resource path="res://airbrush.png" type="Texture" id=5]
 [ext_resource path="res://game/color_node.gd" type="Script" id=6]
 [ext_resource path="res://gizmo/piston/piston.gd" type="Script" id=7]
+[ext_resource path="res://audio/sfx/piston.wav" type="AudioStream" id=8]
+[ext_resource path="res://audio/sfx/piston_idle.wav" type="AudioStream" id=9]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 20.0
@@ -38,7 +40,6 @@ color_ramp = SubResource( 3 )
 
 [sub_resource type="Animation" id=7]
 resource_name = "bounce"
-length = 0.7
 step = 0.05
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:position")
@@ -75,6 +76,20 @@ tracks/2/keys = {
 "transitions": PoolRealArray( 0.5, 0.5, 1 ),
 "update": 0,
 "values": [ Vector2( 0.2, 0.1 ), Vector2( 0.25, 0.075 ), Vector2( 0.2, 0.1 ) ]
+}
+tracks/3/type = "method"
+tracks/3/path = NodePath("../Bounce")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ 0.0 ],
+"method": "play"
+} ]
 }
 
 [sub_resource type="Animation" id=8]
@@ -192,3 +207,13 @@ tree_root = SubResource( 13 )
 anim_player = NodePath("../AnimationPlayer")
 active = true
 parameters/playback = SubResource( 14 )
+
+[node name="Bounce" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 8 )
+bus = "Sfx"
+
+[node name="Idle" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 9 )
+volume_db = -5.871
+autoplay = true
+bus = "Sfx"

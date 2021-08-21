@@ -3,10 +3,12 @@ extends Particles2D
 
 var time = 0
 
-onready var player = Player.get_player_node()
 
 
 func _process(delta):
+	var player = Player.get_player_node()
+	if not player:
+		return
 	if player.is_on_floor() or player.is_on_wall():
 		time = OS.get_ticks_msec()
 		self.emitting = (abs(player.velocity.y) > player.JUMP_STRENGTH or

@@ -13,10 +13,12 @@ onready var door = get_node(door_path)
 
 func _ready():
 	if Demo.get_key_collected(self):
+		$Pickup.volume_db = -80
 		collect()
 
 
 func collect():
+	$Pickup.play()
 	call_deferred("emit_signal", "collected")
 #	emit_signal("collected")
 	Demo.set_key_collected(self)

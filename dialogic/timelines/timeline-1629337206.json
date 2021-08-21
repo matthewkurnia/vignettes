@@ -1,0 +1,83 @@
+{
+	"events": [
+		{
+			"action": "join",
+			"character": "character-1629298842.json",
+			"event_id": "dialogic_002",
+			"mirror": false,
+			"portrait": "",
+			"position": {
+				"0": true,
+				"1": false,
+				"2": false,
+				"3": false,
+				"4": false
+			}
+		},
+		{
+			"character": "character-1629298842.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "SCHO_LVL1_1"
+		},
+		{
+			"character": "character-1629298842.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "SCHO_LVL1_2"
+		},
+		{
+			"character": "character-1629298842.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "SCHO_LVL1_3"
+		},
+		{
+			"character": "character-1629298842.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "SCHO_LVL1_4"
+		},
+		{
+			"character": "character-1629298842.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "SCHO_LVL1_5"
+		},
+		{
+			"character": "character-1629298842.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "SCHO_LVL1_6"
+		},
+		{
+			"character": "character-1629298842.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "SCHO_LVL1_7"
+		},
+		{
+			"character": "character-1629298842.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "SCHO_LVL1_8"
+		},
+		{
+			"character": "character-1629298842.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "SCHO_LVL1_9"
+		},
+		{
+			"character": "character-1629298842.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "SCHO_LVL1_10"
+		}
+	],
+	"metadata": {
+		"dialogic-version": "1.3",
+		"file": "timeline-1629337206.json",
+		"name": "scholar_1"
+	}
+}

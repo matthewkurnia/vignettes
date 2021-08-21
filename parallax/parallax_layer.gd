@@ -10,8 +10,16 @@ func _ready():
 		self.scale = scroll_scale * Vector2(1, 1)
 	else:
 		for child in get_children():
-			if child.has_method("set_position"):
-				child.position *= scale
+			if child is ObjectPlacer2D:
+				for c in child.get_children():
+					c.position *= scroll_scale
+			elif child is ColorNode:
+				for a in child.get_children():
+					if a is ObjectPlacer2D:
+						for c in a.get_children():
+							c.position *= scroll_scale
+			elif child.has_method("set_position"):
+				child.position *= scroll_scale
 
 
 func _process(delta):

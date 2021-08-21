@@ -1,12 +1,21 @@
 extends Sprite
 
 
-const INTERVAL = 44
+const INTERVAL = 47
 
 var state = 0
 
 onready var init_pos = position
 onready var n = 3
+
+
+func _input(event):
+	var ui_pressed = Input.is_action_just_pressed("ui_down")
+	ui_pressed = ui_pressed or Input.is_action_just_pressed("ui_up")
+	ui_pressed = ui_pressed or Input.is_action_just_pressed("ui_accept")
+	ui_pressed = ui_pressed or Input.is_action_just_pressed("ui_cancel")
+	if ui_pressed and get_tree().paused:
+		$AudioStreamPlayer.play()
 
 
 func _process(delta):

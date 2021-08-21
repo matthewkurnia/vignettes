@@ -1,0 +1,95 @@
+{
+	"events": [
+		{
+			"action": "join",
+			"character": "character-1629299813.json",
+			"event_id": "dialogic_002",
+			"mirror": false,
+			"portrait": "",
+			"position": {
+				"0": true,
+				"1": false,
+				"2": false,
+				"3": false,
+				"4": false
+			}
+		},
+		{
+			"character": "character-1629299813.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "MUSC_1"
+		},
+		{
+			"character": "character-1629299813.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "MUSC_2"
+		},
+		{
+			"character": "character-1629299813.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "MUSC_3"
+		},
+		{
+			"character": "character-1629299813.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "MUSC_4"
+		},
+		{
+			"character": "character-1629299813.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "MUSC_5"
+		},
+		{
+			"character": "character-1629299813.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "MUSC_6"
+		},
+		{
+			"character": "character-1629299813.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "MUSC_7"
+		},
+		{
+			"character": "character-1629299813.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "MUSC_8"
+		},
+		{
+			"character": "character-1629299813.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "MUSC_9"
+		},
+		{
+			"character": "character-1629299813.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "MUSC_10"
+		},
+		{
+			"character": "character-1629299813.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "MUSC_11"
+		},
+		{
+			"character": "character-1629299813.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "MUSC_12"
+		}
+	],
+	"metadata": {
+		"dialogic-version": "1.3",
+		"file": "timeline-1629337456.json",
+		"name": "musician_2"
+	}
+}

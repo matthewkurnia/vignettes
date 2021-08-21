@@ -127,11 +127,12 @@ size = Vector2( 1920, 1080 )
 handle_input_locally = false
 disable_3d = true
 render_target_update_mode = 3
+audio_listener_enable_2d = true
 
 [node name="Background" parent="WorldRender/Main/MainViewport" instance=ExtResource( 9 )]
 
 [node name="UI" type="CanvasLayer" parent="WorldRender/Main/MainViewport"]
-layer = 10
+layer = 100
 
 [node name="Pause" parent="WorldRender/Main/MainViewport/UI" instance=ExtResource( 7 )]
 visible = false

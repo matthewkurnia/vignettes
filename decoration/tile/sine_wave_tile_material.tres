@@ -25,8 +25,8 @@ vec2 rotate_uv(vec2 uv, vec2 pivot, float rot) {
 
 void fragment() {
 	vec2 tiled_uv = rotate_uv(UV * tile_factor, vec2(0.5), rotation);
-	tiled_uv.x += amplitude * sin(TIME + tiled_uv.y * frequency);
-	tiled_uv.y += amplitude * cos(TIME + tiled_uv.x * frequency);
+	tiled_uv.x += amplitude * sin(TIME * frequency + tiled_uv.y * frequency);
+	tiled_uv.y += amplitude * cos(TIME * frequency + tiled_uv.x * frequency);
 	COLOR = texture(TEXTURE, tiled_uv);
 	
 }"

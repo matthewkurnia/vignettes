@@ -2,6 +2,7 @@ extends Node
 
 
 signal state_override(state)
+signal death()
 
 export var PlayerDeath: PackedScene
 
@@ -17,6 +18,10 @@ onready var respawn_delay = $RespawnDelay
 onready var fade_delay = $FadeDelay
 
 
+func _ready():
+	self.connect("death", $Death, "play")
+
+
 func set_player_node(node):
 	actor = node
 
@@ -24,6 +29,7 @@ func set_player_node(node):
 func get_player_node():
 	if not actor:
 		var nodes = get_tree().get_nodes_in_group("player")
+		print(nodes)
 		if nodes:
 			return nodes[0]
 	return actor
@@ -33,11 +39,12 @@ func set_spawn_position(pos: Vector2):
 	spawn_position = pos
 
 
-func set_input_enabled(value: bool):
+func set_input_enabled(value := true):
 	input_enabled = value
 
 
 func start_death_sequence():
+	emit_signal("death")
 	var player_death = PlayerDeath.instance()
 	player_death.global_position = actor.global_position
 	actor.get_parent().add_child(player_death)

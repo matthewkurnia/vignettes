@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://npc/musician/musician_song.ogg" type="AudioStream" id=1]
+[ext_resource path="res://npc/musician/musician_song.gd" type="Script" id=2]
+
+[node name="MusicianSong" type="AudioStreamPlayer2D"]
+stream = ExtResource( 1 )
+script = ExtResource( 2 )
+
+[node name="Tween" type="Tween" parent="."]

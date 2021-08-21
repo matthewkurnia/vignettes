@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://fonts/small_text_font.tres" type="DynamicFont" id=1]
 [ext_resource path="res://airbrush.png" type="Texture" id=2]
@@ -13,8 +13,9 @@
 [ext_resource path="res://decoration/sprites/grid_medium.png" type="Texture" id=11]
 [ext_resource path="res://fonts/big_title_font.tres" type="DynamicFont" id=12]
 [ext_resource path="res://demo/title_pointer.gd" type="Script" id=13]
+[ext_resource path="res://audio/sfx/button.wav" type="AudioStream" id=14]
 
-[sub_resource type="Shader" id=11]
+[sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
 
 uniform float amplitude = 0.1;
@@ -28,11 +29,11 @@ void fragment() {
 }"
 
 [sub_resource type="ShaderMaterial" id=2]
-shader = SubResource( 11 )
+shader = SubResource( 1 )
 shader_param/amplitude = 0.01
 shader_param/noise = ExtResource( 3 )
 
-[sub_resource type="Shader" id=12]
+[sub_resource type="Shader" id=3]
 resource_local_to_scene = true
 code = "shader_type canvas_item;
 
@@ -58,13 +59,13 @@ void fragment() {
 	COLOR = texture(TEXTURE, tiled_uv);
 }"
 
-[sub_resource type="ShaderMaterial" id=6]
+[sub_resource type="ShaderMaterial" id=4]
 resource_local_to_scene = true
-shader = SubResource( 12 )
+shader = SubResource( 3 )
 shader_param/rotation = 0.0
 shader_param/tile_factor = Vector2( 24.1286, 10.2209 )
 
-[sub_resource type="Shader" id=13]
+[sub_resource type="Shader" id=5]
 resource_local_to_scene = true
 code = "shader_type canvas_item;
 
@@ -101,9 +102,9 @@ void fragment() {
 	
 }"
 
-[sub_resource type="ShaderMaterial" id=9]
+[sub_resource type="ShaderMaterial" id=6]
 resource_local_to_scene = true
-shader = SubResource( 13 )
+shader = SubResource( 5 )
 shader_param/rotation = 1.776
 shader_param/frequency_x = 0.1
 shader_param/frequency_y = 0.1
@@ -111,7 +112,7 @@ shader_param/amplitude = 0.1
 shader_param/tile_factor = Vector2( 1, 1 )
 shader_param/noise = ExtResource( 9 )
 
-[sub_resource type="Animation" id=10]
+[sub_resource type="Animation" id=7]
 resource_name = "loop"
 length = 0.7
 loop = true
@@ -265,7 +266,7 @@ __meta__ = {
 }
 
 [node name="TilingSprite" parent="." instance=ExtResource( 6 )]
-material = SubResource( 6 )
+material = SubResource( 4 )
 position = Vector2( 154, 658 )
 rotation = 1.57079
 scale = Vector2( 24.1286, 10.2209 )
@@ -303,7 +304,7 @@ texture = ExtResource( 8 )
 amplitude = 1.0
 
 [node name="glitch_noise_tile" type="Sprite" parent="."]
-material = SubResource( 9 )
+material = SubResource( 6 )
 position = Vector2( 104, 128 )
 texture = ExtResource( 10 )
 
@@ -312,7 +313,7 @@ amplitude = 0.5
 
 [node name="glitch_noise_tile2" type="Sprite" parent="."]
 modulate = Color( 1, 1, 1, 0.462745 )
-material = SubResource( 9 )
+material = SubResource( 6 )
 position = Vector2( 637.5, 754.061 )
 rotation = -1.57079
 scale = Vector2( 0.806641, 1.39024 )
@@ -331,7 +332,13 @@ menu_label_path = NodePath("../Menu")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Pointer"]
 autoplay = "loop"
-anims/loop = SubResource( 10 )
+anims/loop = SubResource( 7 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Pointer"]
+stream = ExtResource( 14 )
+volume_db = -8.0
+pitch_scale = 0.7
+bus = "Sfx"
 
 [node name="stripe_small" type="Sprite" parent="."]
 visible = false

@@ -46,5 +46,5 @@ shader_param/rotation = 1.776
 shader_param/frequency_x = 0.1
 shader_param/frequency_y = 0.1
 shader_param/amplitude = 3.0
-shader_param/tile_factor = Vector2( 17.7474, 13.0379 )
+shader_param/tile_factor = Vector2( 1, 1 )
 shader_param/noise = ExtResource( 1 )

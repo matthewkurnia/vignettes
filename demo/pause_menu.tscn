@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://wall/distorsion_material.tres" type="Material" id=1]
 [ext_resource path="res://wall/animated_noise.tres" type="Texture" id=2]
@@ -11,6 +11,7 @@
 [ext_resource path="res://decoration/sprites/glitch_noise_tile.png" type="Texture" id=9]
 [ext_resource path="res://decoration/sprites/soft_noise.png" type="Texture" id=10]
 [ext_resource path="res://decoration/tiling_sprite.tscn" type="PackedScene" id=11]
+[ext_resource path="res://audio/sfx/button.wav" type="AudioStream" id=12]
 
 [sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
@@ -65,7 +66,7 @@ tracks/0/keys = {
 "values": [ Vector2( 0, 0 ), Vector2( 50, 0 ) ]
 }
 
-[sub_resource type="Shader" id=9]
+[sub_resource type="Shader" id=6]
 resource_local_to_scene = true
 code = "shader_type canvas_item;
 
@@ -91,9 +92,9 @@ void fragment() {
 	COLOR = texture(TEXTURE, tiled_uv);
 }"
 
-[sub_resource type="ShaderMaterial" id=10]
+[sub_resource type="ShaderMaterial" id=7]
 resource_local_to_scene = true
-shader = SubResource( 9 )
+shader = SubResource( 6 )
 shader_param/rotation = 0.0
 shader_param/tile_factor = Vector2( 24.1286, 10.2209 )
 
@@ -134,7 +135,7 @@ void fragment() {
 	
 }"
 
-[sub_resource type="ShaderMaterial" id=11]
+[sub_resource type="ShaderMaterial" id=9]
 resource_local_to_scene = true
 shader = SubResource( 8 )
 shader_param/rotation = 1.776
@@ -253,6 +254,7 @@ __meta__ = {
 }
 
 [node name="Pointer" type="Sprite" parent="."]
+pause_mode = 2
 position = Vector2( 824, 590.108 )
 scale = Vector2( 0.26, 0.2 )
 texture = ExtResource( 4 )
@@ -262,8 +264,14 @@ script = ExtResource( 7 )
 autoplay = "loop"
 anims/loop = SubResource( 5 )
 
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Pointer"]
+stream = ExtResource( 12 )
+volume_db = -8.0
+pitch_scale = 0.7
+bus = "Sfx"
+
 [node name="TilingSprite" parent="." instance=ExtResource( 11 )]
-material = SubResource( 10 )
+material = SubResource( 7 )
 position = Vector2( 1912, -288 )
 rotation = -1.57079
 scale = Vector2( 24.1286, 10.2209 )
@@ -273,7 +281,7 @@ texture = ExtResource( 8 )
 amplitude = 1.0
 
 [node name="glitch_noise_tile" type="Sprite" parent="."]
-material = SubResource( 11 )
+material = SubResource( 9 )
 position = Vector2( 4, 216 )
 scale = Vector2( 0.109375, 1 )
 texture = ExtResource( 9 )
@@ -282,7 +290,7 @@ texture = ExtResource( 9 )
 amplitude = 0.5
 
 [node name="glitch_noise_tile2" type="Sprite" parent="."]
-material = SubResource( 11 )
+material = SubResource( 9 )
 position = Vector2( 378, 740 )
 scale = Vector2( 0.0390625, 0.109375 )
 texture = ExtResource( 9 )

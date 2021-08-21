@@ -1,8 +1,8 @@
 extends Node
 
 
-const SAVE_PATH = "res://demo_save.data"
-const STARTING_PATH = "res://demo/title_cards/prologue.tscn"
+const SAVE_PATH = "user://demo_save.data"
+const STARTING_PATH = "res://demo/intro_scene.tscn"
 const RESET = false
 const INIT_DATA = {
 	"scene": STARTING_PATH,

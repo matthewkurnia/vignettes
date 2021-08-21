@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://audio/ambience/hyper_light_drifter.wav" type="AudioStream" id=1]
+[ext_resource path="res://audio/ambience/london_underground.wav" type="AudioStream" id=2]
+[ext_resource path="res://audio/ambience/office_2.wav" type="AudioStream" id=3]
+[ext_resource path="res://audio/ambience/static.wav" type="AudioStream" id=4]
+[ext_resource path="res://audio/ambience/growl.wav" type="AudioStream" id=5]
+
+[node name="Audio" type="Node"]
+pause_mode = 2
+
+[node name="Ambience" type="Node" parent="."]
+
+[node name="Ambience1" type="AudioStreamPlayer" parent="Ambience"]
+stream = ExtResource( 4 )
+autoplay = true
+bus = "Ambience"
+
+[node name="Ambience2" type="AudioStreamPlayer" parent="Ambience"]
+stream = ExtResource( 5 )
+volume_db = -5.871
+autoplay = true
+bus = "Ambience"
+
+[node name="Ambience3" type="AudioStreamPlayer" parent="Ambience"]
+stream = ExtResource( 1 )
+volume_db = -5.2
+pitch_scale = 0.48
+autoplay = true
+bus = "Ambience"
+
+[node name="Ambience4" type="AudioStreamPlayer" parent="Ambience"]
+stream = ExtResource( 2 )
+volume_db = -5.952
+pitch_scale = 0.61
+autoplay = true
+bus = "Ambience"
+
+[node name="Ambience5" type="AudioStreamPlayer" parent="Ambience"]
+stream = ExtResource( 3 )
+volume_db = -16.855
+autoplay = true
+bus = "Ambience"

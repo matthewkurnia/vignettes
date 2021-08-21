@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://npc/dialog_popup.tscn" type="PackedScene" id=1]
+[ext_resource path="res://demo/intro_scene.gd" type="Script" id=2]
+
+[node name="IntroScene" type="Node2D"]
+script = ExtResource( 2 )
+next_scene = "res://demo/title_cards/prologue.tscn"
+
+[node name="DialogPopup" parent="." instance=ExtResource( 1 )]
+timeline = "intro"
+
+[connection signal="tree_exited" from="DialogPopup" to="." method="_on_DialogPopup_tree_exited"]

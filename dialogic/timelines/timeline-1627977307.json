@@ -2,7 +2,33 @@
 	"events": [
 		{
 			"action": "join",
-			"character": "character-1627977205.json",
+			"character": "character-1629300129.json",
+			"event_id": "dialogic_002",
+			"mirror": false,
+			"portrait": "",
+			"position": {
+				"0": false,
+				"1": false,
+				"2": false,
+				"3": false,
+				"4": false
+			}
+		},
+		{
+			"character": "character-1629300129.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "TEST_1"
+		},
+		{
+			"character": "character-1629300129.json",
+			"event_id": "dialogic_001",
+			"portrait": "",
+			"text": "TEST_2"
+		},
+		{
+			"action": "join",
+			"character": "character-1629299976.json",
 			"event_id": "dialogic_002",
 			"mirror": false,
 			"portrait": "",
@@ -15,10 +41,10 @@
 			}
 		},
 		{
-			"character": "character-1627977205.json",
+			"character": "character-1629299976.json",
 			"event_id": "dialogic_001",
 			"portrait": "",
-			"text": "TEST_1"
+			"text": "TEST_3"
 		}
 	],
 	"metadata": {

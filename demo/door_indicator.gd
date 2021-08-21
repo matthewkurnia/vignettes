@@ -19,4 +19,5 @@ func collect():
 	collected = true
 	color_sprite.visible = false
 	animated_sprite.play()
+	$Key.play()
 	pass

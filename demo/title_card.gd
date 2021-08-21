@@ -18,6 +18,7 @@ func _ready():
 	timer.autostart = true
 	timer.start(delay)
 	label.text = text
+	Music.change_deck("silence")
 
 
 func _input(event):
