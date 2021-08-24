@@ -1,0 +1,52 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://demo/title_card.tscn" type="PackedScene" id=1]
+[ext_resource path="res://fonts/dialog_bold_font.tres" type="DynamicFont" id=2]
+[ext_resource path="res://fonts/dialog_normal_font.tres" type="DynamicFont" id=3]
+
+[node name="Credits" instance=ExtResource( 1 )]
+delay = 9999.0
+scene_path = "res://demo/title_screen.tscn"
+
+[node name="Title" parent="CenterContainer" index="0"]
+visible = false
+
+[node name="airbrush4" parent="." index="5"]
+visible = false
+
+[node name="Label" type="RichTextLabel" parent="." index="6"]
+margin_left = 72.0
+margin_top = 48.0
+margin_right = 1968.0
+margin_bottom = 1048.0
+custom_fonts/bold_font = ExtResource( 2 )
+custom_fonts/normal_font = ExtResource( 3 )
+custom_colors/default_color = Color( 0, 0, 0, 1 )
+bbcode_enabled = true
+bbcode_text = "Developed by Matthew Kurnia
+
+Thanks to
+Emilio Coppola - Dialogic
+Ryan Lloyd, Robert Morse,
+Guy Unger - SmartShape2D
+Kyle Harmieson - MixingDesk
+Kevin MacLeod - J.S. Bach Cello Suite #1
+
+Resources
+freesound.org
+publicdomainpictures.net"
+text = "Developed by Matthew Kurnia
+
+Thanks to
+Emilio Coppola - Dialogic
+Ryan Lloyd, Robert Morse,
+Guy Unger - SmartShape2D
+Kyle Harmieson - MixingDesk
+Kevin MacLeod - J.S. Bach Cello Suite #1
+
+Resources
+freesound.org
+publicdomainpictures.net"
+__meta__ = {
+"_edit_use_anchors_": false
+}

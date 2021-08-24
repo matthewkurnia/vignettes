@@ -1,4 +1,4 @@
-[gd_scene load_steps=4772 format=2]
+[gd_scene load_steps=4782 format=2]
 
 [ext_resource path="res://game/main.gd" type="Script" id=1]
 [ext_resource path="res://gizmo/piston/piston.tscn" type="PackedScene" id=2]
@@ -45,7 +45,29 @@
 [ext_resource path="res://decoration/dots.tscn" type="PackedScene" id=43]
 [ext_resource path="res://npc/musician/musician_song.tscn" type="PackedScene" id=44]
 [ext_resource path="res://decoration/faded_circle.tscn" type="PackedScene" id=45]
+[ext_resource path="res://transform_anim/rotation.tscn" type="PackedScene" id=46]
+[ext_resource path="res://wall/distorsion_material_subtle.tres" type="Material" id=47]
+[ext_resource path="res://decoration/images/hand_pointing.png" type="Texture" id=48]
 [ext_resource path="res://decoration/pew_rect.tscn" type="PackedScene" id=49]
+[ext_resource path="res://decoration/images/piano.png" type="Texture" id=50]
+[ext_resource path="res://decoration/images/sheet_music_1.png" type="Texture" id=51]
+[ext_resource path="res://decoration/transparent_white_material.tres" type="Material" id=52]
+[ext_resource path="res://decoration/images/eye.png" type="Texture" id=53]
+[ext_resource path="res://decoration/images/sheet_music_wheel.png" type="Texture" id=54]
+[ext_resource path="res://decoration/images/figure.png" type="Texture" id=55]
+[ext_resource path="res://decoration/images/piano_distorted.png" type="Texture" id=56]
+[ext_resource path="res://decoration/images/cherry.png" type="Texture" id=57]
+[ext_resource path="res://decoration/images/mushroom1.png" type="Texture" id=58]
+[ext_resource path="res://decoration/images/fractal_positive.png" type="Texture" id=59]
+[ext_resource path="res://decoration/images/skull_black.png" type="Texture" id=60]
+[ext_resource path="res://decoration/images/smoke_1.png" type="Texture" id=61]
+[ext_resource path="res://decoration/images/smoke_3.png" type="Texture" id=62]
+[ext_resource path="res://decoration/images/smoke_4.png" type="Texture" id=63]
+[ext_resource path="res://decoration/images/smoke_5.png" type="Texture" id=64]
+[ext_resource path="res://decoration/images/skull_trans.png" type="Texture" id=65]
+[ext_resource path="res://decoration/images/fractal_3.png" type="Texture" id=66]
+[ext_resource path="res://decoration/images/mushroom2.png" type="Texture" id=67]
+[ext_resource path="res://decoration/images/fractal_2.png" type="Texture" id=68]
 
 [sub_resource type="Resource" id=4726]
 script = ExtResource( 5 )
@@ -15863,54 +15885,6 @@ shader_param/tile_factor = Vector2( 25.1338, 24.5227 )
 shader_param/noise = ExtResource( 28 )
 shader_param/mask = ExtResource( 33 )
 
-[sub_resource type="Shader" id=2192]
-resource_local_to_scene = true
-code = "shader_type canvas_item;
-
-uniform float rotation = 0.0;
-uniform sampler2D noise;
-uniform sampler2D mask;
-uniform float frequency_x = 1.0;
-uniform float frequency_y = 1.0;
-uniform float amplitude = 3.0;
-uniform vec2 tile_factor = vec2(1.0, 1.0);
-
-vec2 rotate_uv(vec2 uv, vec2 pivot, float rot) {
-    float sine = sin(rot);
-    float cosine = cos(rot);
-
-    uv -= pivot;
-	float new_x = uv.x * cosine - uv.y * sine;
-	float new_y = uv.x * sine + uv.y * cosine;
-    uv.x = new_x;
-    uv.y = new_y;
-    uv += pivot;
-
-    return uv;
-}
-
-void fragment() {
-	vec2 tiled_uv = rotate_uv(UV * tile_factor, vec2(0.5), rotation);
-	vec2 t_uv = UV + vec2(TIME*frequency_x, TIME * frequency_y);
-	tiled_uv += texture(noise, t_uv).rg * amplitude;
-	tiled_uv.x += amplitude * sin(TIME * frequency_x + tiled_uv.y * frequency_x);
-	tiled_uv.y += amplitude * cos(TIME * frequency_y + tiled_uv.x * frequency_y);
-	COLOR = texture(TEXTURE, tiled_uv);
-	COLOR.a *= texture(mask, UV).a;
-	
-}"
-
-[sub_resource type="ShaderMaterial" id=2193]
-resource_local_to_scene = true
-shader = SubResource( 2192 )
-shader_param/rotation = 2.57
-shader_param/frequency_x = 0.093
-shader_param/frequency_y = 0.1
-shader_param/amplitude = 3.0
-shader_param/tile_factor = Vector2( 19, 18.5381 )
-shader_param/noise = ExtResource( 28 )
-shader_param/mask = ExtResource( 33 )
-
 [sub_resource type="Shader" id=2194]
 resource_local_to_scene = true
 code = "shader_type canvas_item;
@@ -16243,7 +16217,7 @@ shader_param/rotation = 0.0
 shader_param/frequency_x = -0.406
 shader_param/frequency_y = 0.201
 shader_param/amplitude = 3.0
-shader_param/tile_factor = Vector2( 16, 16 )
+shader_param/tile_factor = Vector2( 16, 30 )
 shader_param/noise = ExtResource( 28 )
 
 [sub_resource type="Shader" id=2208]
@@ -17673,45 +17647,6 @@ shader_param/frequency = 8.272
 shader_param/amplitude = -0.054
 shader_param/tile_factor = Vector2( 1, 3.63282 )
 
-[sub_resource type="Shader" id=2292]
-resource_local_to_scene = true
-code = "shader_type canvas_item;
-
-uniform float rotation = 0.0;
-uniform float frequency = 1.0;
-uniform float amplitude = 0.3;
-uniform vec2 tile_factor = vec2(1.0, 1.0);
-
-vec2 rotate_uv(vec2 uv, vec2 pivot, float rot) {
-    float sine = sin(rot);
-    float cosine = cos(rot);
-
-    uv -= pivot;
-	float new_x = uv.x * cosine - uv.y * sine;
-	float new_y = uv.x * sine + uv.y * cosine;
-    uv.x = new_x;
-    uv.y = new_y;
-    uv += pivot;
-
-    return uv;
-}
-
-void fragment() {
-	vec2 tiled_uv = rotate_uv(UV * tile_factor, vec2(0.5), rotation);
-	tiled_uv.x += amplitude * sin(TIME * frequency + tiled_uv.y * frequency);
-	tiled_uv.y += amplitude * cos(TIME * frequency + tiled_uv.x * frequency);
-	COLOR = texture(TEXTURE, tiled_uv);
-	COLOR.a *= UV.y;
-}"
-
-[sub_resource type="ShaderMaterial" id=2293]
-resource_local_to_scene = true
-shader = SubResource( 2292 )
-shader_param/rotation = 0.0
-shader_param/frequency = 8.272
-shader_param/amplitude = -0.054
-shader_param/tile_factor = Vector2( 1, 4.13281 )
-
 [sub_resource type="Shader" id=2294]
 resource_local_to_scene = true
 code = "shader_type canvas_item;
@@ -17789,45 +17724,6 @@ shader_param/rotation = 0.0
 shader_param/frequency = 8.272
 shader_param/amplitude = -0.054
 shader_param/tile_factor = Vector2( 1, 2.63282 )
-
-[sub_resource type="Shader" id=2298]
-resource_local_to_scene = true
-code = "shader_type canvas_item;
-
-uniform float rotation = 0.0;
-uniform float frequency = 1.0;
-uniform float amplitude = 0.3;
-uniform vec2 tile_factor = vec2(1.0, 1.0);
-
-vec2 rotate_uv(vec2 uv, vec2 pivot, float rot) {
-    float sine = sin(rot);
-    float cosine = cos(rot);
-
-    uv -= pivot;
-	float new_x = uv.x * cosine - uv.y * sine;
-	float new_y = uv.x * sine + uv.y * cosine;
-    uv.x = new_x;
-    uv.y = new_y;
-    uv += pivot;
-
-    return uv;
-}
-
-void fragment() {
-	vec2 tiled_uv = rotate_uv(UV * tile_factor, vec2(0.5), rotation);
-	tiled_uv.x += amplitude * sin(TIME * frequency + tiled_uv.y * frequency);
-	tiled_uv.y += amplitude * cos(TIME * frequency + tiled_uv.x * frequency);
-	COLOR = texture(TEXTURE, tiled_uv);
-	COLOR.a *= UV.y;
-}"
-
-[sub_resource type="ShaderMaterial" id=2299]
-resource_local_to_scene = true
-shader = SubResource( 2298 )
-shader_param/rotation = 0.0
-shader_param/frequency = 8.272
-shader_param/amplitude = -0.054
-shader_param/tile_factor = Vector2( 1, 4.88282 )
 
 [sub_resource type="Shader" id=2300]
 resource_local_to_scene = true
@@ -18648,45 +18544,6 @@ shader_param/frequency = 8.272
 shader_param/amplitude = -0.054
 shader_param/tile_factor = Vector2( 1, 3.74029 )
 
-[sub_resource type="Shader" id=2342]
-resource_local_to_scene = true
-code = "shader_type canvas_item;
-
-uniform float rotation = 0.0;
-uniform float frequency = 1.0;
-uniform float amplitude = 0.3;
-uniform vec2 tile_factor = vec2(1.0, 1.0);
-
-vec2 rotate_uv(vec2 uv, vec2 pivot, float rot) {
-    float sine = sin(rot);
-    float cosine = cos(rot);
-
-    uv -= pivot;
-	float new_x = uv.x * cosine - uv.y * sine;
-	float new_y = uv.x * sine + uv.y * cosine;
-    uv.x = new_x;
-    uv.y = new_y;
-    uv += pivot;
-
-    return uv;
-}
-
-void fragment() {
-	vec2 tiled_uv = rotate_uv(UV * tile_factor, vec2(0.5), rotation);
-	tiled_uv.x += amplitude * sin(TIME * frequency + tiled_uv.y * frequency);
-	tiled_uv.y += amplitude * cos(TIME * frequency + tiled_uv.x * frequency);
-	COLOR = texture(TEXTURE, tiled_uv);
-	COLOR.a *= UV.y;
-}"
-
-[sub_resource type="ShaderMaterial" id=2343]
-resource_local_to_scene = true
-shader = SubResource( 2342 )
-shader_param/rotation = 0.0
-shader_param/frequency = 8.272
-shader_param/amplitude = -0.054
-shader_param/tile_factor = Vector2( 1, 1.63281 )
-
 [sub_resource type="Shader" id=2344]
 resource_local_to_scene = true
 code = "shader_type canvas_item;
@@ -18921,45 +18778,6 @@ shader_param/frequency = 8.272
 shader_param/amplitude = -0.054
 shader_param/tile_factor = Vector2( 1, 5.26563 )
 
-[sub_resource type="Shader" id=2356]
-resource_local_to_scene = true
-code = "shader_type canvas_item;
-
-uniform float rotation = 0.0;
-uniform float frequency = 1.0;
-uniform float amplitude = 0.3;
-uniform vec2 tile_factor = vec2(1.0, 1.0);
-
-vec2 rotate_uv(vec2 uv, vec2 pivot, float rot) {
-    float sine = sin(rot);
-    float cosine = cos(rot);
-
-    uv -= pivot;
-	float new_x = uv.x * cosine - uv.y * sine;
-	float new_y = uv.x * sine + uv.y * cosine;
-    uv.x = new_x;
-    uv.y = new_y;
-    uv += pivot;
-
-    return uv;
-}
-
-void fragment() {
-	vec2 tiled_uv = rotate_uv(UV * tile_factor, vec2(0.5), rotation);
-	tiled_uv.x += amplitude * sin(TIME * frequency + tiled_uv.y * frequency);
-	tiled_uv.y += amplitude * cos(TIME * frequency + tiled_uv.x * frequency);
-	COLOR = texture(TEXTURE, tiled_uv);
-	COLOR.a *= UV.y;
-}"
-
-[sub_resource type="ShaderMaterial" id=2357]
-resource_local_to_scene = true
-shader = SubResource( 2356 )
-shader_param/rotation = 0.0
-shader_param/frequency = 8.272
-shader_param/amplitude = -0.054
-shader_param/tile_factor = Vector2( 1, 5.26563 )
-
 [sub_resource type="Shader" id=2358]
 resource_local_to_scene = true
 code = "shader_type canvas_item;
@@ -19154,45 +18972,6 @@ shader_param/rotation = 0.0
 shader_param/frequency = 8.272
 shader_param/amplitude = -0.054
 shader_param/tile_factor = Vector2( 1, 3.13282 )
-
-[sub_resource type="Shader" id=2368]
-resource_local_to_scene = true
-code = "shader_type canvas_item;
-
-uniform float rotation = 0.0;
-uniform float frequency = 1.0;
-uniform float amplitude = 0.3;
-uniform vec2 tile_factor = vec2(1.0, 1.0);
-
-vec2 rotate_uv(vec2 uv, vec2 pivot, float rot) {
-    float sine = sin(rot);
-    float cosine = cos(rot);
-
-    uv -= pivot;
-	float new_x = uv.x * cosine - uv.y * sine;
-	float new_y = uv.x * sine + uv.y * cosine;
-    uv.x = new_x;
-    uv.y = new_y;
-    uv += pivot;
-
-    return uv;
-}
-
-void fragment() {
-	vec2 tiled_uv = rotate_uv(UV * tile_factor, vec2(0.5), rotation);
-	tiled_uv.x += amplitude * sin(TIME * frequency + tiled_uv.y * frequency);
-	tiled_uv.y += amplitude * cos(TIME * frequency + tiled_uv.x * frequency);
-	COLOR = texture(TEXTURE, tiled_uv);
-	COLOR.a *= UV.y;
-}"
-
-[sub_resource type="ShaderMaterial" id=2369]
-resource_local_to_scene = true
-shader = SubResource( 2368 )
-shader_param/rotation = 0.0
-shader_param/frequency = 8.272
-shader_param/amplitude = -0.054
-shader_param/tile_factor = Vector2( 1, 5.26563 )
 
 [sub_resource type="Shader" id=2370]
 resource_local_to_scene = true
@@ -38341,6 +38120,7 @@ script = ExtResource( 8 )
 object_scene = ExtResource( 36 )
 
 [node name="PewMoon1" parent="Decor2/PewMoons/PewMoons" instance=ExtResource( 36 )]
+visible = false
 material = SubResource( 2187 )
 position = Vector2( 896, -445.163 )
 scale = Vector2( 30, -24.1773 )
@@ -38360,11 +38140,6 @@ material = SubResource( 2191 )
 position = Vector2( 13408, 4384 )
 rotation = 0.411105
 scale = Vector2( 25.1338, 24.5227 )
-
-[node name="PewMoon5" parent="Decor2/PewMoons/PewMoons" instance=ExtResource( 36 )]
-material = SubResource( 2193 )
-position = Vector2( 14832, 1391.61 )
-scale = Vector2( 19, 18.5381 )
 
 [node name="PewMoon6" parent="Decor2/PewMoons/PewMoons" instance=ExtResource( 36 )]
 material = SubResource( 2195 )
@@ -38402,7 +38177,8 @@ object_scene = ExtResource( 49 )
 
 [node name="PewRect1" parent="Decor2/PewMoons/PewRects" instance=ExtResource( 49 )]
 material = SubResource( 2207 )
-position = Vector2( 22784, 6304 )
+position = Vector2( 22784, 6080 )
+scale = Vector2( 16, 30 )
 
 [node name="PewRect2" parent="Decor2/PewMoons/PewRects" instance=ExtResource( 49 )]
 material = SubResource( 2209 )
@@ -38776,11 +38552,6 @@ material = SubResource( 2291 )
 position = Vector2( 3872, -2152.5 )
 scale = Vector2( 1, 3.63282 )
 
-[node name="Seaweed9" parent="Decor1/Seaweeds/ObjectPlacer2D" instance=ExtResource( 34 )]
-material = SubResource( 2293 )
-position = Vector2( 192, -2056.5 )
-scale = Vector2( 1, 4.13281 )
-
 [node name="Seaweed10" parent="Decor1/Seaweeds/ObjectPlacer2D" instance=ExtResource( 34 )]
 material = SubResource( 2295 )
 position = Vector2( -864, -2104.5 )
@@ -38790,11 +38561,6 @@ scale = Vector2( 1, 4.38281 )
 material = SubResource( 2297 )
 position = Vector2( -1760, -2696.5 )
 scale = Vector2( 1, 2.63282 )
-
-[node name="Seaweed12" parent="Decor1/Seaweeds/ObjectPlacer2D" instance=ExtResource( 34 )]
-material = SubResource( 2299 )
-position = Vector2( -2816, -2840.5 )
-scale = Vector2( 1, 4.88282 )
 
 [node name="Seaweed13" parent="Decor1/Seaweeds/ObjectPlacer2D" instance=ExtResource( 34 )]
 material = SubResource( 2301 )
@@ -38909,11 +38675,6 @@ position = Vector2( 16404.5, 1104.81 )
 rotation = -1.0472
 scale = Vector2( 1, 3.74029 )
 
-[node name="Seaweed35" parent="Decor1/Seaweeds/ObjectPlacer2D" instance=ExtResource( 34 )]
-material = SubResource( 2343 )
-position = Vector2( 14880, 3936 )
-scale = Vector2( 1, 1.63281 )
-
 [node name="Seaweed36" parent="Decor1/Seaweeds/ObjectPlacer2D" instance=ExtResource( 34 )]
 material = SubResource( 2345 )
 position = Vector2( 14976, 312.5 )
@@ -38944,10 +38705,6 @@ scale = Vector2( 1, 3.88281 )
 material = SubResource( 2355 )
 position = Vector2( 17472, 7680 )
 
-[node name="Seaweed42" parent="Decor1/Seaweeds/ObjectPlacer2D" instance=ExtResource( 34 )]
-material = SubResource( 2357 )
-position = Vector2( 20224, 6688 )
-
 [node name="Seaweed43" parent="Decor1/Seaweeds/ObjectPlacer2D" instance=ExtResource( 34 )]
 material = SubResource( 2359 )
 position = Vector2( 16320, 6240 )
@@ -38970,10 +38727,6 @@ scale = Vector2( 1, 4.13282 )
 material = SubResource( 2367 )
 position = Vector2( 23168, 7008 )
 scale = Vector2( 1, 3.13282 )
-
-[node name="Seaweed48" parent="Decor1/Seaweeds/ObjectPlacer2D" instance=ExtResource( 34 )]
-material = SubResource( 2369 )
-position = Vector2( 21984, 6880 )
 
 [node name="Seaweed49" parent="Decor1/Seaweeds/ObjectPlacer2D" instance=ExtResource( 34 )]
 material = SubResource( 2371 )
@@ -39624,7 +39377,7 @@ scale = Vector2( 0.75625, 0.75625 )
 
 [node name="circle16" parent="Decor1/Circles" instance=ExtResource( 45 )]
 material = SubResource( 2491 )
-position = Vector2( 13184, -416 )
+position = Vector2( 14894.5, 560.425 )
 rotation = -0.523598
 scale = Vector2( 0.9125, 0.9125 )
 
@@ -39718,6 +39471,110 @@ material = SubResource( 2525 )
 position = Vector2( 29536, -3136 )
 rotation = 1.57079
 scale = Vector2( 1.4125, 1.4125 )
+
+[node name="ColorNode" type="Node2D" parent="Decor1"]
+script = ExtResource( 27 )
+modulate_color = false
+
+[node name="Sprite1" type="Sprite" parent="Decor1/ColorNode"]
+material = ExtResource( 52 )
+position = Vector2( -2994.98, -2616.87 )
+texture = ExtResource( 54 )
+offset = Vector2( 18.9763, -39.1345 )
+
+[node name="Rotation" parent="Decor1/ColorNode/Sprite1" instance=ExtResource( 46 )]
+rot_degrees = 360.0
+duration = 8.0
+
+[node name="eye" type="Sprite" parent="Decor1/ColorNode"]
+position = Vector2( 904.571, -242.456 )
+scale = Vector2( 0.37042, 0.37042 )
+texture = ExtResource( 53 )
+
+[node name="hand_pointing" type="Sprite" parent="Decor1/ColorNode"]
+material = ExtResource( 47 )
+position = Vector2( 20100, 6640.9 )
+rotation = -0.785397
+texture = ExtResource( 48 )
+flip_h = true
+
+[node name="sheet_music_1" type="Sprite" parent="Decor1/ColorNode"]
+material = ExtResource( 52 )
+position = Vector2( 590.148, -2488.93 )
+rotation = 1.57079
+texture = ExtResource( 51 )
+
+[node name="piano" type="Sprite" parent="Decor1/ColorNode"]
+material = ExtResource( 47 )
+position = Vector2( -960.798, -2961 )
+scale = Vector2( 0.489742, 0.489742 )
+texture = ExtResource( 50 )
+
+[node name="figure" type="Sprite" parent="Decor1/ColorNode"]
+position = Vector2( -1081.12, -126.753 )
+texture = ExtResource( 55 )
+
+[node name="mushroom1" type="Sprite" parent="Decor1/ColorNode"]
+position = Vector2( -1802.19, 2821.02 )
+texture = ExtResource( 58 )
+
+[node name="piano_distorted" type="Sprite" parent="Decor1/ColorNode"]
+material = ExtResource( 52 )
+position = Vector2( -6223.39, -2129.13 )
+rotation = 0.523598
+texture = ExtResource( 56 )
+
+[node name="fractal_positive" type="Sprite" parent="Decor1/ColorNode"]
+material = ExtResource( 52 )
+position = Vector2( 14792.4, 3571.44 )
+texture = ExtResource( 59 )
+
+[node name="cherry" type="Sprite" parent="Decor1/ColorNode"]
+position = Vector2( 22050.6, 6706.19 )
+scale = Vector2( 0.570565, 0.570565 )
+texture = ExtResource( 57 )
+flip_h = true
+
+[node name="skull_black" type="Sprite" parent="Decor1/ColorNode"]
+position = Vector2( 17937.1, 7192.65 )
+scale = Vector2( 0.441668, 0.441668 )
+texture = ExtResource( 60 )
+
+[node name="mushroom2" type="Sprite" parent="Decor1/ColorNode"]
+position = Vector2( 3879.34, 2102.11 )
+texture = ExtResource( 67 )
+
+[node name="smoke_1" type="Sprite" parent="Decor1/ColorNode"]
+position = Vector2( 12932.8, 7556.27 )
+texture = ExtResource( 61 )
+
+[node name="smoke_4" type="Sprite" parent="Decor1/ColorNode"]
+position = Vector2( 22407.1, 5351.25 )
+rotation = -0.261799
+texture = ExtResource( 63 )
+
+[node name="smoke_3" type="Sprite" parent="Decor1/ColorNode"]
+position = Vector2( 20465.8, 5453.62 )
+rotation = -0.261799
+texture = ExtResource( 62 )
+
+[node name="smoke_5" type="Sprite" parent="Decor1/ColorNode"]
+position = Vector2( 21794.5, 345.369 )
+scale = Vector2( 0.730874, 0.730874 )
+texture = ExtResource( 64 )
+
+[node name="fractal_3" type="Sprite" parent="Decor1/ColorNode"]
+position = Vector2( 24060.2, -3455.19 )
+texture = ExtResource( 66 )
+
+[node name="skull_trans" type="Sprite" parent="Decor1/ColorNode/fractal_3"]
+position = Vector2( -28428.8, 3293.06 )
+texture = ExtResource( 65 )
+
+[node name="fractal_2" type="Sprite" parent="Decor1/ColorNode"]
+position = Vector2( 13436.3, 1073.55 )
+rotation = 0.523598
+texture = ExtResource( 68 )
 
 [node name="MainLayer" parent="." instance=ExtResource( 17 )]
 
@@ -40647,13 +40504,13 @@ rotation = -1.57079
 z_index = -1
 
 [node name="Scholar" parent="MainLayer" instance=ExtResource( 42 )]
-position = Vector2( -2304.71, -2673.86 )
+position = Vector2( 15457, 3894.98 )
 
 [node name="DialogTrigger" parent="MainLayer/Scholar" instance=ExtResource( 32 )]
 timeline = "scholar_2"
 
 [node name="MusicianRig" parent="MainLayer" instance=ExtResource( 35 )]
-position = Vector2( 15552, 3904 )
+position = Vector2( -2343.64, -2675.73 )
 
 [node name="DialogTrigger" parent="MainLayer/MusicianRig" instance=ExtResource( 32 )]
 timeline = "musician_2"

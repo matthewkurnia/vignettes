@@ -3,5 +3,6 @@
 [ext_resource path="res://demo/title_card.tscn" type="PackedScene" id=1]
 
 [node name="TitleCard" instance=ExtResource( 1 )]
-scene_path = "res://demo/title_screen.tscn"
+delay = 10.0
+scene_path = "res://demo/credits.tscn"
 text = "END"

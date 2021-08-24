@@ -18,6 +18,7 @@ onready var main_viewport = $WorldRender/Main/MainViewport
 
 
 func _ready():
+	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
 	Game.actor = self
 	main_viewport.call_deferred("add_child", main)
 	fade.fade_out(0.5)
@@ -43,7 +44,6 @@ func add_to_viewport(node: Node2D, layer):
 
 
 func change_scene(scene_path: String):
-	Game.is_menu = scene_path == MAIN_PATH
 	main_viewport.gui_disable_input = true
 	var scene = load(scene_path)
 	if not Game.is_menu:
@@ -59,3 +59,4 @@ func change_scene(scene_path: String):
 	main_viewport.add_child(main)
 	main_viewport.gui_disable_input = false
 	fade.fade_out(0.5)
+	Game.is_menu = scene_path == MAIN_PATH or main is TitleCard

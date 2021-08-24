@@ -329,6 +329,7 @@ texture = ExtResource( 2 )
 offset = Vector2( 42.1752, 0 )
 script = ExtResource( 13 )
 menu_label_path = NodePath("../Menu")
+credits_scene = "res://demo/credits.tscn"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Pointer"]
 autoplay = "loop"

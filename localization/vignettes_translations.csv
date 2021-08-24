@@ -7,14 +7,18 @@ SUBTITLE,"Propter vitam vivendi
 perdere causas.
 
 
-Pre-Alpha 0.0.1 demo
+Pre-Alpha 0.01 demo
 Memodol 2021"
 MENU_1,"New Game
+
+Credits
 
 Quit"
 MENU_2,"Continue
 
 New Game
+
+Credits
 
 Quit"
 PAUSE_MENU,"Continue
@@ -25,8 +29,7 @@ Quit"
 PAUSED,Paused
 PROLOGUE,Prologue
 CHAPTER_1,Chapter 1
-END,"End of Demo
-Thank you for playing"
+END,"Vignettes"
 TUTORIAL_1,Arrow keys to move.
 TUTORIAL_2,Press 'x' to jump.
 TUTORIAL_3,Press and hold 'c' to slide.
